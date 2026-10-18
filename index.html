@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mastered Comprehensive School - Fee Portal</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;font-family:Inter,Segoe UI,sans-serif}
+body{margin:0;background:#F5F7FB;display:flex;justify-content:center;padding:15px}
+.card{background:#fff;max-width:440px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.1)}
+.header{background:#0B1C33;color:#fff;padding:22px;text-align:center}
+.body{padding:20px}
+.input{width:100%;padding:14px;border:2px solid #E5E9F2;border-radius:10px;font-size:16px;text-transform:uppercase}
+.btn{width:100%;margin-top:14px;background:#0B1C33;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer}
+.result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none}
+.result.show{display:block}
+#qrTemp{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="header"><h2>Mastered Comprehensive School</h2><p>Official Fee Portal • 0721 101 702</p></div>
+<div class="body">
+<input id="key" class="input" placeholder="e.g. JK-8492">
+<button id="btn" class="btn">View Statement</button>
+<div id="resultWrap" class="result"><div id="resultCard"></div><button id="pdfBtn" class="btn">Download PDF Receipt with QR</button></div>
+</div>
+</div>
+<div id="qrTemp"></div>
+<script>
+const WEB_APP_URL = "https://script.google.com/macros/s/" + "AKfycbyUaHEZVuovpJxGQEEarKCMoQ2Dt3dkW2UTCDURe91LkdJeGcriOn3bHd5XWMyDXU8aAw/exec";
+const { jsPDF } = window.jspdf;
+let lastData=null;
+document.getElementById('btn').onclick = async () => {
+  const key=document.getElementById('key').value.trim().toUpperCase();
+  if(!key){alert("Enter code");return;}
+  try{
+    const r=await fetch(WEB_APP_URL+"?key="+encodeURIComponent(key));
+    const d=await r.json();
+    if(d.error){alert("Invalid Code");}
+    else{
+      lastData={...d,key};
+      document.getElementById('resultCard').innerHTML=`<b>${d.student_name}</b><br>Class: ${d.class}<br>Parent: ${d.parent_name}<br>Balance: KES ${d.balance}<br>Status: ${d.status}`;
+      document.getElementById('resultWrap').classList.add('show');
+    }
+  }catch(e){alert("Network error");}
+};
+document.getElementById('pdfBtn').onclick = () => {
+  if(!lastData)return;
+  const doc=new jsPDF();
+  const receiptId="MCS-"+Date.now().toString().slice(-8);
+  const dateStr=new Date().toLocaleString();
+  const qrDiv=document.getElementById('qrTemp');qrDiv.innerHTML="";
+  new QRCode(qrDiv,{text:`${lastData.student_name}|${lastData.key}|KES ${lastData.balance}|${receiptId}`,width:100,height:100});
+  setTimeout(()=>{
+    const qr=qrDiv.querySelector('canvas');
+    const qrData=qr?qr.toDataURL():null;
+    doc.setFillColor(11,28,51);doc.rect(0,0,210,35,'F');
+    doc.setTextColor(255,255,255);doc.text("Mastered Comprehensive School",105,20,{align:"center"});
+    doc.setTextColor(0,0,0);doc.setFontSize(12);
+    let y=50;doc.text(`Receipt: ${receiptId}`,14,y);y+=10;doc.text(`Date: ${dateStr}`,14,y);y+=10;
+    doc.text(`Student: ${lastData.student_name}`,14,y);y+=10;doc.text(`Class: ${lastData.class}`,14,y);y+=10;
+    doc.text(`Balance: KES ${lastData.balance}`,14,y);y+=10;doc.text(`Status: ${lastData.status}`,14,y);y+=15;
+    if(qrData){doc.addImage(qrData,'PNG',14,y,35,35);}
+    doc.save(`${lastData.key}_Receipt.pdf`);
+  },300);
+};
+</script>
+</body>
+</html>
