@@ -13,16 +13,31 @@ body{margin:0;background:#F5F7FB;display:flex;justify-content:center;padding:15p
 .header{background:#0B1C33;color:#fff;padding:22px;text-align:center}
 .header h2{margin:0 0 6px}
 .header p{margin:0;opacity:.85}
+.tabs{display:flex;border-bottom:2px solid #E5E9F2}
+.tab{flex:1;padding:14px;background:none;border:none;font-weight:700;font-size:15px;color:#6B7690;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab[aria-selected="true"]{color:#0B1C33;border-bottom-color:#0B1C33}
+.tab:focus-visible,.btn:focus-visible{outline:3px solid #7FA6E8;outline-offset:2px}
 .body{padding:20px}
-.input{width:100%;padding:14px;border:2px solid #E5E9F2;border-radius:10px;font-size:16px;text-transform:uppercase}
+.panel[hidden]{display:none}
+label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600;color:#0B1C33}
+label:first-child{margin-top:0}
+.hint{font-size:12px;color:#6B7690;margin-top:4px}
+.input{width:100%;padding:14px;border:2px solid #E5E9F2;border-radius:10px;font-size:16px;background:#fff}
+.input.upper{text-transform:uppercase}
 .input:focus{outline:none;border-color:#0B1C33}
 .btn{width:100%;margin-top:14px;background:#0B1C33;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:15px}
+.btn.secondary{background:#fff;color:#0B1C33;border:2px solid #0B1C33}
 .btn:disabled{opacity:.6;cursor:wait}
 .msg{margin-top:14px;padding:12px;border-radius:10px;font-size:14px;display:none}
 .msg.show{display:block}
 .msg.error{background:#FDECEC;color:#9B1C1C}
 .result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none;line-height:1.7}
 .result.show{display:block}
+.keybox{margin-top:18px;border:2px solid #0B1C33;border-radius:12px;padding:18px;text-align:center;display:none}
+.keybox.show{display:block}
+.keybox .code{font-size:26px;font-weight:800;letter-spacing:1px;margin:8px 0;word-break:break-all;user-select:all}
+.keybox p{margin:6px 0;font-size:14px;line-height:1.5}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 #qrTemp{position:absolute;left:-9999px}
 </style>
 </head>
@@ -32,13 +47,63 @@ body{margin:0;background:#F5F7FB;display:flex;justify-content:center;padding:15p
     <h2>Mastered Comprehensive School</h2>
     <p>Official Fee Portal • 0721 101 702</p>
   </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tabCheck" role="tab" aria-selected="true" aria-controls="panelCheck">Check balance</button>
+    <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register student</button>
+  </div>
+
   <div class="body">
-    <input id="key" class="input" placeholder="Enter student code, e.g. MCS-JK-4821" autocomplete="off">
-    <button id="btn" class="btn">View Statement</button>
-    <div id="msg" class="msg error" role="alert"></div>
-    <div id="resultWrap" class="result">
-      <div id="resultCard"></div>
-      <button id="pdfBtn" class="btn">Download PDF Receipt with QR</button>
+    <!-- ============ CHECK BALANCE ============ -->
+    <div id="panelCheck" class="panel" role="tabpanel" aria-labelledby="tabCheck">
+      <label for="key">Student security key</label>
+      <input id="key" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="btn" class="btn">View statement</button>
+      <div id="msg" class="msg error" role="alert"></div>
+      <div id="resultWrap" class="result">
+        <div id="resultCard"></div>
+        <button id="pdfBtn" class="btn">Download PDF receipt with QR</button>
+      </div>
+    </div>
+
+    <!-- ============ REGISTER STUDENT ============ -->
+    <div id="panelRegister" class="panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
+      <form id="regForm" novalidate>
+        <label for="regName">Student full name</label>
+        <input id="regName" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. JOHN KAMAU">
+
+        <label for="regClass">Class</label>
+        <select id="regClass" class="input">
+          <option value="">Choose a class</option>
+        </select>
+
+        <label for="regParent">Parent or guardian name</label>
+        <input id="regParent" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. DAN MWANGI">
+
+        <label for="regPhone">Parent phone number</label>
+        <input id="regPhone" class="input" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="0712345678">
+        <div class="hint">10 digits, starting with 07.</div>
+
+        <label for="regCode">School access code</label>
+        <input id="regCode" class="input upper" autocomplete="off" maxlength="30" placeholder="Given to you by the school">
+        <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
+
+        <!-- Hidden trap for bots: real people never see or fill this in -->
+        <input id="regWebsite" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <button type="submit" id="regBtn" class="btn">Get my security key</button>
+      </form>
+
+      <div id="regMsg" class="msg error" role="alert"></div>
+
+      <div id="keyBox" class="keybox" aria-live="polite">
+        <p><b>Registration complete for <span id="keyName"></span></b></p>
+        <div class="code" id="keyCode"></div>
+        <p><b>Save this key now.</b> It is only shown once. Take a screenshot or copy it.</p>
+        <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message. Use it on the "Check balance" tab afterwards.</p>
+        <button type="button" id="copyBtn" class="btn secondary">Copy key</button>
+        <button type="button" id="useKeyBtn" class="btn">Go to check balance</button>
+      </div>
     </div>
   </div>
 </div>
@@ -47,13 +112,18 @@ body{margin:0;background:#F5F7FB;display:flex;justify-content:center;padding:15p
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2o_MSiHspkrnugXNicJFmOiLLxyR2R15-Z4gdp7wW5g4sDqdczA/exec";
 
-let lastData = null;
+// Keep this list identical to CLASSES in Code.gs
+const CLASSES = [
+  "PP1", "PP2",
+  "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5",
+  "Grade 6", "Grade 7", "Grade 8", "Grade 9"
+];
 
-const keyInput   = document.getElementById("key");
-const btn        = document.getElementById("btn");
-const msg        = document.getElementById("msg");
-const resultWrap = document.getElementById("resultWrap");
-const resultCard = document.getElementById("resultCard");
+let lastData = null;
+let lastKey = "";
+
+/* ---------- helpers ---------- */
+const $ = (id) => document.getElementById(id);
 
 // JSONP request: avoids the CORS block that fetch() hits with Apps Script
 function fetchJSONP(url) {
@@ -64,7 +134,7 @@ function fetchJSONP(url) {
     const timer = setTimeout(() => {
       cleanup();
       reject(new Error("The request timed out. Check your connection and try again."));
-    }, 20000);
+    }, 25000);
 
     function cleanup() {
       clearTimeout(timer);
@@ -75,7 +145,7 @@ function fetchJSONP(url) {
     window[cbName] = (data) => { cleanup(); resolve(data); };
     script.onerror = () => {
       cleanup();
-      reject(new Error("Could not reach the server. Check the web app URL and deployment access."));
+      reject(new Error("Could not reach the server. Check your connection and try again."));
     };
 
     script.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cbName;
@@ -83,15 +153,46 @@ function fetchJSONP(url) {
   });
 }
 
-function showError(text) {
-  msg.textContent = text;
-  msg.classList.add("show");
-  resultWrap.classList.remove("show");
+function showMsg(el, text) {
+  el.textContent = text;
+  el.classList.add("show");
+}
+function clearMsg(el) {
+  el.textContent = "";
+  el.classList.remove("show");
 }
 
-function clearError() {
-  msg.textContent = "";
-  msg.classList.remove("show");
+// Adds the KES prefix only when the balance is a number
+function money(b) {
+  return /^[0-9][0-9,]*(\.[0-9]+)?$/.test(String(b)) ? "KES " + b : String(b);
+}
+
+/* ---------- tabs ---------- */
+function selectTab(which) {
+  const isCheck = which === "check";
+  $("tabCheck").setAttribute("aria-selected", isCheck);
+  $("tabRegister").setAttribute("aria-selected", !isCheck);
+  $("panelCheck").hidden = !isCheck;
+  $("panelRegister").hidden = isCheck;
+}
+$("tabCheck").addEventListener("click", () => selectTab("check"));
+$("tabRegister").addEventListener("click", () => selectTab("register"));
+
+/* ---------- class dropdown ---------- */
+CLASSES.forEach((c) => {
+  const o = document.createElement("option");
+  o.value = c;
+  o.textContent = c;
+  $("regClass").appendChild(o);
+});
+
+/* ---------- check balance ---------- */
+const resultWrap = $("resultWrap");
+const resultCard = $("resultCard");
+
+function showError(text) {
+  showMsg($("msg"), text);
+  resultWrap.classList.remove("show");
 }
 
 function renderResult(d) {
@@ -101,14 +202,12 @@ function renderResult(d) {
   name.textContent = d.student_name;
   resultCard.appendChild(name);
 
-  const rows = [
+  [
     ["Class", d.class],
     ["Parent", d.parent_name],
-    ["Balance", "KES " + d.balance],
+    ["Balance", money(d.balance)],
     ["Status", d.status]
-  ];
-
-  rows.forEach(([label, value]) => {
+  ].forEach(([label, value]) => {
     resultCard.appendChild(document.createElement("br"));
     resultCard.appendChild(document.createTextNode(label + ": " + value));
   });
@@ -117,28 +216,20 @@ function renderResult(d) {
 }
 
 async function lookup() {
-  const key = keyInput.value.trim().toUpperCase();
-  clearError();
+  const key = $("key").value.trim().toUpperCase();
+  clearMsg($("msg"));
 
-  if (!key) {
-    showError("Enter the student code.");
-    return;
-  }
+  if (!key) { showError("Enter the student security key."); return; }
 
-  btn.disabled = true;
-  btn.textContent = "Checking...";
+  $("btn").disabled = true;
+  $("btn").textContent = "Checking...";
 
   try {
     const d = await fetchJSONP(WEB_APP_URL + "?key=" + encodeURIComponent(key));
 
-    if (d.error === "SHEET_NOT_FOUND") {
-      showError("Server setup problem: the sheet tab was not found. Please contact the school.");
-      return;
-    }
-    if (d.error) {
-      showError("Student code not found. Check the code and try again.");
-      return;
-    }
+    if (d.error === "SHEET_NOT_FOUND") { showError("Server setup problem. Please contact the school."); return; }
+    if (d.error === "NOT_APPROVED") { showError("Your registration is waiting for approval by the school. Please check again later or contact the school office."); return; }
+    if (d.error) { showError("Security key not found. Check the key and try again."); return; }
 
     lastData = { ...d, key };
     renderResult(d);
@@ -146,15 +237,105 @@ async function lookup() {
     console.error("Fee portal error:", e);
     showError("Unable to retrieve balance: " + e.message);
   } finally {
-    btn.disabled = false;
-    btn.textContent = "View Statement";
+    $("btn").disabled = false;
+    $("btn").textContent = "View statement";
   }
 }
 
-btn.addEventListener("click", lookup);
-keyInput.addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
+$("btn").addEventListener("click", lookup);
+$("key").addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
 
-document.getElementById("pdfBtn").addEventListener("click", () => {
+/* ---------- register student ---------- */
+const REG_ERRORS = {
+  INVALID_NAME: "Enter the student's full name using letters only.",
+  INVALID_CLASS: "Choose the student's class from the list.",
+  INVALID_PARENT: "Enter the parent or guardian's name using letters only.",
+  INVALID_PHONE: "Enter a phone number with 10 digits starting with 07.",
+  INVALID_CODE: "The school access code is not correct. Ask the school office for the right code.",
+  CLOSED: "Registration is currently closed. Please contact the school office.",
+  DUPLICATE: "This student is already registered with this phone number. Contact the school if you lost the key.",
+  BUSY: "Too many registrations right now. Please try again in a few minutes.",
+  SHEET_NOT_FOUND: "Server setup problem. Please contact the school.",
+  SERVER: "Something went wrong on the server. Please try again.",
+  INVALID: "The registration could not be completed. Please try again."
+};
+
+$("regPhone").addEventListener("input", (e) => {
+  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+});
+
+$("regForm").addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  clearMsg($("regMsg"));
+
+  const name = $("regName").value.trim().replace(/\s+/g, " ");
+  const cls = $("regClass").value;
+  const parent = $("regParent").value.trim().replace(/\s+/g, " ");
+  const phone = $("regPhone").value.trim();
+
+  if (name.length < 3) return showMsg($("regMsg"), REG_ERRORS.INVALID_NAME);
+  if (!cls) return showMsg($("regMsg"), REG_ERRORS.INVALID_CLASS);
+  if (parent.length < 2) return showMsg($("regMsg"), REG_ERRORS.INVALID_PARENT);
+  if (!/^07[0-9]{8}$/.test(phone)) return showMsg($("regMsg"), REG_ERRORS.INVALID_PHONE);
+  const code = $("regCode").value.trim();
+  if (!code) return showMsg($("regMsg"), "Enter the school access code.");
+
+  $("regBtn").disabled = true;
+  $("regBtn").textContent = "Registering...";
+
+  try {
+    const qs = new URLSearchParams({
+      action: "register",
+      name: name,
+      class: cls,
+      parent: parent,
+      phone: phone,
+      code: code,
+      website: $("regWebsite").value
+    });
+    const d = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
+
+    if (d.error) {
+      showMsg($("regMsg"), REG_ERRORS[d.error] || REG_ERRORS.INVALID);
+      return;
+    }
+
+    lastKey = d.key;
+    $("keyName").textContent = d.student_name;
+    $("keyCode").textContent = d.key;
+    $("regForm").style.display = "none";
+    $("keyBox").classList.add("show");
+  } catch (e) {
+    console.error("Registration error:", e);
+    showMsg($("regMsg"), "Unable to register: " + e.message);
+  } finally {
+    $("regBtn").disabled = false;
+    $("regBtn").textContent = "Get my security key";
+  }
+});
+
+$("copyBtn").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(lastKey);
+    $("copyBtn").textContent = "Copied";
+  } catch {
+    $("copyBtn").textContent = "Press and hold the key to copy it";
+  }
+});
+
+$("useKeyBtn").addEventListener("click", () => {
+  $("key").value = lastKey;
+  selectTab("check");
+  // Reset the registration tab so the next parent starts clean
+  $("regForm").reset();
+  $("regForm").style.display = "";
+  $("keyBox").classList.remove("show");
+  $("copyBtn").textContent = "Copy key";
+  lastKey = "";
+});
+
+/* ---------- PDF receipt ---------- */
+$("pdfBtn").addEventListener("click", () => {
   if (!lastData) return;
 
   const { jsPDF } = window.jspdf;
@@ -162,10 +343,10 @@ document.getElementById("pdfBtn").addEventListener("click", () => {
   const receiptId = "MCS-" + Date.now().toString().slice(-8);
   const dateStr = new Date().toLocaleString();
 
-  const qrDiv = document.getElementById("qrTemp");
+  const qrDiv = $("qrTemp");
   qrDiv.innerHTML = "";
   new QRCode(qrDiv, {
-    text: `${lastData.student_name}|${lastData.key}|KES ${lastData.balance}|${receiptId}`,
+    text: `${lastData.student_name}|${lastData.key}|${money(lastData.balance)}|${receiptId}`,
     width: 100,
     height: 100
   });
@@ -187,7 +368,7 @@ document.getElementById("pdfBtn").addEventListener("click", () => {
     doc.text(`Date: ${dateStr}`, 14, y); y += 10;
     doc.text(`Student: ${lastData.student_name}`, 14, y); y += 10;
     doc.text(`Class: ${lastData.class}`, 14, y); y += 10;
-    doc.text(`Balance: KES ${lastData.balance}`, 14, y); y += 10;
+    doc.text(`Balance: ${money(lastData.balance)}`, 14, y); y += 10;
     doc.text(`Status: ${lastData.status}`, 14, y); y += 15;
 
     if (qrData) doc.addImage(qrData, "PNG", 14, y, 35, 35);
