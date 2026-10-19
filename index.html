@@ -37,15 +37,55 @@ document.getElementById('btn').onclick = async () => {
   const key=document.getElementById('key').value.trim().toUpperCase();
   if(!key){alert("Enter code");return;}
   try{
-    const r=await fetch(WEB_APP_URL+"?key="+encodeURIComponent(key));
-    const d=await r.json();
+   const url = WEB_APP_URL + "?key=" + encodeURIComponent(key);
+
+const r = await fetch(url);
+
+if (!r.ok) {
+  throw new Error("Server returned HTTP " + r.status);
+}
+
+const responseText = await r.text();
+
+let d;
+try {
+  d = JSON.parse(responseText);
+} catch {
+  console.error("Unexpected server response:", responseText);
+  throw new Error("Server did not return valid JSON. Check deployment and access settings.");
+}
+
+if (d.error) {
+  alert("Student code not found. Check the code and try again.");
+  return;
+}
+
+lastData = { ...d, key };
+
+document.getElementById("resultCard").textContent = "";
+
+const resultCard = document.getElementById("resultCard");
+resultCard.innerHTML =
+  "<b></b><br>Class: <span></span><br>Parent: <span></span>" +
+  "<br>Balance: KES <span></span><br>Status: <span></span>";
+
+resultCard.querySelector("b").textContent = d.student_name;
+const fields = resultCard.querySelectorAll("span");
+fields[0].textContent = d.class;
+fields[1].textContent = d.parent_name;
+fields[2].textContent = d.balance;
+fields[3].textContent = d.status;
+
+document.getElementById("resultWrap").classList.add("show");
     if(d.error){alert("Invalid Code");}
     else{
       lastData={...d,key};
       document.getElementById('resultCard').innerHTML=`<b>${d.student_name}</b><br>Class: ${d.class}<br>Parent: ${d.parent_name}<br>Balance: KES ${d.balance}<br>Status: ${d.status}`;
       document.getElementById('resultWrap').classList.add('show');
     }
-  }catch(e){alert("Network error");}
+  }catch (e) {
+  console.error("Fee portal error:", e);
+  alert("Unable to retrieve balance: " + e.message);}
 };
 document.getElementById('pdfBtn').onclick = () => {
   if(!lastData)return;
