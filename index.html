@@ -85,7 +85,7 @@ label:first-child{margin-top:0}
         <div class="hint">10 digits, starting with 07.</div>
 
         <label for="regCode">School access code</label>
-        <input id="regCode" class="input upper" autocomplete="off" maxlength="30" placeholder="Given to you by the school">
+        <input id="regCode" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school">
         <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
 
         <!-- Hidden trap for bots: real people never see or fill this in -->
@@ -257,7 +257,7 @@ const REG_ERRORS = {
   BUSY: "Too many registrations right now. Please try again in a few minutes.",
   SHEET_NOT_FOUND: "Server setup problem. Please contact the school.",
   SERVER: "Something went wrong on the server. Please try again.",
-  INVALID: "The registration could not be completed. Please try again."
+  INVALID: "The registration could not be completed. Please try again, and if it keeps happening contact the school office."
 };
 
 $("regPhone").addEventListener("input", (e) => {
