@@ -89,7 +89,7 @@ label:first-child{margin-top:0}
         <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
 
         <!-- Hidden trap for bots: real people never see or fill this in -->
-        <input id="regWebsite" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="checkbox" id="regWebsite" class="hp" tabindex="-1" aria-hidden="true">
 
         <button type="submit" id="regBtn" class="btn">Get my security key</button>
       </form>
@@ -253,6 +253,7 @@ const REG_ERRORS = {
   INVALID_PHONE: "Enter a phone number with 10 digits starting with 07.",
   INVALID_CODE: "The school access code is not correct. Ask the school office for the right code.",
   CLOSED: "Registration is currently closed. Please contact the school office.",
+  BOT: "Registration was blocked. Refresh the page and try again.",
   DUPLICATE: "This student is already registered with this phone number. Contact the school if you lost the key.",
   BUSY: "Too many registrations right now. Please try again in a few minutes.",
   SHEET_NOT_FOUND: "Server setup problem. Please contact the school.",
@@ -291,7 +292,7 @@ $("regForm").addEventListener("submit", async (ev) => {
       parent: parent,
       phone: phone,
       code: code,
-      website: $("regWebsite").value
+      website: $("regWebsite").checked ? "1" : ""
     });
     const d = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
 
