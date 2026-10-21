@@ -31,6 +31,11 @@ label:first-child{margin-top:0}
 .msg{margin-top:14px;padding:12px;border-radius:10px;font-size:14px;display:none}
 .msg.show{display:block}
 .msg.error{background:#FDECEC;color:#9B1C1C}
+.msg.info{background:#E8F0FE;color:#1A3D7C}
+.msg.ok{background:#E6F4EA;color:#14532D}
+.paybox{margin-top:16px;padding-top:6px;border-top:1px solid #E5E9F2}
+.paybox[hidden]{display:none}
+.paybox h3{margin:10px 0 0;font-size:16px;color:#0B1C33}
 .result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none;line-height:1.7}
 .result.show{display:block}
 .keybox{margin-top:18px;border:2px solid #0B1C33;border-radius:12px;padding:18px;text-align:center;display:none}
@@ -62,6 +67,18 @@ label:first-child{margin-top:0}
       <div id="msg" class="msg error" role="alert"></div>
       <div id="resultWrap" class="result">
         <div id="resultCard"></div>
+
+        <div id="payBox" class="paybox" hidden>
+          <h3>Pay with M-Pesa</h3>
+          <label for="payAmount">Amount to pay (KES)</label>
+          <input id="payAmount" class="input" inputmode="numeric" autocomplete="off">
+          <label for="payPhone">M-Pesa phone number</label>
+          <input id="payPhone" class="input" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
+          <div class="hint">You will get a prompt on this phone. Enter your M-Pesa PIN to confirm.</div>
+          <button id="payBtn" class="btn">Pay with M-Pesa</button>
+        </div>
+        <div id="payMsg" class="msg" role="status"></div>
+
         <button id="pdfBtn" class="btn">Download PDF receipt with QR</button>
       </div>
     </div>
@@ -195,7 +212,7 @@ function showError(text) {
   resultWrap.classList.remove("show");
 }
 
-function renderResult(d) {
+function renderResult(d, keepPayMsg) {
   resultCard.textContent = "";
 
   const name = document.createElement("b");
@@ -212,10 +229,12 @@ function renderResult(d) {
     resultCard.appendChild(document.createTextNode(label + ": " + value));
   });
 
+  setupPay(d, keepPayMsg);
   resultWrap.classList.add("show");
 }
 
-async function lookup() {
+async function lookup(opts) {
+  const keepPayMsg = !!(opts && opts.keepPayMsg === true);
   const key = $("key").value.trim().toUpperCase();
   clearMsg($("msg"));
 
@@ -232,7 +251,7 @@ async function lookup() {
     if (d.error) { showError("Security key not found. Check the key and try again."); return; }
 
     lastData = { ...d, key };
-    renderResult(d);
+    renderResult(d, keepPayMsg);
   } catch (e) {
     console.error("Fee portal error:", e);
     showError("Unable to retrieve balance: " + e.message);
@@ -245,6 +264,137 @@ async function lookup() {
 $("btn").addEventListener("click", lookup);
 $("key").addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
 
+/* ---------- M-Pesa payment ---------- */
+const PAY_ERRORS = {
+  PAY_NOT_CONFIGURED: "Online payment is not available yet. Please pay at the school office.",
+  INVALID_PHONE: "Enter the M-Pesa number as 10 digits starting with 07 or 01.",
+  INVALID_AMOUNT: "Enter an amount from 1 up to your balance.",
+  NOT_APPROVED: "Your registration is waiting for approval by the school.",
+  NO_BALANCE: "The school has not set your balance yet.",
+  NOTHING_DUE: "There is no balance left to pay.",
+  PAYMENT_IN_PROGRESS: "A payment is already in progress. Check your phone, or wait 2 minutes and try again.",
+  BUSY: "Too many attempts. Please wait a few minutes and try again.",
+  STK_FAILED: "We could not send the M-Pesa prompt. Check the number and try again.",
+  SERVER: "Something went wrong. Please try again.",
+  INVALID: "The payment could not be started. Please check your details."
+};
+
+let payTimer = null;
+
+function showPay(kind, text) {
+  const el = $("payMsg");
+  el.className = "msg " + kind + " show";
+  el.textContent = text;
+}
+function clearPayMsg() {
+  const el = $("payMsg");
+  el.className = "msg";
+  el.textContent = "";
+}
+function resetPayBtn() {
+  $("payBtn").disabled = false;
+  $("payBtn").textContent = "Pay with M-Pesa";
+}
+
+// Show the pay box only when there is a balance to pay
+function setupPay(d, keepMsg) {
+  const raw = Math.floor(Number(d.balance_raw));
+  const canPay = Number.isFinite(raw) && raw >= 1;
+  $("payBox").hidden = !canPay;
+  if (canPay) $("payAmount").value = String(raw);
+  if (!keepMsg) {
+    clearTimeout(payTimer);
+    clearPayMsg();
+    resetPayBtn();
+  }
+}
+
+$("payAmount").addEventListener("input", (e) => {
+  e.target.value = e.target.value.replace(/\D/g, "");
+});
+$("payPhone").addEventListener("input", (e) => {
+  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+});
+
+$("payBtn").addEventListener("click", async () => {
+  if (!lastData) return;
+  const amount = Number($("payAmount").value);
+  const phone = $("payPhone").value.trim();
+
+  if (!(amount >= 1)) { showPay("error", PAY_ERRORS.INVALID_AMOUNT); return; }
+  if (!/^0[17][0-9]{8}$/.test(phone)) { showPay("error", PAY_ERRORS.INVALID_PHONE); return; }
+
+  $("payBtn").disabled = true;
+  $("payBtn").textContent = "Sending prompt...";
+  clearPayMsg();
+
+  try {
+    const qs = new URLSearchParams({
+      action: "pay",
+      key: lastData.key,
+      amount: String(amount),
+      phone: phone
+    });
+    const d = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
+
+    if (d.error) {
+      const text = (d.error === "INVALID_AMOUNT" && d.max)
+        ? "Enter an amount from 1 up to KES " + d.max + "."
+        : (PAY_ERRORS[d.error] || PAY_ERRORS.INVALID);
+      showPay("error", text);
+      resetPayBtn();
+      return;
+    }
+
+    $("payBtn").textContent = "Waiting for payment...";
+    showPay("info", "A payment prompt was sent to " + phone + ". Check your phone and enter your M-Pesa PIN. Please keep this page open.");
+    pollPayment(d.checkout, lastData.key, 0);
+  } catch (e) {
+    console.error("Payment error:", e);
+    showPay("error", "Unable to start the payment: " + e.message);
+    resetPayBtn();
+  }
+});
+
+// Checks every 5 seconds, for up to about 2 minutes
+function pollPayment(checkout, key, tries) {
+  clearTimeout(payTimer);
+  payTimer = setTimeout(async () => {
+    try {
+      const qs = new URLSearchParams({ action: "paystatus", key: key, checkout: checkout });
+      const r = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
+
+      if (r.status === "SUCCESS") {
+        resetPayBtn();
+        await lookup({ keepPayMsg: true }); // refresh the statement with the new balance
+        showPay("ok", "Payment of KES " + Number(r.amount).toLocaleString() + " received." +
+          (r.receipt ? " M-Pesa receipt: " + r.receipt + "." : "") +
+          " New balance: KES " + r.balance + ".");
+        return;
+      }
+      if (r.status === "FAILED") {
+        resetPayBtn();
+        showPay("error", r.reason || "The payment was not completed.");
+        return;
+      }
+      if (r.status === "REVIEW") {
+        resetPayBtn();
+        showPay("error", "Your payment needs to be checked by the school. Keep your M-Pesa message and contact the school office.");
+        return;
+      }
+    } catch (e) {
+      console.error("Status check error:", e);
+    }
+
+    if (tries >= 24) {
+      resetPayBtn();
+      showPay("info", "We have not received confirmation yet. If money was taken from your M-Pesa, contact the school office with your M-Pesa message. Otherwise you can try again.");
+      return;
+    }
+    pollPayment(checkout, key, tries + 1);
+  }, 5000);
+}
+
 /* ---------- register student ---------- */
 const REG_ERRORS = {
   INVALID_NAME: "Enter the student's full name using letters only.",
@@ -254,7 +404,7 @@ const REG_ERRORS = {
   INVALID_CODE: "The school access code is not correct. Ask the school office for the right code.",
   CLOSED: "Registration is currently closed. Please contact the school office.",
   BOT: "Registration was blocked. Refresh the page and try again.",
-  DUPLICATE: "This student is already registered with this phone number. Contact the school if you lost the key.",
+  DUPLICATE: "This student is already registered. If you lost the key, please contact the school office.",
   BUSY: "Too many registrations right now. Please try again in a few minutes.",
   SHEET_NOT_FOUND: "Server setup problem. Please contact the school.",
   SERVER: "Something went wrong on the server. Please try again.",
