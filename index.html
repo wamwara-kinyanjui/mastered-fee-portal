@@ -72,6 +72,110 @@ details{border-top:1px solid #E5E9F2;padding:10px 0;font-size:14px}summary{curso
 footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer a{color:inherit}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}#qrTemp{position:absolute;left:-9999px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* ===== ENHANCEMENTS (additive) ===== */
+:root{--navy:#0B1C33;--navy-2:#16335C;--wa:#0E7A5F;--wa-dark:#0A6049}
+html{scroll-behavior:smooth}
+body{padding-bottom:88px}
+
+/* header + logo */
+.brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px}
+.brand h1{margin:0;text-align:left;font-size:21px;line-height:1.2}
+.logo{height:56px;width:auto;max-width:92px;object-fit:contain;background:#fff;border-radius:12px;padding:4px;flex:none}
+.logo-fb{width:48px;height:48px;border-radius:12px;background:#fff;color:var(--navy);font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
+.logo-fb[hidden]{display:none}
+header a{text-underline-offset:3px}
+
+/* entrance + panel transitions */
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(14,122,95,.45)}100%{box-shadow:0 0 0 14px rgba(14,122,95,0)}}
+.wrap>.card{animation:riseIn .5s ease-out both}
+.help.card{animation:riseIn .5s ease-out .1s both}
+.contact.card{animation:riseIn .5s ease-out .15s both}
+.panel:not([hidden]){animation:fadeSlide .3s ease-out}
+
+/* tabs */
+.tab{transition:color .2s,background-color .2s,border-color .2s}
+.tab:hover{background:#F0F4FB;color:var(--navy)}
+.tab:active{background:#E6ECF7}
+.tab{min-height:48px}
+
+/* inputs + buttons */
+.input{transition:border-color .2s,box-shadow .2s,background-color .2s}
+.input:hover{border-color:#C9D3E6}
+.input:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(127,166,232,.35)}
+.input:focus-visible{outline:none}
+.btn{transition:transform .15s,box-shadow .2s,background-color .2s,opacity .2s;position:relative}
+.btn:hover:not(:disabled){background:var(--navy-2);box-shadow:0 6px 16px rgba(11,28,51,.22);transform:translateY(-1px)}
+.btn.secondary:hover:not(:disabled){background:#EEF3FB;color:var(--navy)}
+.btn:active:not(:disabled){transform:translateY(1px) scale(.99);box-shadow:none}
+a.btn{display:block;text-align:center;text-decoration:none}
+#btn:disabled::after,#payBtn:disabled::after,#regBtn:disabled::after,#pdfBtn:disabled::after{content:"";display:inline-block;width:14px;height:14px;margin-left:10px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+
+/* messages + results */
+.msg.show{animation:fadeSlide .25s ease-out}
+.msg.error.show{animation:fadeSlide .25s ease-out,shake .35s ease-out .1s}
+.msg.ok.show{animation:popIn .3s ease-out}
+.msg.ok{border-left:4px solid #2E7D32}.msg.error{border-left:4px solid #C62828}.msg.info{border-left:4px solid #3567C7}
+.result.show{animation:fadeSlide .35s ease-out}
+.paybox:not([hidden]){animation:fadeSlide .35s ease-out}
+.keybox.show{animation:popIn .35s ease-out}
+.keybox .code{letter-spacing:.04em}
+
+/* notices + faq */
+.notice{transition:transform .2s,box-shadow .2s,border-color .2s;animation:fadeSlide .35s ease-out both}
+.notice:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,28,51,.1);border-color:#C9D3E6}
+.notice:nth-child(2){animation-delay:.05s}.notice:nth-child(3){animation-delay:.1s}.notice:nth-child(4){animation-delay:.15s}.notice:nth-child(n+5){animation-delay:.2s}
+.notice p{line-height:1.6}
+.pin{transition:background-color .2s}.pin:hover{background:#FFEDA8}.pin:focus-visible{outline:3px solid #7FA6E8;outline-offset:-3px}
+details{transition:background-color .2s;padding:12px 8px;border-radius:8px}
+details:hover{background:#F5F7FB}
+details[open]{background:#F5F7FB}
+details[open] p{animation:fadeSlide .25s ease-out}
+summary{min-height:24px}
+
+/* contact section */
+.contact{padding:20px}
+.contact h2{font-size:17px}
+.contact p{margin:0 0 6px;font-size:14px;line-height:1.6}
+.contact .phone-line{font-weight:700;font-size:16px;margin:10px 0 2px}
+.contact .privacy{margin-top:14px;padding:12px;border-radius:10px;background:#FFF4CC;color:#5A4300;font-size:13px;line-height:1.5}
+.btn.wa{background:var(--wa)}
+.btn.wa:hover:not(:disabled){background:var(--wa-dark);box-shadow:0 6px 16px rgba(14,122,95,.3)}
+.btn .ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;fill:currentColor}
+
+/* floating whatsapp */
+.wa-float{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 16px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:transform .2s,background-color .2s,box-shadow .2s;animation:riseIn .5s ease-out .6s both,pulseRing 2s ease-out 1.2s 2}
+.wa-float svg{width:22px;height:22px;fill:#fff;flex:none}
+.wa-float:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.3)}
+.wa-float:active{transform:scale(.96)}
+.wa-float:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px var(--wa-dark)}
+@media (max-width:480px){
+  .wa-float{padding:0;width:48px;height:48px;justify-content:center;right:12px}
+  .wa-float span{display:none}
+  .brand h1{font-size:18px}
+  .logo{height:48px;max-width:80px}
+  .body,.help,.contact{padding:16px}
+}
+
+/* feedback icons */
+.msg{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2zm0-8h-2V7h2z'/%3E%3C/svg%3E")}
+.msg.ok{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
+.msg.error{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
+.msg.show::before,.bal-ic{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-4px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+.bal{display:flex;align-items:center;margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700;font-size:14px;line-height:1.4;animation:popIn .35s ease-out}
+.bal .bal-ic{flex:none;width:22px;height:22px;margin-right:10px;vertical-align:baseline}
+.bal.clear{background:#E6F4EA;color:#14532D;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
+.bal.due{background:#FFF4CC;color:#5A4300;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
+
+/* reduced motion */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
 </style>
 </head>
 <body>
@@ -79,7 +183,11 @@ footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer
 <div class="wrap">
 <div class="card">
   <header>
-    <h1>Mastered Comprehensive School</h1>
+    <div class="brand">
+      <img id="schoolLogo" class="logo" src="https://lh3.googleusercontent.com/d/1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d" alt="Mastered Comprehensive School logo" width="92" height="56" decoding="async" referrerpolicy="no-referrer">
+      <span id="logoFallback" class="logo-fb" aria-hidden="true" hidden>M</span>
+      <h1>Mastered Comprehensive School</h1>
+    </div>
     <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702">0721 101 702</a></p>
   </header>
   <a id="pinBanner" class="pin" href="#notices" hidden></a>
@@ -164,13 +272,42 @@ footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer
   <details><summary>How do I pay school fees by M-Pesa?</summary><p>After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone.</p></details>
   <details><summary>How do I get a security key?</summary><p>Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration.</p></details>
 </section>
+
+<section id="contact" class="card contact" aria-labelledby="contactTitle" style="margin-top:14px">
+  <h2 id="contactTitle">Contact the School</h2>
+  <p>Parents can contact the school office for help with fee balances, registration, payments and notices.</p>
+  <p class="phone-line">0721 101 702</p>
+  <a class="btn wa" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>Chat on WhatsApp</a>
+  <a class="btn secondary" href="tel:+254721101702"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.600 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.2 11.400 11.400 0 0 0 3.600.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.6 3.600a1 1 0 0 1-.2 1z"/></svg>Call 0721 101 702</a>
+  <p class="privacy"><b>Stay safe:</b> never share your M-Pesa PIN with anyone, including anyone who claims to be from the school. You only enter your PIN on your own phone.</p>
+</section>
 </div>
 
 <footer>
   &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702">0721 101 702</a>
 </footer>
+
+<a id="waFloat" class="wa-float" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer" aria-label="Chat with Mastered Comprehensive School on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
+  <span>WhatsApp</span>
+</a>
 <div id="qrTemp"></div>
 <noscript><p style="text-align:center">This portal needs JavaScript. Please call the school on 0721 101 702.</p></noscript>
+
+<script>
+/* Logo loader: tries a direct Google Drive image URL, then an alternate one, then shows the "M" fallback.
+   For the most reliable result, upload the logo next to this file (e.g. logo.png) and set the img src to "logo.png". */
+(function () {
+  var img = document.getElementById("schoolLogo"), fb = document.getElementById("logoFallback");
+  if (!img || !fb) return;
+  var step = 0;
+  img.addEventListener("error", function () {
+    step++;
+    if (step === 1) { img.src = "https://drive.google.com/uc?export=view&id=1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d"; return; }
+    img.hidden = true; fb.hidden = false;
+  });
+})();
+</script>
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2o_MSiHspkrnugXNicJFmOiLLxyR2R15-Z4gdp7wW5g4sDqdczA/exec";
@@ -275,6 +412,14 @@ function renderResult(d, keepPayMsg) {
   [["Class", d.class], ["Parent", d.parent_name], ["Balance", money(d.balance)], ["Status", d.status]].forEach(([l, v]) => {
     card.appendChild(document.createElement("br")); card.appendChild(document.createTextNode(l + ": " + v));
   });
+  const rawBal = Number(d.balance_raw);
+  if (d.balance_raw !== undefined && d.balance_raw !== null && d.balance_raw !== "" && Number.isFinite(rawBal)) {
+    const bal = document.createElement("div");
+    bal.className = "bal " + (rawBal > 0 ? "due" : "clear");
+    const ic = document.createElement("span"); ic.className = "bal-ic"; ic.setAttribute("aria-hidden", "true");
+    const tx = document.createElement("span"); tx.textContent = rawBal > 0 ? "Balance outstanding: " + money(d.balance) : "No balance due";
+    bal.append(ic, tx); card.appendChild(bal);
+  }
   setupPay(d, keepPayMsg);
   $("resultWrap").classList.add("show");
 }
