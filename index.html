@@ -3,71 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mastered Comprehensive School - Fee Portal</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<title>Fee Portal &amp; Notice Board | Mastered Comprehensive School</title>
+<meta name="description" content="Official parents' portal of Mastered Comprehensive School: check fee balances, pay by M-Pesa, register your child and read the latest school notices.">
+<meta name="robots" content="index, follow, max-snippet:-1">
+<meta name="theme-color" content="#0B1C33">
+<link rel="canonical" href="https://wamwara-kinyanjui.github.io/mastered-fee-portal/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1C33'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://script.google.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mastered Comprehensive School">
+<meta property="og:title" content="Fee Portal &amp; Notice Board | Mastered Comprehensive School">
+<meta property="og:description" content="Check fee balances, pay by M-Pesa, register your child and read school notices.">
+<meta property="og:url" content="https://wamwara-kinyanjui.github.io/mastered-fee-portal/">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fee Portal &amp; Notice Board | Mastered Comprehensive School">
+<meta name="twitter:description" content="Check fee balances, pay by M-Pesa and read school notices.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"School","@id":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/#school","name":"Mastered Comprehensive School","url":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/","telephone":"+254721101702","areaServed":"KE"},
+{"@type":"WebSite","name":"Mastered Comprehensive School Fee Portal","url":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/","inLanguage":"en","publisher":{"@id":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/#school"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I check my child's fee balance?","acceptedAnswer":{"@type":"Answer","text":"Open the Fees tab, enter your child's security key and tap View statement."}},
+{"@type":"Question","name":"How do I pay school fees by M-Pesa?","acceptedAnswer":{"@type":"Answer","text":"After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone."}},
+{"@type":"Question","name":"How do I get a security key?","acceptedAnswer":{"@type":"Answer","text":"Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration."}}]}]}
+</script>
 <style>
-*{box-sizing:border-box;font-family:Inter,"Segoe UI",sans-serif}
-body{margin:0;background:#F5F7FB;display:flex;justify-content:center;padding:15px}
-.card{background:#fff;max-width:440px;width:100%;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.1)}
-.header{background:#0B1C33;color:#fff;padding:22px;text-align:center}
-.header h2{margin:0 0 6px}
-.header p{margin:0;opacity:.85}
+*{box-sizing:border-box;font-family:Inter,"Segoe UI",system-ui,sans-serif}
+body{margin:0;background:#F5F7FB;color:#16233A;padding:12px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;border-radius:8px;z-index:9}
+.wrap{width:100%;max-width:520px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+header{background:#0B1C33;color:#fff;padding:20px;text-align:center}
+header h1{margin:0 0 4px;font-size:22px}header p{margin:0;opacity:.85;font-size:14px}
+header a{color:#fff}
+.pin{display:block;background:#FFF4CC;color:#5A4300;padding:10px 16px;font-size:14px;text-decoration:none;border-bottom:1px solid #F0E0A0}
+.pin[hidden]{display:none}
 .tabs{display:flex;border-bottom:2px solid #E5E9F2}
-.tab{flex:1;padding:14px;background:none;border:none;font-weight:700;font-size:15px;color:#6B7690;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab{flex:1;padding:13px 6px;background:none;border:none;font-weight:700;font-size:14px;color:#6B7690;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
 .tab[aria-selected="true"]{color:#0B1C33;border-bottom-color:#0B1C33}
-.tab:focus-visible,.btn:focus-visible{outline:3px solid #7FA6E8;outline-offset:2px}
+.tab:focus-visible,.btn:focus-visible,summary:focus-visible{outline:3px solid #7FA6E8;outline-offset:2px}
+.badge{display:inline-block;min-width:18px;padding:1px 6px;margin-left:4px;border-radius:9px;background:#C62828;color:#fff;font-size:11px}
+.badge[hidden]{display:none}
 .body{padding:20px}
 .panel[hidden]{display:none}
-label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600;color:#0B1C33}
-label:first-child{margin-top:0}
+h2{margin:0 0 14px;font-size:18px;color:#0B1C33}
+label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600}
 .hint{font-size:12px;color:#6B7690;margin-top:4px}
 .input{width:100%;padding:14px;border:2px solid #E5E9F2;border-radius:10px;font-size:16px;background:#fff}
-.input.upper{text-transform:uppercase}
-.input:focus{outline:none;border-color:#0B1C33}
+.input.upper{text-transform:uppercase}.input:focus{outline:none;border-color:#0B1C33}
 .btn{width:100%;margin-top:14px;background:#0B1C33;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:15px}
-.btn.secondary{background:#fff;color:#0B1C33;border:2px solid #0B1C33}
-.btn:disabled{opacity:.6;cursor:wait}
-.msg{margin-top:14px;padding:12px;border-radius:10px;font-size:14px;display:none}
-.msg.show{display:block}
-.msg.error{background:#FDECEC;color:#9B1C1C}
-.msg.info{background:#E8F0FE;color:#1A3D7C}
-.msg.ok{background:#E6F4EA;color:#14532D}
-.paybox{margin-top:16px;padding-top:6px;border-top:1px solid #E5E9F2}
-.paybox[hidden]{display:none}
-.paybox h3{margin:10px 0 0;font-size:16px;color:#0B1C33}
-.result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none;line-height:1.7}
-.result.show{display:block}
-.keybox{margin-top:18px;border:2px solid #0B1C33;border-radius:12px;padding:18px;text-align:center;display:none}
-.keybox.show{display:block}
-.keybox .code{font-size:26px;font-weight:800;letter-spacing:1px;margin:8px 0;word-break:break-all;user-select:all}
-.keybox p{margin:6px 0;font-size:14px;line-height:1.5}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-#qrTemp{position:absolute;left:-9999px}
+.btn.secondary{background:#fff;color:#0B1C33;border:2px solid #0B1C33}.btn:disabled{opacity:.6;cursor:wait}
+.msg{margin-top:14px;padding:12px;border-radius:10px;font-size:14px;display:none}.msg.show{display:block}
+.msg.error{background:#FDECEC;color:#9B1C1C}.msg.info{background:#E8F0FE;color:#1A3D7C}.msg.ok{background:#E6F4EA;color:#14532D}
+.result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none;line-height:1.7}.result.show{display:block}
+.paybox{margin-top:16px;padding-top:6px;border-top:1px solid #E5E9F2}.paybox[hidden]{display:none}.paybox h3{margin:10px 0 0;font-size:16px}
+.keybox{margin-top:18px;border:2px solid #0B1C33;border-radius:12px;padding:18px;text-align:center;display:none}.keybox.show{display:block}
+.keybox .code{font-size:26px;font-weight:800;margin:8px 0;word-break:break-all;user-select:all}.keybox p{margin:6px 0;font-size:14px;line-height:1.5}
+.notice{border:1px solid #E5E9F2;border-radius:12px;padding:14px;margin-bottom:12px}
+.notice.pinned{border-color:#E8C95A;background:#FFFCF0}
+.notice h3{margin:6px 0;font-size:16px}.notice p{margin:0;font-size:14px;line-height:1.55;white-space:pre-line}
+.meta{display:flex;gap:8px;align-items:center;font-size:12px;color:#6B7690;flex-wrap:wrap}
+.chip{padding:2px 9px;border-radius:9px;font-weight:700;background:#E8EDF5;color:#33415C}
+.cat-fees{background:#FDEBD0;color:#7A4A00}.cat-events{background:#E1F3E6;color:#14532D}.cat-exams{background:#E8F0FE;color:#1A3D7C}.cat-holiday{background:#F3E5F5;color:#6A1B7A}
+.empty{color:#6B7690;font-size:14px;text-align:center;padding:18px 0}
+.help{padding:20px}.help h2{font-size:17px}.help ol{padding-left:20px;line-height:1.7;font-size:14px;margin:0 0 12px}
+details{border-top:1px solid #E5E9F2;padding:10px 0;font-size:14px}summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;line-height:1.55}
+footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer a{color:inherit}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}#qrTemp{position:absolute;left:-9999px}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
 <div class="card">
-  <div class="header">
-    <h2>Mastered Comprehensive School</h2>
-    <p>Official Fee Portal • 0721 101 702</p>
-  </div>
+  <header>
+    <h1>Mastered Comprehensive School</h1>
+    <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702">0721 101 702</a></p>
+  </header>
+  <a id="pinBanner" class="pin" href="#notices" hidden></a>
+  <nav aria-label="Portal sections">
+    <div class="tabs" role="tablist">
+      <button class="tab" id="tabFees" role="tab" aria-selected="true" aria-controls="panelFees">Fees</button>
+      <button class="tab" id="tabNotices" role="tab" aria-selected="false" aria-controls="panelNotices">Notices<span class="badge" id="noticeBadge" hidden></span></button>
+      <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register</button>
+    </div>
+  </nav>
 
-  <div class="tabs" role="tablist">
-    <button class="tab" id="tabCheck" role="tab" aria-selected="true" aria-controls="panelCheck">Check balance</button>
-    <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register student</button>
-  </div>
-
-  <div class="body">
-    <!-- ============ CHECK BALANCE ============ -->
-    <div id="panelCheck" class="panel" role="tabpanel" aria-labelledby="tabCheck">
-      <label for="key">Student security key</label>
+  <main id="main" class="body">
+    <!-- FEES -->
+    <section id="panelFees" class="panel" role="tabpanel" aria-labelledby="tabFees">
+      <h2>Check fee balance and pay</h2>
+      <label for="key" style="margin-top:0">Student security key</label>
       <input id="key" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
       <button id="btn" class="btn">View statement</button>
       <div id="msg" class="msg error" role="alert"></div>
       <div id="resultWrap" class="result">
         <div id="resultCard"></div>
-
         <div id="payBox" class="paybox" hidden>
           <h3>Pay with M-Pesa</h3>
           <label for="payAmount">Amount to pay (KES)</label>
@@ -78,189 +111,191 @@ label:first-child{margin-top:0}
           <button id="payBtn" class="btn">Pay with M-Pesa</button>
         </div>
         <div id="payMsg" class="msg" role="status"></div>
-
-        <button id="pdfBtn" class="btn">Download PDF receipt with QR</button>
+        <button id="pdfBtn" class="btn secondary">Download PDF receipt with QR</button>
       </div>
-    </div>
+    </section>
 
-    <!-- ============ REGISTER STUDENT ============ -->
-    <div id="panelRegister" class="panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
+    <!-- NOTICES -->
+    <section id="panelNotices" class="panel" role="tabpanel" aria-labelledby="tabNotices" hidden>
+      <h2>Notice board</h2>
+      <div id="noticeList" aria-live="polite"><p class="empty">Loading notices...</p></div>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="panelRegister" class="panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
+      <h2>Register your child</h2>
       <form id="regForm" novalidate>
-        <label for="regName">Student full name</label>
+        <label for="regName" style="margin-top:0">Student full name</label>
         <input id="regName" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. JOHN KAMAU">
-
         <label for="regClass">Class</label>
-        <select id="regClass" class="input">
-          <option value="">Choose a class</option>
-        </select>
-
+        <select id="regClass" class="input"><option value="">Choose a class</option></select>
         <label for="regParent">Parent or guardian name</label>
         <input id="regParent" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. DAN MWANGI">
-
         <label for="regPhone">Parent phone number</label>
         <input id="regPhone" class="input" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="0712345678">
         <div class="hint">10 digits, starting with 07.</div>
-
         <label for="regCode">School access code</label>
         <input id="regCode" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school">
         <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
-
-        <!-- Hidden trap for bots: real people never see or fill this in -->
         <input type="checkbox" id="regWebsite" class="hp" tabindex="-1" aria-hidden="true">
-
         <button type="submit" id="regBtn" class="btn">Get my security key</button>
       </form>
-
       <div id="regMsg" class="msg error" role="alert"></div>
-
       <div id="keyBox" class="keybox" aria-live="polite">
         <p><b>Registration complete for <span id="keyName"></span></b></p>
         <div class="code" id="keyCode"></div>
         <p><b>Save this key now.</b> It is only shown once. Take a screenshot or copy it.</p>
-        <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message. Use it on the "Check balance" tab afterwards.</p>
+        <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message.</p>
         <button type="button" id="copyBtn" class="btn secondary">Copy key</button>
-        <button type="button" id="useKeyBtn" class="btn">Go to check balance</button>
+        <button type="button" id="useKeyBtn" class="btn">Go to fees</button>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </div>
+
+<section class="card help" aria-labelledby="helpTitle" style="margin-top:14px">
+  <h2 id="helpTitle">How the fee portal works</h2>
+  <ol>
+    <li>Register your child once with the school access code and save the security key.</li>
+    <li>Once the school approves, enter the key under Fees to see the balance.</li>
+    <li>Pay any amount by M-Pesa. The balance updates when Safaricom confirms.</li>
+  </ol>
+  <details><summary>How do I check my child's fee balance?</summary><p>Open the Fees tab, enter your child's security key and tap View statement.</p></details>
+  <details><summary>How do I pay school fees by M-Pesa?</summary><p>After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone.</p></details>
+  <details><summary>How do I get a security key?</summary><p>Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration.</p></details>
+</section>
+</div>
+
+<footer>
+  &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702">0721 101 702</a>
+</footer>
 <div id="qrTemp"></div>
+<noscript><p style="text-align:center">This portal needs JavaScript. Please call the school on 0721 101 702.</p></noscript>
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2o_MSiHspkrnugXNicJFmOiLLxyR2R15-Z4gdp7wW5g4sDqdczA/exec";
-
-// Keep this list identical to CLASSES in Code.gs
-const CLASSES = [
-  "PP1", "PP2",
-  "Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5",
-  "Grade 6", "Grade 7", "Grade 8", "Grade 9"
-];
-
-let lastData = null;
-let lastKey = "";
+// Keep identical to CLASSES in Code.gs
+const CLASSES = ["PP1","PP2","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9"];
+const $ = (id) => document.getElementById(id);
+let lastData = null, lastKey = "";
+$("year").textContent = new Date().getFullYear();
 
 /* ---------- helpers ---------- */
-const $ = (id) => document.getElementById(id);
-
-// JSONP request: avoids the CORS block that fetch() hits with Apps Script
 function fetchJSONP(url) {
   return new Promise((resolve, reject) => {
-    const cbName = "cb_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    const script = document.createElement("script");
-
-    const timer = setTimeout(() => {
-      cleanup();
-      reject(new Error("The request timed out. Check your connection and try again."));
-    }, 25000);
-
-    function cleanup() {
-      clearTimeout(timer);
-      delete window[cbName];
-      script.remove();
-    }
-
-    window[cbName] = (data) => { cleanup(); resolve(data); };
-    script.onerror = () => {
-      cleanup();
-      reject(new Error("Could not reach the server. Check your connection and try again."));
-    };
-
-    script.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cbName;
-    document.body.appendChild(script);
+    const cb = "cb_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+    const s = document.createElement("script");
+    const timer = setTimeout(() => { done(); reject(new Error("The request timed out. Check your connection and try again.")); }, 25000);
+    function done() { clearTimeout(timer); delete window[cb]; s.remove(); }
+    window[cb] = (d) => { done(); resolve(d); };
+    s.onerror = () => { done(); reject(new Error("Could not reach the server. Check your connection and try again.")); };
+    s.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
+    document.body.appendChild(s);
   });
 }
-
-function showMsg(el, text) {
-  el.textContent = text;
-  el.classList.add("show");
+const loaded = {};
+function loadScript(src) { // PDF libraries load only when needed (faster page)
+  if (!loaded[src]) loaded[src] = new Promise((res, rej) => {
+    const s = document.createElement("script");
+    s.src = src; s.onload = res; s.onerror = () => rej(new Error("Could not load " + src));
+    document.head.appendChild(s);
+  });
+  return loaded[src];
 }
-function clearMsg(el) {
-  el.textContent = "";
-  el.classList.remove("show");
-}
+function showMsg(el, t) { el.textContent = t; el.classList.add("show"); }
+function clearMsg(el) { el.textContent = ""; el.classList.remove("show"); }
+function money(b) { return /^[0-9][0-9,]*(\.[0-9]+)?$/.test(String(b)) ? "KES " + b : String(b); }
 
-// Adds the KES prefix only when the balance is a number
-function money(b) {
-  return /^[0-9][0-9,]*(\.[0-9]+)?$/.test(String(b)) ? "KES " + b : String(b);
+/* ---------- tabs (shareable links: #fees  #notices  #register) ---------- */
+const TABS = ["fees", "notices", "register"];
+const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+function selectTab(name) {
+  if (TABS.indexOf(name) === -1) name = "fees";
+  TABS.forEach((t) => {
+    $("tab" + cap(t)).setAttribute("aria-selected", t === name);
+    $("panel" + cap(t)).hidden = t !== name;
+  });
 }
-
-/* ---------- tabs ---------- */
-function selectTab(which) {
-  const isCheck = which === "check";
-  $("tabCheck").setAttribute("aria-selected", isCheck);
-  $("tabRegister").setAttribute("aria-selected", !isCheck);
-  $("panelCheck").hidden = !isCheck;
-  $("panelRegister").hidden = isCheck;
-}
-$("tabCheck").addEventListener("click", () => selectTab("check"));
-$("tabRegister").addEventListener("click", () => selectTab("register"));
-
-/* ---------- class dropdown ---------- */
-CLASSES.forEach((c) => {
-  const o = document.createElement("option");
-  o.value = c;
-  o.textContent = c;
-  $("regClass").appendChild(o);
+TABS.forEach((t, i) => {
+  const b = $("tab" + cap(t));
+  b.addEventListener("click", () => { location.hash = t; });
+  b.addEventListener("keydown", (e) => {
+    const n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+    if (n) { const nt = TABS[(i + n + TABS.length) % TABS.length]; location.hash = nt; $("tab" + cap(nt)).focus(); }
+  });
 });
+window.addEventListener("hashchange", () => selectTab(location.hash.slice(1)));
+selectTab(location.hash.slice(1));
+
+CLASSES.forEach((c) => { const o = document.createElement("option"); o.value = c; o.textContent = c; $("regClass").appendChild(o); });
+
+/* ---------- notice board ---------- */
+function renderNotices(list) {
+  const box = $("noticeList");
+  box.textContent = "";
+  if (!list.length) { const p = document.createElement("p"); p.className = "empty"; p.textContent = "There are no notices right now."; box.appendChild(p); return; }
+  list.forEach((n) => {
+    const a = document.createElement("article");
+    a.className = "notice" + (n.pinned ? " pinned" : "");
+    const meta = document.createElement("div"); meta.className = "meta";
+    const chip = document.createElement("span");
+    chip.className = "chip cat-" + String(n.category).toLowerCase().replace(/[^a-z]/g, "");
+    chip.textContent = n.category; meta.appendChild(chip);
+    if (n.pinned) { const p = document.createElement("span"); p.textContent = "Pinned"; meta.appendChild(p); }
+    if (n.date) { const d = document.createElement("span"); d.textContent = n.date; meta.appendChild(d); }
+    const h = document.createElement("h3"); h.textContent = n.title;
+    const p = document.createElement("p"); p.textContent = n.message;
+    a.append(meta, h, p); box.appendChild(a);
+  });
+}
+async function loadNotices() {
+  try {
+    const r = await fetchJSONP(WEB_APP_URL + "?action=notices");
+    const list = Array.isArray(r.notices) ? r.notices : [];
+    renderNotices(list);
+    $("noticeBadge").hidden = !list.length;
+    $("noticeBadge").textContent = list.length;
+    const pin = list.find((n) => n.pinned);
+    if (pin) { $("pinBanner").textContent = "Pinned notice: " + pin.title; $("pinBanner").hidden = false; }
+  } catch (e) {
+    const box = $("noticeList"); box.textContent = "";
+    const p = document.createElement("p"); p.className = "empty"; p.textContent = "Could not load notices. ";
+    const b = document.createElement("button"); b.className = "btn secondary"; b.textContent = "Try again";
+    b.onclick = () => { box.textContent = "Loading notices..."; loadNotices(); };
+    box.append(p, b);
+  }
+}
+setTimeout(loadNotices, 0);
 
 /* ---------- check balance ---------- */
-const resultWrap = $("resultWrap");
-const resultCard = $("resultCard");
-
-function showError(text) {
-  showMsg($("msg"), text);
-  resultWrap.classList.remove("show");
-}
-
+function showError(t) { showMsg($("msg"), t); $("resultWrap").classList.remove("show"); }
 function renderResult(d, keepPayMsg) {
-  resultCard.textContent = "";
-
-  const name = document.createElement("b");
-  name.textContent = d.student_name;
-  resultCard.appendChild(name);
-
-  [
-    ["Class", d.class],
-    ["Parent", d.parent_name],
-    ["Balance", money(d.balance)],
-    ["Status", d.status]
-  ].forEach(([label, value]) => {
-    resultCard.appendChild(document.createElement("br"));
-    resultCard.appendChild(document.createTextNode(label + ": " + value));
+  const card = $("resultCard"); card.textContent = "";
+  const name = document.createElement("b"); name.textContent = d.student_name; card.appendChild(name);
+  [["Class", d.class], ["Parent", d.parent_name], ["Balance", money(d.balance)], ["Status", d.status]].forEach(([l, v]) => {
+    card.appendChild(document.createElement("br")); card.appendChild(document.createTextNode(l + ": " + v));
   });
-
   setupPay(d, keepPayMsg);
-  resultWrap.classList.add("show");
+  $("resultWrap").classList.add("show");
 }
-
 async function lookup(opts) {
   const keepPayMsg = !!(opts && opts.keepPayMsg === true);
   const key = $("key").value.trim().toUpperCase();
   clearMsg($("msg"));
-
   if (!key) { showError("Enter the student security key."); return; }
-
-  $("btn").disabled = true;
-  $("btn").textContent = "Checking...";
-
+  $("btn").disabled = true; $("btn").textContent = "Checking...";
   try {
     const d = await fetchJSONP(WEB_APP_URL + "?key=" + encodeURIComponent(key));
-
     if (d.error === "SHEET_NOT_FOUND") { showError("Server setup problem. Please contact the school."); return; }
     if (d.error === "NOT_APPROVED") { showError("Your registration is waiting for approval by the school. Please check again later or contact the school office."); return; }
     if (d.error) { showError("Security key not found. Check the key and try again."); return; }
-
     lastData = { ...d, key };
     renderResult(d, keepPayMsg);
   } catch (e) {
     console.error("Fee portal error:", e);
     showError("Unable to retrieve balance: " + e.message);
-  } finally {
-    $("btn").disabled = false;
-    $("btn").textContent = "View statement";
-  }
+  } finally { $("btn").disabled = false; $("btn").textContent = "View statement"; }
 }
-
 $("btn").addEventListener("click", lookup);
 $("key").addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
 
@@ -278,124 +313,56 @@ const PAY_ERRORS = {
   SERVER: "Something went wrong. Please try again.",
   INVALID: "The payment could not be started. Please check your details."
 };
-
 let payTimer = null;
-
-function showPay(kind, text) {
-  const el = $("payMsg");
-  el.className = "msg " + kind + " show";
-  el.textContent = text;
-}
-function clearPayMsg() {
-  const el = $("payMsg");
-  el.className = "msg";
-  el.textContent = "";
-}
-function resetPayBtn() {
-  $("payBtn").disabled = false;
-  $("payBtn").textContent = "Pay with M-Pesa";
-}
-
-// Show the pay box only when there is a balance to pay
+function showPay(kind, t) { const el = $("payMsg"); el.className = "msg " + kind + " show"; el.textContent = t; }
+function clearPayMsg() { const el = $("payMsg"); el.className = "msg"; el.textContent = ""; }
+function resetPayBtn() { $("payBtn").disabled = false; $("payBtn").textContent = "Pay with M-Pesa"; }
 function setupPay(d, keepMsg) {
   const raw = Math.floor(Number(d.balance_raw));
-  const canPay = Number.isFinite(raw) && raw >= 1;
-  $("payBox").hidden = !canPay;
-  if (canPay) $("payAmount").value = String(raw);
-  if (!keepMsg) {
-    clearTimeout(payTimer);
-    clearPayMsg();
-    resetPayBtn();
-  }
+  const can = Number.isFinite(raw) && raw >= 1;
+  $("payBox").hidden = !can;
+  if (can) $("payAmount").value = String(raw);
+  if (!keepMsg) { clearTimeout(payTimer); clearPayMsg(); resetPayBtn(); }
 }
-
-$("payAmount").addEventListener("input", (e) => {
-  e.target.value = e.target.value.replace(/\D/g, "");
-});
-$("payPhone").addEventListener("input", (e) => {
-  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
-});
-
+$("payAmount").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, ""); });
+$("payPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
 $("payBtn").addEventListener("click", async () => {
   if (!lastData) return;
-  const amount = Number($("payAmount").value);
-  const phone = $("payPhone").value.trim();
-
+  const amount = Number($("payAmount").value), phone = $("payPhone").value.trim();
   if (!(amount >= 1)) { showPay("error", PAY_ERRORS.INVALID_AMOUNT); return; }
   if (!/^0[17][0-9]{8}$/.test(phone)) { showPay("error", PAY_ERRORS.INVALID_PHONE); return; }
-
-  $("payBtn").disabled = true;
-  $("payBtn").textContent = "Sending prompt...";
-  clearPayMsg();
-
+  $("payBtn").disabled = true; $("payBtn").textContent = "Sending prompt..."; clearPayMsg();
   try {
-    const qs = new URLSearchParams({
-      action: "pay",
-      key: lastData.key,
-      amount: String(amount),
-      phone: phone
-    });
-    const d = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
-
+    const qs = new URLSearchParams({ action: "pay", key: lastData.key, amount: String(amount), phone });
+    const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
     if (d.error) {
-      const text = (d.error === "INVALID_AMOUNT" && d.max)
-        ? "Enter an amount from 1 up to KES " + d.max + "."
-        : (PAY_ERRORS[d.error] || PAY_ERRORS.INVALID);
-      showPay("error", text);
-      resetPayBtn();
-      return;
+      showPay("error", d.error === "INVALID_AMOUNT" && d.max ? "Enter an amount from 1 up to KES " + d.max + "." : (PAY_ERRORS[d.error] || PAY_ERRORS.INVALID));
+      resetPayBtn(); return;
     }
-
     $("payBtn").textContent = "Waiting for payment...";
     showPay("info", "A payment prompt was sent to " + phone + ". Check your phone and enter your M-Pesa PIN. Please keep this page open.");
     pollPayment(d.checkout, lastData.key, 0);
-  } catch (e) {
-    console.error("Payment error:", e);
-    showPay("error", "Unable to start the payment: " + e.message);
-    resetPayBtn();
-  }
+  } catch (e) { showPay("error", "Unable to start the payment: " + e.message); resetPayBtn(); }
 });
-
-// Checks every 5 seconds, for up to about 2 minutes
 function pollPayment(checkout, key, tries) {
   clearTimeout(payTimer);
   payTimer = setTimeout(async () => {
     try {
-      const qs = new URLSearchParams({ action: "paystatus", key: key, checkout: checkout });
-      const r = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
-
+      const r = await fetchJSONP(WEB_APP_URL + "?" + new URLSearchParams({ action: "paystatus", key, checkout }));
       if (r.status === "SUCCESS") {
-        resetPayBtn();
-        await lookup({ keepPayMsg: true }); // refresh the statement with the new balance
-        showPay("ok", "Payment of KES " + Number(r.amount).toLocaleString() + " received." +
-          (r.receipt ? " M-Pesa receipt: " + r.receipt + "." : "") +
-          " New balance: KES " + r.balance + ".");
+        resetPayBtn(); await lookup({ keepPayMsg: true });
+        showPay("ok", "Payment of KES " + Number(r.amount).toLocaleString() + " received." + (r.receipt ? " M-Pesa receipt: " + r.receipt + "." : "") + " New balance: KES " + r.balance + ".");
         return;
       }
-      if (r.status === "FAILED") {
-        resetPayBtn();
-        showPay("error", r.reason || "The payment was not completed.");
-        return;
-      }
-      if (r.status === "REVIEW") {
-        resetPayBtn();
-        showPay("error", "Your payment needs to be checked by the school. Keep your M-Pesa message and contact the school office.");
-        return;
-      }
-    } catch (e) {
-      console.error("Status check error:", e);
-    }
-
-    if (tries >= 24) {
-      resetPayBtn();
-      showPay("info", "We have not received confirmation yet. If money was taken from your M-Pesa, contact the school office with your M-Pesa message. Otherwise you can try again.");
-      return;
-    }
+      if (r.status === "FAILED") { resetPayBtn(); showPay("error", r.reason || "The payment was not completed."); return; }
+      if (r.status === "REVIEW") { resetPayBtn(); showPay("error", "Your payment needs to be checked by the school. Keep your M-Pesa message and contact the school office."); return; }
+    } catch (e) { console.error("Status check error:", e); }
+    if (tries >= 24) { resetPayBtn(); showPay("info", "We have not received confirmation yet. If money was taken from your M-Pesa, contact the school office with your M-Pesa message. Otherwise you can try again."); return; }
     pollPayment(checkout, key, tries + 1);
   }, 5000);
 }
 
-/* ---------- register student ---------- */
+/* ---------- register ---------- */
 const REG_ERRORS = {
   INVALID_NAME: "Enter the student's full name using letters only.",
   INVALID_CLASS: "Choose the student's class from the list.",
@@ -410,121 +377,64 @@ const REG_ERRORS = {
   SERVER: "Something went wrong on the server. Please try again.",
   INVALID: "The registration could not be completed. Please try again, and if it keeps happening contact the school office."
 };
-
-$("regPhone").addEventListener("input", (e) => {
-  e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
-});
-
+$("regPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
 $("regForm").addEventListener("submit", async (ev) => {
-  ev.preventDefault();
-  clearMsg($("regMsg"));
-
-  const name = $("regName").value.trim().replace(/\s+/g, " ");
-  const cls = $("regClass").value;
-  const parent = $("regParent").value.trim().replace(/\s+/g, " ");
-  const phone = $("regPhone").value.trim();
-
-  if (name.length < 3) return showMsg($("regMsg"), REG_ERRORS.INVALID_NAME);
-  if (!cls) return showMsg($("regMsg"), REG_ERRORS.INVALID_CLASS);
-  if (parent.length < 2) return showMsg($("regMsg"), REG_ERRORS.INVALID_PARENT);
-  if (!/^07[0-9]{8}$/.test(phone)) return showMsg($("regMsg"), REG_ERRORS.INVALID_PHONE);
-  const code = $("regCode").value.trim();
-  if (!code) return showMsg($("regMsg"), "Enter the school access code.");
-
-  $("regBtn").disabled = true;
-  $("regBtn").textContent = "Registering...";
-
+  ev.preventDefault(); clearMsg($("regMsg"));
+  const name = $("regName").value.trim().replace(/\s+/g, " "), cls = $("regClass").value;
+  const parent = $("regParent").value.trim().replace(/\s+/g, " "), phone = $("regPhone").value.trim(), code = $("regCode").value.trim();
+  const bad = (m) => showMsg($("regMsg"), m);
+  if (name.length < 3) return bad(REG_ERRORS.INVALID_NAME);
+  if (!cls) return bad(REG_ERRORS.INVALID_CLASS);
+  if (parent.length < 2) return bad(REG_ERRORS.INVALID_PARENT);
+  if (!/^07[0-9]{8}$/.test(phone)) return bad(REG_ERRORS.INVALID_PHONE);
+  if (!code) return bad("Enter the school access code.");
+  $("regBtn").disabled = true; $("regBtn").textContent = "Registering...";
   try {
-    const qs = new URLSearchParams({
-      action: "register",
-      name: name,
-      class: cls,
-      parent: parent,
-      phone: phone,
-      code: code,
-      website: $("regWebsite").checked ? "1" : ""
-    });
-    const d = await fetchJSONP(WEB_APP_URL + "?" + qs.toString());
-
-    if (d.error) {
-      showMsg($("regMsg"), REG_ERRORS[d.error] || REG_ERRORS.INVALID);
-      return;
-    }
-
-    lastKey = d.key;
-    $("keyName").textContent = d.student_name;
-    $("keyCode").textContent = d.key;
-    $("regForm").style.display = "none";
-    $("keyBox").classList.add("show");
-  } catch (e) {
-    console.error("Registration error:", e);
-    showMsg($("regMsg"), "Unable to register: " + e.message);
-  } finally {
-    $("regBtn").disabled = false;
-    $("regBtn").textContent = "Get my security key";
-  }
+    const qs = new URLSearchParams({ action: "register", name, class: cls, parent, phone, code, website: $("regWebsite").checked ? "1" : "" });
+    const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
+    if (d.error) { bad(REG_ERRORS[d.error] || REG_ERRORS.INVALID); return; }
+    lastKey = d.key; $("keyName").textContent = d.student_name; $("keyCode").textContent = d.key;
+    $("regForm").style.display = "none"; $("keyBox").classList.add("show");
+  } catch (e) { bad("Unable to register: " + e.message); }
+  finally { $("regBtn").disabled = false; $("regBtn").textContent = "Get my security key"; }
 });
-
 $("copyBtn").addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(lastKey);
-    $("copyBtn").textContent = "Copied";
-  } catch {
-    $("copyBtn").textContent = "Press and hold the key to copy it";
-  }
+  try { await navigator.clipboard.writeText(lastKey); $("copyBtn").textContent = "Copied"; }
+  catch { $("copyBtn").textContent = "Press and hold the key to copy it"; }
 });
-
 $("useKeyBtn").addEventListener("click", () => {
-  $("key").value = lastKey;
-  selectTab("check");
-  // Reset the registration tab so the next parent starts clean
-  $("regForm").reset();
-  $("regForm").style.display = "";
-  $("keyBox").classList.remove("show");
-  $("copyBtn").textContent = "Copy key";
-  lastKey = "";
+  $("key").value = lastKey; location.hash = "fees";
+  $("regForm").reset(); $("regForm").style.display = ""; $("keyBox").classList.remove("show");
+  $("copyBtn").textContent = "Copy key"; lastKey = "";
 });
 
-/* ---------- PDF receipt ---------- */
-$("pdfBtn").addEventListener("click", () => {
+/* ---------- PDF receipt (libraries load on first use) ---------- */
+$("pdfBtn").addEventListener("click", async () => {
   if (!lastData) return;
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  const receiptId = "MCS-" + Date.now().toString().slice(-8);
-  const dateStr = new Date().toLocaleString();
-
-  const qrDiv = $("qrTemp");
-  qrDiv.innerHTML = "";
-  new QRCode(qrDiv, {
-    text: `${lastData.student_name}|${lastData.key}|${money(lastData.balance)}|${receiptId}`,
-    width: 100,
-    height: 100
-  });
-
+  $("pdfBtn").disabled = true;
+  try {
+    await Promise.all([
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"),
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js")
+    ]);
+  } catch (e) { alert("Could not load the receipt tools. Check your connection and try again."); $("pdfBtn").disabled = false; return; }
+  const { jsPDF } = window.jspdf, doc = new jsPDF();
+  const receiptId = "MCS-" + Date.now().toString().slice(-8), dateStr = new Date().toLocaleString();
+  const qrDiv = $("qrTemp"); qrDiv.innerHTML = "";
+  new QRCode(qrDiv, { text: `${lastData.student_name}|${lastData.key}|${money(lastData.balance)}|${receiptId}`, width: 100, height: 100 });
   setTimeout(() => {
-    const qr = qrDiv.querySelector("canvas");
-    const qrData = qr ? qr.toDataURL() : null;
-
-    doc.setFillColor(11, 28, 51);
-    doc.rect(0, 0, 210, 35, "F");
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(18);
+    const qr = qrDiv.querySelector("canvas"), qrData = qr ? qr.toDataURL() : null;
+    doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F");
+    doc.setTextColor(255, 255, 255); doc.setFontSize(18);
     doc.text("Mastered Comprehensive School", 105, 20, { align: "center" });
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); doc.setFontSize(12);
     let y = 50;
-    doc.text(`Receipt: ${receiptId}`, 14, y); y += 10;
-    doc.text(`Date: ${dateStr}`, 14, y); y += 10;
-    doc.text(`Student: ${lastData.student_name}`, 14, y); y += 10;
-    doc.text(`Class: ${lastData.class}`, 14, y); y += 10;
-    doc.text(`Balance: ${money(lastData.balance)}`, 14, y); y += 10;
-    doc.text(`Status: ${lastData.status}`, 14, y); y += 15;
-
+    [`Receipt: ${receiptId}`, `Date: ${dateStr}`, `Student: ${lastData.student_name}`, `Class: ${lastData.class}`,
+     `Balance: ${money(lastData.balance)}`, `Status: ${lastData.status}`].forEach((t) => { doc.text(t, 14, y); y += 10; });
+    y += 5;
     if (qrData) doc.addImage(qrData, "PNG", 14, y, 35, 35);
-
     doc.save(`${lastData.key}_Receipt.pdf`);
+    $("pdfBtn").disabled = false;
   }, 300);
 });
 </script>
