@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fee Portal &amp; Notice Board | Mastered Comprehensive School</title>
-<meta name="description" content="Official parents' portal of Mastered Comprehensive School: check fee balances, pay by M-Pesa, register your child and read the latest school notices.">
+<meta name="description" content="Official parents' portal of Mastered Comprehensive School: check fee balances, pay by M-Pesa, view exam results, register your child and read the latest school notices.">
 <meta name="robots" content="index, follow, max-snippet:-1">
-<meta name="theme-color" content="#0B1C33">
+<meta name="theme-color" content="#070B1E">
 <link rel="canonical" href="https://wamwara-kinyanjui.github.io/mastered-fee-portal/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1C33'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://script.google.com">
@@ -73,135 +73,181 @@ footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}#qrTemp{position:absolute;left:-9999px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
-/* ===== ENHANCEMENTS (additive) ===== */
-:root{--navy:#0B1C33;--navy-2:#16335C;--wa:#0E7A5F;--wa-dark:#0A6049}
-html{scroll-behavior:smooth}
-body{padding-bottom:88px}
-
-/* header + logo */
-.brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px}
-.brand h1{margin:0;text-align:left;font-size:21px;line-height:1.2}
-.logo{height:56px;width:auto;max-width:92px;object-fit:contain;background:#fff;border-radius:12px;padding:4px;flex:none}
-.logo-fb{width:48px;height:48px;border-radius:12px;background:#fff;color:var(--navy);font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
-.logo-fb[hidden]{display:none}
-header a{text-underline-offset:3px}
-
-/* entrance + panel transitions */
-@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* ===== motion + polish ===== */
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(14,122,95,.45)}100%{box-shadow:0 0 0 14px rgba(14,122,95,0)}}
-.wrap>.card{animation:riseIn .5s ease-out both}
-.help.card{animation:riseIn .5s ease-out .1s both}
-.contact.card{animation:riseIn .5s ease-out .15s both}
-.panel:not([hidden]){animation:fadeSlide .3s ease-out}
-
-/* tabs */
-.tab{transition:color .2s,background-color .2s,border-color .2s}
-.tab:hover{background:#F0F4FB;color:var(--navy)}
-.tab:active{background:#E6ECF7}
-.tab{min-height:48px}
-
-/* inputs + buttons */
-.input{transition:border-color .2s,box-shadow .2s,background-color .2s}
-.input:hover{border-color:#C9D3E6}
-.input:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(127,166,232,.35)}
-.input:focus-visible{outline:none}
-.btn{transition:transform .15s,box-shadow .2s,background-color .2s,opacity .2s;position:relative}
-.btn:hover:not(:disabled){background:var(--navy-2);box-shadow:0 6px 16px rgba(11,28,51,.22);transform:translateY(-1px)}
-.btn.secondary:hover:not(:disabled){background:#EEF3FB;color:var(--navy)}
-.btn:active:not(:disabled){transform:translateY(1px) scale(.99);box-shadow:none}
-a.btn{display:block;text-align:center;text-decoration:none}
-#btn:disabled::after,#payBtn:disabled::after,#regBtn:disabled::after,#pdfBtn:disabled::after{content:"";display:inline-block;width:14px;height:14px;margin-left:10px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
-
-/* messages + results */
-.msg.show{animation:fadeSlide .25s ease-out}
-.msg.error.show{animation:fadeSlide .25s ease-out,shake .35s ease-out .1s}
-.msg.ok.show{animation:popIn .3s ease-out}
-.msg.ok{border-left:4px solid #2E7D32}.msg.error{border-left:4px solid #C62828}.msg.info{border-left:4px solid #3567C7}
-.result.show{animation:fadeSlide .35s ease-out}
-.paybox:not([hidden]){animation:fadeSlide .35s ease-out}
-.keybox.show{animation:popIn .35s ease-out}
-.keybox .code{letter-spacing:.04em}
-
-/* notices + faq */
-.notice{transition:transform .2s,box-shadow .2s,border-color .2s;animation:fadeSlide .35s ease-out both}
-.notice:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,28,51,.1);border-color:#C9D3E6}
-.notice:nth-child(2){animation-delay:.05s}.notice:nth-child(3){animation-delay:.1s}.notice:nth-child(4){animation-delay:.15s}.notice:nth-child(n+5){animation-delay:.2s}
-.notice p{line-height:1.6}
-.pin{transition:background-color .2s}.pin:hover{background:#FFEDA8}.pin:focus-visible{outline:3px solid #7FA6E8;outline-offset:-3px}
-details{transition:background-color .2s;padding:12px 8px;border-radius:8px}
-details:hover{background:#F5F7FB}
-details[open]{background:#F5F7FB}
-details[open] p{animation:fadeSlide .25s ease-out}
-summary{min-height:24px}
-
-/* contact section */
-.contact{padding:20px}
-.contact h2{font-size:17px}
-.contact p{margin:0 0 6px;font-size:14px;line-height:1.6}
-.contact .phone-line{font-weight:700;font-size:16px;margin:10px 0 2px}
-.contact .privacy{margin-top:14px;padding:12px;border-radius:10px;background:#FFF4CC;color:#5A4300;font-size:13px;line-height:1.5}
-.btn.wa{background:var(--wa)}
-.btn.wa:hover:not(:disabled){background:var(--wa-dark);box-shadow:0 6px 16px rgba(14,122,95,.3)}
-.btn .ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;fill:currentColor}
-
-/* floating whatsapp */
-.wa-float{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 16px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:transform .2s,background-color .2s,box-shadow .2s;animation:riseIn .5s ease-out .6s both,pulseRing 2s ease-out 1.2s 2}
-.wa-float svg{width:22px;height:22px;fill:#fff;flex:none}
-.wa-float:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.3)}
-.wa-float:active{transform:scale(.96)}
-.wa-float:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px var(--wa-dark)}
-@media (max-width:480px){
-  .wa-float{padding:0;width:48px;height:48px;justify-content:center;right:12px}
-  .wa-float span{display:none}
-  .brand h1{font-size:18px}
-  .logo{height:48px;max-width:80px}
-  .body,.help,.contact{padding:16px}
-}
-
-/* feedback icons */
-.msg{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2zm0-8h-2V7h2z'/%3E%3C/svg%3E")}
-.msg.ok{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
-.msg.error{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
-.msg.show::before,.bal-ic{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-4px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
-.bal{display:flex;align-items:center;margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700;font-size:14px;line-height:1.4;animation:popIn .35s ease-out}
-.bal .bal-ic{flex:none;width:22px;height:22px;margin-right:10px;vertical-align:baseline}
-.bal.clear{background:#E6F4EA;color:#14532D;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
-.bal.due{background:#FFF4CC;color:#5A4300;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
-
-/* reduced motion */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-}
+@keyframes flow{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+@keyframes shimmer{to{background-position:-200% 0}}
+@keyframes beat{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@keyframes fall{to{transform:translate(var(--dx),105vh) rotate(720deg);opacity:.9}}
+.wrap>.card{animation:rise .5s cubic-bezier(.2,.8,.2,1) both}.wrap>.card.help{animation-delay:.12s}
+header{background:linear-gradient(135deg,#0B1C33,#173A6B,#0B1C33);background-size:200% 200%;animation:flow 14s ease infinite}
+.logo{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.14);font-weight:800;font-size:22px;margin-bottom:8px;animation:pop .6s both}
+.tabs{position:relative}.tab{transition:color .2s}.tab[aria-selected="true"]{border-bottom-color:transparent}
+.tab-ind{position:absolute;left:0;bottom:-2px;height:3px;background:#0B1C33;border-radius:3px;transition:transform .3s cubic-bezier(.4,0,.2,1),width .3s}
+.panel:not([hidden]){animation:rise .35s cubic-bezier(.2,.8,.2,1)}
+.btn{transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 16px rgba(11,28,51,.22)}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn:disabled::before{content:"";display:inline-block;width:14px;height:14px;margin-right:8px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+.input{transition:border-color .2s,box-shadow .2s}.input:focus{box-shadow:0 0 0 4px rgba(11,28,51,.1)}.input.valid{border-color:#2E7D32}
+.msg.error.show{animation:shake .4s}
+.msg.info.show::before{content:"";display:inline-block;width:9px;height:9px;margin-right:8px;border-radius:50%;background:#1A3D7C;animation:beat 1.2s infinite}
+.msg.ok.show{animation:pop .5s}
+.msg.ok.show::before{content:"\2713";display:inline-grid;place-items:center;width:20px;height:20px;margin-right:8px;border-radius:50%;background:#2E7D32;color:#fff;font-size:13px}
+.pin:not([hidden]){animation:drop .4s}.badge:not([hidden]){animation:pop .4s}
+.result.show{animation:rise .45s cubic-bezier(.2,.8,.2,1)}
+.stu{margin:0;font-size:18px}.sub{font-size:13px;color:#6B7690}
+.pill{display:inline-block;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:700;margin:8px 0}
+.pill.ok{background:#E6F4EA;color:#14532D}.pill.due{background:#FFF1D6;color:#7A4A00}.pill.wait{background:#E8EDF5;color:#33415C}
+.balLabel{font-size:12px;color:#6B7690;text-transform:uppercase;letter-spacing:.06em}
+.bal{font-size:34px;font-weight:800;color:#0B1C33;line-height:1.1}.bal small{font-size:15px;font-weight:600;margin-right:4px}
+.quick{display:flex;gap:8px;margin-top:8px}
+.quick button{padding:6px 12px;border-radius:16px;border:1.5px solid #D5DBE8;background:#fff;font-size:13px;font-weight:600;cursor:pointer;transition:border-color .15s,background .15s}
+.quick button:hover{border-color:#0B1C33;background:#F0F4FA}
+.notice{transition:transform .2s,box-shadow .2s;animation:rise .45s both;animation-delay:calc(var(--i,0)*70ms)}
+.notice:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.sk{height:84px;border-radius:12px;margin-bottom:12px;background:linear-gradient(90deg,#EEF1F6 25%,#F8F9FC 37%,#EEF1F6 63%);background-size:200% 100%;animation:shimmer 1.3s linear infinite}
+.keybox.show{animation:pop .5s}
+details[open] p{animation:rise .3s}summary{transition:color .15s}summary:hover{color:#1565C0}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.confetti span{position:absolute;top:-12px;width:8px;height:12px;border-radius:2px;animation:fall 2s ease-in forwards}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.pill.bad{background:#FDECEC;color:#9B1C1C}
+[hidden]{display:none!important}
+.exhead{margin:16px 0 8px}.subj{padding:10px 0;border-bottom:1px solid #EEF1F6}
+.subjtop{display:flex;align-items:center;gap:8px}.sname{flex:1;font-weight:600;font-size:14px}.smarks{font-size:13px;color:#6B7690}
+.subj .pill{margin:0}
+.bar{height:8px;background:#EEF1F6;border-radius:4px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:#0B1C33;border-radius:4px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.remark{font-size:12px;color:#6B7690;margin-top:6px;font-style:italic}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.sumbox{background:#F5F7FB;border-radius:12px;padding:10px 12px;animation:pop .5s both}
+.sumbox small{display:block;font-size:11px;color:#6B7690;text-transform:uppercase;letter-spacing:.05em}.sumbox b{font-size:15px}
+.tab{flex:1 0 auto;padding:13px 12px}
+.tabs{overflow-x:auto;scrollbar-width:none;border-bottom:0;box-shadow:inset 0 -2px 0 #E5E9F2}.tabs::-webkit-scrollbar{display:none}
+.tab{margin-bottom:0}.tab-ind{bottom:0}
+@keyframes draw{to{stroke-dashoffset:0}}
+.phero{display:flex;align-items:center;gap:14px;margin:4px 0 6px}
+.avatar{width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#0B1C33,#2A5CA8);color:#fff;display:grid;place-items:center;font-weight:800;font-size:20px;animation:pop .5s both}
+.psec{margin-top:18px;padding-top:14px;border-top:1px solid #E5E9F2;animation:rise .45s both}
+.ptitle{margin:0 0 10px;font-size:15px;color:#0B1C33}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pbox{background:#F5F7FB;border-radius:12px;padding:10px 12px}
+.pbox small{display:block;font-size:11px;color:#6B7690;text-transform:uppercase;letter-spacing:.05em}.pbox b{font-size:14px;word-break:break-word}
+.pay-row{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:8px 0;border-bottom:1px solid #EEF1F6}.pay-row span:last-child{font-weight:700;white-space:nowrap}
+.spark{width:100%;height:70px;margin:8px 0}
+.sline{fill:none;stroke:#0B1C33;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.2s ease forwards}
+.sdot{fill:#fff;stroke:#0B1C33;stroke-width:2}
+.exrow{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #EEF1F6;font-size:14px}.exrow .pill{margin:0}
+/* ===== premium layer ===== */
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.12)}}
+@keyframes shine{to{transform:translateX(100%)}}
+@keyframes ring{from{transform:scale(.9);opacity:.9}to{transform:scale(1.3);opacity:0}}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
+body{background:#EEF2F9;padding-bottom:max(12px,env(safe-area-inset-bottom));letter-spacing:-.005em}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(160deg,#EAF0FA,#F8FAFE 45%,#ECF1FA)}
+.bg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:float 20s ease-in-out infinite}
+.bg i:nth-child(1){width:380px;height:380px;background:#8DB1EC;top:-90px;left:-110px}
+.bg i:nth-child(2){width:320px;height:320px;background:#F3D48A;bottom:-80px;right:-90px;animation-delay:-7s;opacity:.4}
+.bg i:nth-child(3){width:260px;height:260px;background:#B9A8F0;top:42%;left:55%;animation-delay:-13s;opacity:.3}
+.card{border-radius:26px;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.7);box-shadow:0 1px 2px rgba(11,28,51,.04),0 12px 32px rgba(11,28,51,.08),0 30px 70px rgba(11,28,51,.07)}
+header{position:relative;overflow:hidden;padding:26px 20px 22px;background:linear-gradient(135deg,#0A1830,#173A6B 55%,#1F4B8E);background-size:200% 200%}
+header::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.13) 46%,transparent 62%);transform:translateX(-100%);animation:shine 7s ease-in-out 1.5s infinite;pointer-events:none}
+header h1{font-size:23px;letter-spacing:-.02em}
+.logo{position:relative;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.logo::after{content:"";position:absolute;inset:-5px;border-radius:20px;border:2px solid rgba(255,255,255,.4);animation:ring 2.8s ease-out infinite}
+.trust{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.trust span{font-size:11px;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.pin{background:linear-gradient(90deg,#FFF3CC,#FFE9A8);font-weight:600}
+.tabs{padding:6px;gap:2px;background:#EDF1F8;margin:14px 14px 0;border-radius:18px;box-shadow:inset 0 1px 3px rgba(11,28,51,.08)}
+.tab{position:relative;z-index:1;border:0;border-radius:13px;font-size:13.5px;transition:color .25s}
+.tab[aria-selected="true"]{color:#fff}
+.tab-ind{top:6px;bottom:6px;height:auto;border-radius:13px;z-index:0;background:linear-gradient(135deg,#0B1C33,#1F4B8E);box-shadow:0 6px 14px rgba(11,28,51,.28);transition:transform .45s cubic-bezier(.34,1.45,.64,1),width .35s}
+.badge{box-shadow:0 0 0 2px #fff}
+h2{font-size:20px;letter-spacing:-.02em}
+label{font-size:13px;letter-spacing:.01em;color:#33415C}
+.input{border-radius:14px;border-width:1.5px;background:#FBFCFE;padding:15px 14px}
+.input:focus{background:#fff;border-color:#1F4B8E;box-shadow:0 0 0 4px rgba(31,75,142,.15)}
+.btn{position:relative;overflow:hidden;border-radius:14px;padding:15px;background:linear-gradient(135deg,#0B1C33,#1B3F77);box-shadow:0 6px 16px rgba(11,28,51,.22);transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);transform:translateX(-120%);transition:transform .7s;pointer-events:none}
+.btn:hover:not(:disabled)::after{transform:translateX(120%)}
+.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 12px 24px rgba(11,28,51,.28)}
+.btn.secondary{box-shadow:none;background:#fff}.btn.secondary::after{display:none}
+.btn.secondary:hover:not(:disabled){background:#F3F6FB;box-shadow:0 8px 18px rgba(11,28,51,.1)}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:ripple .6s ease-out forwards;pointer-events:none}
+.btn.secondary .rip{background:rgba(11,28,51,.14)}
+.result{border:1px solid #E3E9F4;background:linear-gradient(180deg,#fff,#F7F9FD);border-radius:18px;box-shadow:0 8px 24px rgba(11,28,51,.06)}
+.feehero{position:relative;overflow:hidden;border-radius:20px;padding:20px;color:#fff;background:linear-gradient(135deg,#0A1830,#1F4B8E);box-shadow:0 14px 30px rgba(15,40,90,.28)}
+.feehero::after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-60px;top:-70px;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 70%);animation:float 12s ease-in-out infinite}
+.feehero .bal,.feehero .balLabel,.feehero .sub{color:#fff;position:relative;z-index:1}.feehero .balLabel{opacity:.75}.feehero .sub{opacity:.85}
+.feehero .pay-row{border-color:rgba(255,255,255,.16)}.feehero .btn{background:#fff;color:#0B1C33;box-shadow:0 8px 18px rgba(0,0,0,.18)}
+.greet{font-size:14px;color:#33415C;margin:0 0 6px;animation:rise .5s both}
+.avatar{box-shadow:0 8px 18px rgba(31,75,142,.35)}
+.pbox,.sumbox{border:1px solid #E8EDF6;background:linear-gradient(180deg,#fff,#F6F8FC);transition:transform .2s,box-shadow .2s}
+.pbox:hover,.sumbox:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,28,51,.08)}
+.notice{position:relative;padding-left:20px;border-radius:16px;border-color:#E6ECF5;background:#fff}
+.notice::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:4px;background:var(--acc,#0B1C33)}
+.c-fees{--acc:#E08A00}.c-events{--acc:#2E7D32}.c-exams{--acc:#1565C0}.c-holiday{--acc:#8E24AA}
+.bar{height:10px}.bar i{background:linear-gradient(90deg,#1F4B8E,#4F86D8)}
+.pill{box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.help{border-radius:22px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}
+details{border-radius:12px;padding:12px 8px;transition:background .2s}details:hover{background:#F6F8FC}
+footer{padding-top:4px}
+.tab:focus-visible{outline-offset:-2px}
+@media (max-width:380px){.tab{padding:13px 9px;font-size:13px}header h1{font-size:20px}}
+/* ===== galaxy background ===== */
+body{background:#04060F}
+.bg{background:radial-gradient(120% 90% at 70% 0%,#161C52 0%,#0A0E2A 45%,#04060F 100%)}
+.bg i{mix-blend-mode:screen;opacity:.35}
+.bg i:nth-child(1){background:#2F5BE0}
+.bg i:nth-child(2){background:#B13A8E;opacity:.26}
+.bg i:nth-child(3){background:#6A3FD0;opacity:.3}
+.bg canvas{position:absolute;inset:0;width:100%;height:100%}
+.card{background:rgba(255,255,255,.93)}
+footer{color:#B8C3E0}footer a{color:#fff}
+noscript p{color:#fff}
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i><canvas id="galaxy"></canvas></div>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <div class="card">
   <header>
-    <div class="brand">
-      <img id="schoolLogo" class="logo" src="https://lh3.googleusercontent.com/d/1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d" alt="Mastered Comprehensive School logo" width="92" height="56" decoding="async" referrerpolicy="no-referrer">
-      <span id="logoFallback" class="logo-fb" aria-hidden="true" hidden>M</span>
-      <h1>Mastered Comprehensive School</h1>
-    </div>
+    <span class="logo" aria-hidden="true">M</span>
+    <h1>Mastered Comprehensive School</h1>
     <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702">0721 101 702</a></p>
+    <div class="trust"><span>Private key access</span><span>M-Pesa payments</span><span>Exam results</span></div>
   </header>
   <a id="pinBanner" class="pin" href="#notices" hidden></a>
   <nav aria-label="Portal sections">
     <div class="tabs" role="tablist">
-      <button class="tab" id="tabFees" role="tab" aria-selected="true" aria-controls="panelFees">Fees</button>
+      <button class="tab" id="tabProfile" role="tab" aria-selected="true" aria-controls="panelProfile">Profile</button>
+      <button class="tab" id="tabFees" role="tab" aria-selected="false" aria-controls="panelFees">Fees</button>
+      <button class="tab" id="tabResults" role="tab" aria-selected="false" aria-controls="panelResults">Results</button>
       <button class="tab" id="tabNotices" role="tab" aria-selected="false" aria-controls="panelNotices">Notices<span class="badge" id="noticeBadge" hidden></span></button>
       <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register</button>
+      <span class="tab-ind" id="tabInd"></span>
     </div>
   </nav>
 
   <main id="main" class="body">
+    <!-- PROFILE -->
+    <section id="panelProfile" class="panel" role="tabpanel" aria-labelledby="tabProfile">
+      <h2>Student profile</h2>
+      <label for="pKey" style="margin-top:0">Student security key</label>
+      <input id="pKey" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="pBtn" class="btn">View profile</button>
+      <div id="pMsg" class="msg error" role="alert"></div>
+      <div id="pOut" hidden></div>
+    </section>
+
     <!-- FEES -->
-    <section id="panelFees" class="panel" role="tabpanel" aria-labelledby="tabFees">
+    <section id="panelFees" class="panel" role="tabpanel" aria-labelledby="tabFees" hidden>
       <h2>Check fee balance and pay</h2>
       <label for="key" style="margin-top:0">Student security key</label>
       <input id="key" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
@@ -213,6 +259,7 @@ summary{min-height:24px}
           <h3>Pay with M-Pesa</h3>
           <label for="payAmount">Amount to pay (KES)</label>
           <input id="payAmount" class="input" inputmode="numeric" autocomplete="off">
+          <div class="quick"><button type="button" data-frac="1">Full balance</button><button type="button" data-frac="0.5">Half</button></div>
           <label for="payPhone">M-Pesa phone number</label>
           <input id="payPhone" class="input" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
           <div class="hint">You will get a prompt on this phone. Enter your M-Pesa PIN to confirm.</div>
@@ -223,10 +270,25 @@ summary{min-height:24px}
       </div>
     </section>
 
+    <!-- RESULTS -->
+    <section id="panelResults" class="panel" role="tabpanel" aria-labelledby="tabResults" hidden>
+      <h2>Exam results</h2>
+      <label for="resKey" style="margin-top:0">Student security key</label>
+      <input id="resKey" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="resBtn" class="btn">View results</button>
+      <div id="resMsg" class="msg error" role="alert"></div>
+      <div id="resOut" hidden>
+        <label for="examPick" id="examLbl">Exam</label>
+        <select id="examPick" class="input"></select>
+        <div id="examCard"></div>
+        <button id="resPdf" class="btn secondary">Download report card (PDF)</button>
+      </div>
+    </section>
+
     <!-- NOTICES -->
     <section id="panelNotices" class="panel" role="tabpanel" aria-labelledby="tabNotices" hidden>
       <h2>Notice board</h2>
-      <div id="noticeList" aria-live="polite"><p class="empty">Loading notices...</p></div>
+      <div id="noticeList" aria-live="polite"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
     </section>
 
     <!-- REGISTER -->
@@ -255,7 +317,7 @@ summary{min-height:24px}
         <p><b>Save this key now.</b> It is only shown once. Take a screenshot or copy it.</p>
         <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message.</p>
         <button type="button" id="copyBtn" class="btn secondary">Copy key</button>
-        <button type="button" id="useKeyBtn" class="btn">Go to fees</button>
+        <button type="button" id="useKeyBtn" class="btn">Open my profile</button>
       </div>
     </section>
   </main>
@@ -272,42 +334,13 @@ summary{min-height:24px}
   <details><summary>How do I pay school fees by M-Pesa?</summary><p>After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone.</p></details>
   <details><summary>How do I get a security key?</summary><p>Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration.</p></details>
 </section>
-
-<section id="contact" class="card contact" aria-labelledby="contactTitle" style="margin-top:14px">
-  <h2 id="contactTitle">Contact the School</h2>
-  <p>Parents can contact the school office for help with fee balances, registration, payments and notices.</p>
-  <p class="phone-line">0721 101 702</p>
-  <a class="btn wa" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>Chat on WhatsApp</a>
-  <a class="btn secondary" href="tel:+254721101702"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.600 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.2 11.400 11.400 0 0 0 3.600.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.6 3.600a1 1 0 0 1-.2 1z"/></svg>Call 0721 101 702</a>
-  <p class="privacy"><b>Stay safe:</b> never share your M-Pesa PIN with anyone, including anyone who claims to be from the school. You only enter your PIN on your own phone.</p>
-</section>
 </div>
 
 <footer>
   &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702">0721 101 702</a>
 </footer>
-
-<a id="waFloat" class="wa-float" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer" aria-label="Chat with Mastered Comprehensive School on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
-  <span>WhatsApp</span>
-</a>
 <div id="qrTemp"></div>
 <noscript><p style="text-align:center">This portal needs JavaScript. Please call the school on 0721 101 702.</p></noscript>
-
-<script>
-/* Logo loader: tries a direct Google Drive image URL, then an alternate one, then shows the "M" fallback.
-   For the most reliable result, upload the logo next to this file (e.g. logo.png) and set the img src to "logo.png". */
-(function () {
-  var img = document.getElementById("schoolLogo"), fb = document.getElementById("logoFallback");
-  if (!img || !fb) return;
-  var step = 0;
-  img.addEventListener("error", function () {
-    step++;
-    if (step === 1) { img.src = "https://drive.google.com/uc?export=view&id=1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d"; return; }
-    img.hidden = true; fb.hidden = false;
-  });
-})();
-</script>
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2o_MSiHspkrnugXNicJFmOiLLxyR2R15-Z4gdp7wW5g4sDqdczA/exec";
@@ -316,6 +349,35 @@ const CLASSES = ["PP1","PP2","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","
 const $ = (id) => document.getElementById(id);
 let lastData = null, lastKey = "";
 $("year").textContent = new Date().getFullYear();
+const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const SKELETON = '<div class="sk"></div><div class="sk"></div><div class="sk"></div>';
+function mk(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+function moveInd() { // slides the underline under the active tab
+  const t = document.querySelector('.tab[aria-selected="true"]'), i = $("tabInd");
+  if (!t || !i) return;
+  i.style.width = t.offsetWidth + "px"; i.style.transform = "translateX(" + t.offsetLeft + "px)";
+}
+window.addEventListener("resize", moveInd); window.addEventListener("load", moveInd);
+function countUp(node, to) {
+  if (calm()) { node.textContent = to.toLocaleString(); return; }
+  const t0 = performance.now();
+  (function step(t) {
+    const p = Math.min(1, (t - t0) / 900);
+    node.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  })(t0);
+}
+function confetti() {
+  if (calm()) return;
+  const box = mk("div", "confetti"); box.setAttribute("aria-hidden", "true");
+  const colors = ["#0B1C33", "#2E7D32", "#F9A825", "#1565C0", "#C62828"];
+  for (let i = 0; i < 28; i++) {
+    const s = document.createElement("span");
+    s.style.cssText = "left:" + Math.random() * 100 + "%;background:" + colors[i % 5] + ";animation-delay:" + Math.random() * 0.4 + "s;--dx:" + (Math.random() * 120 - 60) + "px";
+    box.appendChild(s);
+  }
+  document.body.appendChild(box); setTimeout(() => box.remove(), 2600);
+}
 
 /* ---------- helpers ---------- */
 function fetchJSONP(url) {
@@ -339,19 +401,102 @@ function loadScript(src) { // PDF libraries load only when needed (faster page)
   });
   return loaded[src];
 }
-function showMsg(el, t) { el.textContent = t; el.classList.add("show"); }
+function showMsg(el, t) { el.classList.remove("show"); void el.offsetWidth; el.textContent = t; el.classList.add("show"); }
 function clearMsg(el) { el.textContent = ""; el.classList.remove("show"); }
 function money(b) { return /^[0-9][0-9,]*(\.[0-9]+)?$/.test(String(b)) ? "KES " + b : String(b); }
 
 /* ---------- tabs (shareable links: #fees  #notices  #register) ---------- */
-const TABS = ["fees", "notices", "register"];
+/* ---------- premium touches: button ripple + scroll reveal ---------- */
+document.addEventListener("pointerdown", (e) => {
+  const b = e.target.closest && e.target.closest(".btn");
+  if (!b || b.disabled || calm()) return;
+  const r = b.getBoundingClientRect(), s = Math.max(r.width, r.height), d = mk("span", "rip");
+  d.style.cssText = "width:" + s + "px;height:" + s + "px;left:" + (e.clientX - r.left - s / 2) + "px;top:" + (e.clientY - r.top - s / 2) + "px";
+  b.appendChild(d); setTimeout(() => d.remove(), 650);
+});
+(function () {
+  const items = document.querySelectorAll(".help li, .help details");
+  items.forEach((el, i) => { el.classList.add("reveal"); el.style.transitionDelay = i * 70 + "ms"; });
+  if (!("IntersectionObserver" in window)) { items.forEach((el) => el.classList.add("in")); return; }
+  const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } }), { threshold: 0.15 });
+  items.forEach((el) => io.observe(el));
+})();
+
+/* ---------- galaxy background (canvas) ---------- */
+(function () {
+  const cv = $("galaxy"), ctx = cv && cv.getContext && cv.getContext("2d");
+  if (!ctx) return;
+  const still = calm(), R = Math.random;
+  let W, H, GR, stars = [], arm = [], shoots = [], mx = 0, my = 0, px = 0, py = 0, raf = 0, last = 0, nextShoot = 2500;
+  function build() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    stars = Array.from({ length: Math.max(80, Math.min(260, Math.round(W * H / 7000))) }, () => {
+      const z = R(); return { x: R() * W, y: R() * H, z, r: 0.4 + z * 1.3, ph: R() * 6.28, sp: 0.6 + R() * 1.8, a: 0.35 + z * 0.65 };
+    });
+    GR = Math.min(Math.max(W, H) * 0.42, 420);
+    arm = Array.from({ length: W < 600 ? 520 : 900 }, (_, i) => {
+      const t = Math.pow(R(), 1.7), ang = (i % 3) * 2.094 + t * 4.6 + (R() - 0.5) * 0.55;
+      const c = t < 0.2 ? [255, 236, 200] : t < 0.55 ? [170, 195, 255] : [200, 150, 255];
+      return { r: t * GR, ang, s: 0.5 + R() * 1.1 * (1.2 - t), f: "rgba(" + c.join(",") + "," + (0.25 + R() * 0.65 * (1.1 - t * 0.6)).toFixed(2) + ")" };
+    });
+  }
+  function frame(ts) {
+    const t = ts / 1000, dt = Math.min(0.05, (ts - last) / 1000 || 0.016); last = ts;
+    mx += (px - mx) * 0.04; my += (py - my) * 0.04;
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalCompositeOperation = "lighter";
+    const gx = W * (W < 600 ? 0.62 : 0.74) + mx * 14, gy = H * 0.27 + my * 10, cs = Math.cos(-0.5), sn = Math.sin(-0.5);
+    const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, GR * 0.5);
+    g.addColorStop(0, "rgba(255,230,190,.55)"); g.addColorStop(0.35, "rgba(150,140,255,.18)"); g.addColorStop(1, "rgba(80,60,200,0)");
+    ctx.fillStyle = g; ctx.fillRect(gx - GR, gy - GR, GR * 2, GR * 2);
+    const spin = t * 0.05;
+    for (const p of arm) {
+      const a = p.ang + spin * (1.4 - p.r / GR), ex = Math.cos(a) * p.r, ey = Math.sin(a) * p.r * 0.5;
+      ctx.fillStyle = p.f; ctx.fillRect(gx + ex * cs - ey * sn, gy + ex * sn + ey * cs, p.s, p.s);
+    }
+    ctx.fillStyle = "#fff";
+    for (const s of stars) {
+      ctx.globalAlpha = s.a * (0.6 + 0.4 * Math.sin(t * s.sp + s.ph));
+      ctx.beginPath();
+      ctx.arc(((s.x + mx * 22 * s.z + t * 3 * s.z) % W + W) % W, ((s.y + my * 16 * s.z) % H + H) % H, s.r, 0, 6.283);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (!still) {
+      if (ts > nextShoot) { shoots.push({ x: R() * W * 0.7, y: R() * H * 0.35, vx: 560 + R() * 280, vy: 240 + R() * 160, l: 0 }); nextShoot = ts + 4000 + R() * 5000; }
+      shoots = shoots.filter((s) => s.l < 0.9);
+      for (const s of shoots) {
+        s.l += dt; s.x += s.vx * dt; s.y += s.vy * dt;
+        const k = Math.hypot(s.vx, s.vy), ex = s.x - s.vx / k * 90, ey = s.y - s.vy / k * 90, lg = ctx.createLinearGradient(s.x, s.y, ex, ey);
+        lg.addColorStop(0, "rgba(255,255,255," + (1 - s.l / 0.9).toFixed(2) + ")"); lg.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.strokeStyle = lg; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(ex, ey); ctx.stroke();
+      }
+      raf = requestAnimationFrame(frame);
+    }
+  }
+  build();
+  if (still) frame(performance.now()); else raf = requestAnimationFrame(frame);
+  let rt; window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (still) frame(performance.now()); }, 200); });
+  window.addEventListener("pointermove", (e) => { px = (e.clientX / W - 0.5) * 2; py = (e.clientY / H - 0.5) * 2; }, { passive: true });
+  document.addEventListener("visibilitychange", () => { // pause when the tab is hidden to save battery
+    if (still) return;
+    if (document.hidden) cancelAnimationFrame(raf); else { last = performance.now(); raf = requestAnimationFrame(frame); }
+  });
+})();
+
+const TABS = ["profile", "fees", "results", "notices", "register"];
 const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 function selectTab(name) {
-  if (TABS.indexOf(name) === -1) name = "fees";
+  if (TABS.indexOf(name) === -1) name = "profile";
   TABS.forEach((t) => {
     $("tab" + cap(t)).setAttribute("aria-selected", t === name);
     $("panel" + cap(t)).hidden = t !== name;
   });
+  const known = $("pKey").value || $("key").value || $("resKey").value; // one key works in every tab
+  if (known) ["pKey", "key", "resKey"].forEach((id) => { if (!$(id).value) $(id).value = known; });
+  moveInd();
 }
 TABS.forEach((t, i) => {
   const b = $("tab" + cap(t));
@@ -366,14 +511,188 @@ selectTab(location.hash.slice(1));
 
 CLASSES.forEach((c) => { const o = document.createElement("option"); o.value = c; o.textContent = c; $("regClass").appendChild(o); });
 
+/* ---------- exam results ---------- */
+let resData = null;
+const GRADE_CLASS = { EE: "ok", ME: "ok", AE: "due", BE: "bad" };
+function showExam(i) {
+  const x = resData.exams[i], card = $("examCard");
+  card.textContent = "";
+  const head = mk("div", "exhead");
+  head.append(mk("h3", "stu", resData.student), mk("div", "sub", x.exam + (x.className ? " \u2022 " + x.className : "")));
+  card.appendChild(head);
+  x.subjects.forEach((s, n) => {
+    const row = mk("div", "subj"), top = mk("div", "subjtop");
+    top.append(mk("span", "sname", s.subject), mk("span", "smarks", s.marks + "/" + s.outOf), mk("span", "pill " + (GRADE_CLASS[s.grade] || "wait"), s.grade));
+    const bar = mk("div", "bar"), fill = mk("i");
+    fill.style.transitionDelay = n * 60 + "ms"; bar.appendChild(fill);
+    row.append(top, bar);
+    if (s.remarks) row.appendChild(mk("div", "remark", s.remarks));
+    card.appendChild(row);
+    requestAnimationFrame(() => requestAnimationFrame(() => { fill.style.width = Math.min(100, s.pct) + "%"; }));
+  });
+  const sum = mk("div", "sum");
+  [["Total", x.total + "/" + x.outOf], ["Average", x.average + "%"], ["Grade", x.grade + " - " + x.gradeLabel]]
+    .concat(x.classSize > 1 ? [["Class position", x.position + " of " + x.classSize]] : [])
+    .forEach(([l, v]) => { const b = mk("div", "sumbox"); b.append(mk("small", "", l), mk("b", "", v)); sum.appendChild(b); });
+  card.appendChild(sum);
+}
+async function loadResults() {
+  const key = $("resKey").value.trim().toUpperCase();
+  clearMsg($("resMsg")); $("resOut").hidden = true;
+  if (!key) { showMsg($("resMsg"), "Enter the student security key."); return; }
+  $("resBtn").disabled = true; $("resBtn").textContent = "Loading...";
+  try {
+    const d = await fetchJSONP(WEB_APP_URL + "?action=results&key=" + encodeURIComponent(key));
+    if (d.error === "NOT_APPROVED") { showMsg($("resMsg"), "Your registration is waiting for approval by the school."); return; }
+    if (d.error) { showMsg($("resMsg"), "Security key not found. Check the key and try again."); return; }
+    if (!d.exams.length) { showMsg($("resMsg"), "No results have been published for this student yet."); return; }
+    resData = d;
+    const pick = $("examPick"); pick.textContent = "";
+    d.exams.forEach((x, i) => { const o = document.createElement("option"); o.value = i; o.textContent = x.exam; pick.appendChild(o); });
+    pick.hidden = $("examLbl").hidden = d.exams.length < 2;
+    showExam(0); $("resOut").hidden = false;
+  } catch (e) {
+    showMsg($("resMsg"), "Unable to load results: " + e.message);
+  } finally { $("resBtn").disabled = false; $("resBtn").textContent = "View results"; }
+}
+$("resBtn").addEventListener("click", loadResults);
+$("resKey").addEventListener("keydown", (e) => { if (e.key === "Enter") loadResults(); });
+$("examPick").addEventListener("change", (e) => showExam(Number(e.target.value)));
+$("resPdf").addEventListener("click", async () => {
+  if (!resData) return;
+  const x = resData.exams[Number($("examPick").value) || 0];
+  $("resPdf").disabled = true;
+  try { await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"); }
+  catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); $("resPdf").disabled = false; return; }
+  const doc = new window.jspdf.jsPDF();
+  doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F"); doc.setTextColor(255, 255, 255);
+  doc.setFontSize(18); doc.text("Mastered Comprehensive School", 105, 16, { align: "center" });
+  doc.setFontSize(12); doc.text("Report card: " + x.exam, 105, 27, { align: "center" });
+  doc.setTextColor(0, 0, 0);
+  let y = 50;
+  doc.text("Student: " + resData.student + (x.className ? "     Class: " + x.className : ""), 14, y); y += 12;
+  doc.setFont(undefined, "bold"); doc.text("Subject", 14, y); doc.text("Marks", 110, y); doc.text("%", 145, y); doc.text("Grade", 170, y);
+  doc.setFont(undefined, "normal"); y += 8;
+  x.subjects.forEach((s) => {
+    doc.text(s.subject.slice(0, 40), 14, y); doc.text(s.marks + "/" + s.outOf, 110, y); doc.text(s.pct + "%", 145, y); doc.text(s.grade, 170, y);
+    y += 8; if (y > 270) { doc.addPage(); y = 20; }
+  });
+  y += 6; doc.setFont(undefined, "bold");
+  doc.text("Total: " + x.total + "/" + x.outOf + "     Average: " + x.average + "%     Grade: " + x.grade + " (" + x.gradeLabel + ")", 14, y);
+  if (x.classSize > 1) { y += 8; doc.text("Class position: " + x.position + " of " + x.classSize, 14, y); }
+  doc.save("Report_" + x.exam.replace(/[^A-Za-z0-9]+/g, "_") + ".pdf");
+  $("resPdf").disabled = false;
+});
+
+/* ---------- student profile ---------- */
+let profData = null;
+function initials(n) { return String(n).split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?"; }
+function psec(title, ...nodes) { const s = mk("div", "psec"); s.appendChild(mk("h3", "ptitle", title)); nodes.forEach((n) => s.appendChild(n)); return s; }
+function spark(vals) { // average score across exams, oldest to newest
+  const ns = "http://www.w3.org/2000/svg", W = 300, H = 70, P = 8, svg = document.createElementNS(ns, "svg");
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("class", "spark");
+  svg.setAttribute("role", "img"); svg.setAttribute("aria-label", "Average score across exams");
+  const x = (i) => vals.length === 1 ? W / 2 : P + i * (W - 2 * P) / (vals.length - 1);
+  const y = (v) => H - P - (Math.min(100, Math.max(0, v)) / 100) * (H - 2 * P);
+  const line = document.createElementNS(ns, "polyline");
+  line.setAttribute("points", vals.map((v, i) => x(i) + "," + y(v)).join(" ")); line.setAttribute("class", "sline"); svg.appendChild(line);
+  vals.forEach((v, i) => { const c = document.createElementNS(ns, "circle"); c.setAttribute("cx", x(i)); c.setAttribute("cy", y(v)); c.setAttribute("r", 4); c.setAttribute("class", "sdot"); svg.appendChild(c); });
+  return svg;
+}
+function renderProfile(p, key) {
+  profData = p;
+  const o = $("pOut"); o.textContent = "";
+  const hr = new Date().getHours(), hi = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
+  const first = String(p.student.name).split(" ")[0], nice = first.charAt(0) + first.slice(1).toLowerCase();
+  o.appendChild(mk("div", "greet", hi + ". Here is the full picture for " + nice + "."));
+  const hero = mk("div", "phero"), who = mk("div");
+  who.append(mk("h3", "stu", p.student.name), mk("div", "sub", p.student.class + " \u2022 Registration approved"));
+  hero.append(mk("div", "avatar", initials(p.student.name)), who); o.appendChild(hero);
+
+  const det = mk("div", "pgrid");
+  [["Class", p.student.class], ["Parent / guardian", p.student.parent], ["Parent phone", p.student.phone], ["Status", "Approved"]]
+    .forEach(([l, v]) => { const b = mk("div", "pbox"); b.append(mk("small", "", l), mk("b", "", v)); det.appendChild(b); });
+  o.appendChild(psec("Student details", det));
+
+  const f = p.fees, fb = mk("div", "feehero"), st = String(f.status).toUpperCase();
+  fb.appendChild(mk("div", "balLabel", "Outstanding balance"));
+  const bal = mk("div", "bal");
+  if (f.balance_raw !== null && Number.isInteger(f.balance_raw)) { bal.appendChild(mk("small", "", "KES")); const n = mk("span", "num", "0"); bal.appendChild(n); countUp(n, f.balance_raw); }
+  else bal.appendChild(mk("span", "num", String(f.balance)));
+  fb.append(bal, mk("span", "pill " + (st === "CLEARED" ? "ok" : st === "PENDING" ? "due" : "wait"), f.status));
+  fb.appendChild(mk("div", "sub", "Paid through this portal: KES " + Number(f.totalPaid).toLocaleString()));
+  if (f.payments.length) {
+    const l = mk("div"); l.style.marginTop = "8px";
+    f.payments.forEach((x) => { const r = mk("div", "pay-row"); r.append(mk("span", "", x.date + (x.receipt ? " \u2022 " + x.receipt : "")), mk("span", "", "KES " + Number(x.amount).toLocaleString())); l.appendChild(r); });
+    fb.appendChild(l);
+  }
+  if (f.balance_raw > 0) { const b = mk("button", "btn", "Pay with M-Pesa"); b.onclick = () => { $("key").value = key; location.hash = "fees"; lookup(); }; fb.appendChild(b); }
+  o.appendChild(psec("Fees", fb));
+
+  const rb = mk("div"), ex = p.results;
+  if (!ex.length) rb.appendChild(mk("p", "empty", "No results have been published yet."));
+  else {
+    const x = ex[0], sum = mk("div", "sum");
+    rb.appendChild(mk("div", "sub", "Latest: " + x.exam));
+    [["Average", x.average + "%"], ["Grade", x.grade + " - " + x.gradeLabel]].concat(x.classSize > 1 ? [["Class position", x.position + " of " + x.classSize]] : [])
+      .forEach(([l, v]) => { const b = mk("div", "sumbox"); b.append(mk("small", "", l), mk("b", "", v)); sum.appendChild(b); });
+    rb.appendChild(sum);
+    if (ex.length > 1) { rb.appendChild(mk("div", "sub", "Average score by exam")); rb.appendChild(spark(ex.map((e) => e.average).reverse())); }
+    ex.forEach((e) => { const r = mk("div", "exrow"); r.append(mk("span", "sname", e.exam), mk("span", "smarks", e.average + "%"), mk("span", "pill " + (GRADE_CLASS[e.grade] || "wait"), e.grade)); rb.appendChild(r); });
+    const b = mk("button", "btn secondary", "View subject-by-subject results");
+    b.onclick = () => { $("resKey").value = key; location.hash = "results"; loadResults(); }; rb.appendChild(b);
+  }
+  o.appendChild(psec("Exam results", rb));
+
+  const pdf = mk("button", "btn secondary", "Download profile (PDF)");
+  pdf.onclick = () => profilePdf(pdf); o.appendChild(pdf);
+  o.hidden = false;
+}
+async function loadProfile() {
+  const key = $("pKey").value.trim().toUpperCase();
+  clearMsg($("pMsg")); $("pOut").hidden = true;
+  if (!key) { showMsg($("pMsg"), "Enter the student security key."); return; }
+  $("pBtn").disabled = true; $("pBtn").textContent = "Loading...";
+  try {
+    const d = await fetchJSONP(WEB_APP_URL + "?action=profile&key=" + encodeURIComponent(key));
+    if (d.error === "NOT_APPROVED") { showMsg($("pMsg"), "Your registration is waiting for approval by the school."); return; }
+    if (d.error) { showMsg($("pMsg"), "Security key not found. Check the key and try again."); return; }
+    ["key", "resKey"].forEach((id) => { $(id).value = key; }); // other tabs are ready to use
+    renderProfile(d, key);
+  } catch (e) { showMsg($("pMsg"), "Unable to load the profile: " + e.message); }
+  finally { $("pBtn").disabled = false; $("pBtn").textContent = "View profile"; }
+}
+$("pBtn").addEventListener("click", loadProfile);
+$("pKey").addEventListener("keydown", (e) => { if (e.key === "Enter") loadProfile(); });
+async function profilePdf(btn) {
+  if (!profData) return;
+  const p = profData; btn.disabled = true;
+  try { await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"); }
+  catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); btn.disabled = false; return; }
+  const doc = new window.jspdf.jsPDF();
+  let y = 50; const line = (t, bold) => { if (y > 275) { doc.addPage(); y = 20; } doc.setFont(undefined, bold ? "bold" : "normal"); doc.text(String(t), 14, y); y += 8; };
+  doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F"); doc.setTextColor(255, 255, 255);
+  doc.setFontSize(18); doc.text("Mastered Comprehensive School", 105, 16, { align: "center" });
+  doc.setFontSize(12); doc.text("Student profile", 105, 27, { align: "center" }); doc.setTextColor(0, 0, 0);
+  line("Student: " + p.student.name, true); line("Class: " + p.student.class); line("Parent / guardian: " + p.student.parent); line("Phone: " + p.student.phone);
+  y += 4; line("Fees", true); line("Balance: " + money(p.fees.balance) + "   Status: " + p.fees.status); line("Paid through portal: KES " + Number(p.fees.totalPaid).toLocaleString());
+  p.fees.payments.forEach((x) => line("  " + x.date + "  " + x.receipt + "  KES " + Number(x.amount).toLocaleString()));
+  y += 4; line("Exam results", true);
+  if (!p.results.length) line("No results published yet.");
+  p.results.forEach((e) => line(e.exam + ": " + e.average + "%  (" + e.grade + ")" + (e.classSize > 1 ? "  position " + e.position + "/" + e.classSize : "")));
+  y += 4; doc.setFontSize(9); line("Generated " + new Date().toLocaleString());
+  doc.save("Profile_" + p.student.name.replace(/[^A-Za-z0-9]+/g, "_") + ".pdf"); btn.disabled = false;
+}
+
 /* ---------- notice board ---------- */
 function renderNotices(list) {
   const box = $("noticeList");
   box.textContent = "";
   if (!list.length) { const p = document.createElement("p"); p.className = "empty"; p.textContent = "There are no notices right now."; box.appendChild(p); return; }
-  list.forEach((n) => {
+  list.forEach((n, i) => {
     const a = document.createElement("article");
-    a.className = "notice" + (n.pinned ? " pinned" : "");
+    a.style.setProperty("--i", i);
+    a.className = "notice c-" + String(n.category).toLowerCase().replace(/[^a-z]/g, "") + (n.pinned ? " pinned" : "");
     const meta = document.createElement("div"); meta.className = "meta";
     const chip = document.createElement("span");
     chip.className = "chip cat-" + String(n.category).toLowerCase().replace(/[^a-z]/g, "");
@@ -398,7 +717,7 @@ async function loadNotices() {
     const box = $("noticeList"); box.textContent = "";
     const p = document.createElement("p"); p.className = "empty"; p.textContent = "Could not load notices. ";
     const b = document.createElement("button"); b.className = "btn secondary"; b.textContent = "Try again";
-    b.onclick = () => { box.textContent = "Loading notices..."; loadNotices(); };
+    b.onclick = () => { box.innerHTML = SKELETON; loadNotices(); };
     box.append(p, b);
   }
 }
@@ -408,20 +727,19 @@ setTimeout(loadNotices, 0);
 function showError(t) { showMsg($("msg"), t); $("resultWrap").classList.remove("show"); }
 function renderResult(d, keepPayMsg) {
   const card = $("resultCard"); card.textContent = "";
-  const name = document.createElement("b"); name.textContent = d.student_name; card.appendChild(name);
-  [["Class", d.class], ["Parent", d.parent_name], ["Balance", money(d.balance)], ["Status", d.status]].forEach(([l, v]) => {
-    card.appendChild(document.createElement("br")); card.appendChild(document.createTextNode(l + ": " + v));
-  });
-  const rawBal = Number(d.balance_raw);
-  if (d.balance_raw !== undefined && d.balance_raw !== null && d.balance_raw !== "" && Number.isFinite(rawBal)) {
-    const bal = document.createElement("div");
-    bal.className = "bal " + (rawBal > 0 ? "due" : "clear");
-    const ic = document.createElement("span"); ic.className = "bal-ic"; ic.setAttribute("aria-hidden", "true");
-    const tx = document.createElement("span"); tx.textContent = rawBal > 0 ? "Balance outstanding: " + money(d.balance) : "No balance due";
-    bal.append(ic, tx); card.appendChild(bal);
-  }
+  card.appendChild(mk("h3", "stu", d.student_name));
+  card.appendChild(mk("div", "sub", d.class + " \u2022 Parent: " + d.parent_name));
+  const st = String(d.status).toUpperCase();
+  card.appendChild(mk("span", "pill " + (st === "CLEARED" ? "ok" : st === "PENDING" ? "due" : "wait"), d.status));
+  card.appendChild(mk("div", "balLabel", "Balance"));
+  const bal = mk("div", "bal"), raw = Number(d.balance_raw);
+  if (d.balance_raw !== null && d.balance_raw !== undefined && Number.isInteger(raw)) {
+    bal.appendChild(mk("small", "", "KES")); const n = mk("span", "num", "0"); bal.appendChild(n); countUp(n, raw);
+  } else { bal.appendChild(mk("span", "num", money(d.balance))); }
+  card.appendChild(bal);
   setupPay(d, keepPayMsg);
   $("resultWrap").classList.add("show");
+  if (!calm()) $("resultWrap").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 async function lookup(opts) {
   const keepPayMsg = !!(opts && opts.keepPayMsg === true);
@@ -460,7 +778,7 @@ const PAY_ERRORS = {
   INVALID: "The payment could not be started. Please check your details."
 };
 let payTimer = null;
-function showPay(kind, t) { const el = $("payMsg"); el.className = "msg " + kind + " show"; el.textContent = t; }
+function showPay(kind, t) { const el = $("payMsg"); el.className = "msg " + kind; void el.offsetWidth; el.className = "msg " + kind + " show"; el.textContent = t; if (kind === "ok") confetti(); }
 function clearPayMsg() { const el = $("payMsg"); el.className = "msg"; el.textContent = ""; }
 function resetPayBtn() { $("payBtn").disabled = false; $("payBtn").textContent = "Pay with M-Pesa"; }
 function setupPay(d, keepMsg) {
@@ -472,6 +790,14 @@ function setupPay(d, keepMsg) {
 }
 $("payAmount").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, ""); });
 $("payPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
+document.querySelectorAll("[data-frac]").forEach((b) => b.addEventListener("click", () => {
+  if (!lastData) return;
+  const max = Math.floor(Number(lastData.balance_raw)) || 0;
+  $("payAmount").value = String(Math.max(1, Math.floor(max * Number(b.dataset.frac))));
+  $("payAmount").focus();
+}));
+function liveValid(id, re) { $(id).addEventListener("input", (e) => e.target.classList.toggle("valid", re.test(e.target.value))); }
+liveValid("payPhone", /^0[17][0-9]{8}$/); liveValid("regPhone", /^07[0-9]{8}$/);
 $("payBtn").addEventListener("click", async () => {
   if (!lastData) return;
   const amount = Number($("payAmount").value), phone = $("payPhone").value.trim();
@@ -545,599 +871,11 @@ $("regForm").addEventListener("submit", async (ev) => {
   finally { $("regBtn").disabled = false; $("regBtn").textContent = "Get my security key"; }
 });
 $("copyBtn").addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(lastKey); $("copyBtn").textContent = "Copied"; }
+  try { await navigator.clipboard.writeText(lastKey); $("copyBtn").textContent = "Copied \u2713"; }
   catch { $("copyBtn").textContent = "Press and hold the key to copy it"; }
 });
 $("useKeyBtn").addEventListener("click", () => {
-  $("key").value = lastKey; location.hash = "fees";
-  $("regForm").reset(); $("regForm").style.display = ""; $("keyBox").classList.remove("show");
-  $("copyBtn").textContent = "Copy key"; lastKey = "";
-});
-
-/* ---------- PDF receipt (libraries load on first use) ---------- */
-$("pdfBtn").addEventListener("click", async () => {
-  if (!lastData) return;
-  $("pdfBtn").disabled = true;
-  try {
-    await Promise.all([
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"),
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js")
-    ]);
-  } catch (e) { alert("Could not load the receipt tools. Check your connection and try again."); $("pdfBtn").disabled = false; return; }
-  const { jsPDF } = window.jspdf, doc = new jsPDF();
-  const receiptId = "MCS-" + Date.now().toString().slice(-8), dateStr = new Date().toLocaleString();
-  const qrDiv = $("qrTemp"); qrDiv.innerHTML = "";
-  new QRCode(qrDiv, { text: `${lastData.student_name}|${lastData.key}|${money(lastData.balance)}|${receiptId}`, width: 100, height: 100 });
-  setTimeout(() => {
-    const qr = qrDiv.querySelector("canvas"), qrData = qr ? qr.toDataURL() : null;
-    doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F");
-    doc.setTextColor(255, 255, 255); doc.setFontSize(18);
-    doc.text("Mastered Comprehensive School", 105, 20, { align: "center" });<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fee Portal &amp; Notice Board | Mastered Comprehensive School</title>
-<meta name="description" content="Official parents' portal of Mastered Comprehensive School: check fee balances, pay by M-Pesa, register your child and read the latest school notices.">
-<meta name="robots" content="index, follow, max-snippet:-1">
-<meta name="theme-color" content="#0B1C33">
-<link rel="canonical" href="https://wamwara-kinyanjui.github.io/mastered-fee-portal/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1C33'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://script.google.com">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Mastered Comprehensive School">
-<meta property="og:title" content="Fee Portal &amp; Notice Board | Mastered Comprehensive School">
-<meta property="og:description" content="Check fee balances, pay by M-Pesa, register your child and read school notices.">
-<meta property="og:url" content="https://wamwara-kinyanjui.github.io/mastered-fee-portal/">
-<meta property="og:locale" content="en_KE">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Fee Portal &amp; Notice Board | Mastered Comprehensive School">
-<meta name="twitter:description" content="Check fee balances, pay by M-Pesa and read school notices.">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"School","@id":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/#school","name":"Mastered Comprehensive School","url":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/","telephone":"+254721101702","areaServed":"KE"},
-{"@type":"WebSite","name":"Mastered Comprehensive School Fee Portal","url":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/","inLanguage":"en","publisher":{"@id":"https://wamwara-kinyanjui.github.io/mastered-fee-portal/#school"}},
-{"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How do I check my child's fee balance?","acceptedAnswer":{"@type":"Answer","text":"Open the Fees tab, enter your child's security key and tap View statement."}},
-{"@type":"Question","name":"How do I pay school fees by M-Pesa?","acceptedAnswer":{"@type":"Answer","text":"After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone."}},
-{"@type":"Question","name":"How do I get a security key?","acceptedAnswer":{"@type":"Answer","text":"Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration."}}]}]}
-</script>
-<style>
-*{box-sizing:border-box;font-family:Inter,"Segoe UI",system-ui,sans-serif}
-body{margin:0;background:#F5F7FB;color:#16233A;padding:12px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;background:#fff;padding:8px 12px;border-radius:8px;z-index:9}
-.wrap{width:100%;max-width:520px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-header{background:#0B1C33;color:#fff;padding:20px;text-align:center}
-header h1{margin:0 0 4px;font-size:22px}header p{margin:0;opacity:.85;font-size:14px}
-header a{color:#fff}
-.pin{display:block;background:#FFF4CC;color:#5A4300;padding:10px 16px;font-size:14px;text-decoration:none;border-bottom:1px solid #F0E0A0}
-.pin[hidden]{display:none}
-.tabs{display:flex;border-bottom:2px solid #E5E9F2}
-.tab{flex:1;padding:13px 6px;background:none;border:none;font-weight:700;font-size:14px;color:#6B7690;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px}
-.tab[aria-selected="true"]{color:#0B1C33;border-bottom-color:#0B1C33}
-.tab:focus-visible,.btn:focus-visible,summary:focus-visible{outline:3px solid #7FA6E8;outline-offset:2px}
-.badge{display:inline-block;min-width:18px;padding:1px 6px;margin-left:4px;border-radius:9px;background:#C62828;color:#fff;font-size:11px}
-.badge[hidden]{display:none}
-.body{padding:20px}
-.panel[hidden]{display:none}
-h2{margin:0 0 14px;font-size:18px;color:#0B1C33}
-label{display:block;margin:14px 0 6px;font-size:14px;font-weight:600}
-.hint{font-size:12px;color:#6B7690;margin-top:4px}
-.input{width:100%;padding:14px;border:2px solid #E5E9F2;border-radius:10px;font-size:16px;background:#fff}
-.input.upper{text-transform:uppercase}.input:focus{outline:none;border-color:#0B1C33}
-.btn{width:100%;margin-top:14px;background:#0B1C33;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;cursor:pointer;font-size:15px}
-.btn.secondary{background:#fff;color:#0B1C33;border:2px solid #0B1C33}.btn:disabled{opacity:.6;cursor:wait}
-.msg{margin-top:14px;padding:12px;border-radius:10px;font-size:14px;display:none}.msg.show{display:block}
-.msg.error{background:#FDECEC;color:#9B1C1C}.msg.info{background:#E8F0FE;color:#1A3D7C}.msg.ok{background:#E6F4EA;color:#14532D}
-.result{margin-top:18px;border:2px dashed #E5E9F2;border-radius:12px;padding:16px;display:none;line-height:1.7}.result.show{display:block}
-.paybox{margin-top:16px;padding-top:6px;border-top:1px solid #E5E9F2}.paybox[hidden]{display:none}.paybox h3{margin:10px 0 0;font-size:16px}
-.keybox{margin-top:18px;border:2px solid #0B1C33;border-radius:12px;padding:18px;text-align:center;display:none}.keybox.show{display:block}
-.keybox .code{font-size:26px;font-weight:800;margin:8px 0;word-break:break-all;user-select:all}.keybox p{margin:6px 0;font-size:14px;line-height:1.5}
-.notice{border:1px solid #E5E9F2;border-radius:12px;padding:14px;margin-bottom:12px}
-.notice.pinned{border-color:#E8C95A;background:#FFFCF0}
-.notice h3{margin:6px 0;font-size:16px}.notice p{margin:0;font-size:14px;line-height:1.55;white-space:pre-line}
-.meta{display:flex;gap:8px;align-items:center;font-size:12px;color:#6B7690;flex-wrap:wrap}
-.chip{padding:2px 9px;border-radius:9px;font-weight:700;background:#E8EDF5;color:#33415C}
-.cat-fees{background:#FDEBD0;color:#7A4A00}.cat-events{background:#E1F3E6;color:#14532D}.cat-exams{background:#E8F0FE;color:#1A3D7C}.cat-holiday{background:#F3E5F5;color:#6A1B7A}
-.empty{color:#6B7690;font-size:14px;text-align:center;padding:18px 0}
-.help{padding:20px}.help h2{font-size:17px}.help ol{padding-left:20px;line-height:1.7;font-size:14px;margin:0 0 12px}
-details{border-top:1px solid #E5E9F2;padding:10px 0;font-size:14px}summary{cursor:pointer;font-weight:600}details p{margin:8px 0 0;line-height:1.55}
-footer{font-size:12px;color:#6B7690;text-align:center;padding-bottom:12px}footer a{color:inherit}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}#qrTemp{position:absolute;left:-9999px}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
-
-/* ===== ENHANCEMENTS (additive) ===== */
-:root{--navy:#0B1C33;--navy-2:#16335C;--wa:#0E7A5F;--wa-dark:#0A6049}
-html{scroll-behavior:smooth}
-body{padding-bottom:88px}
-
-/* header + logo */
-.brand{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px}
-.brand h1{margin:0;text-align:left;font-size:21px;line-height:1.2}
-.logo{height:56px;width:auto;max-width:92px;object-fit:contain;background:#fff;border-radius:12px;padding:4px;flex:none}
-.logo-fb{width:48px;height:48px;border-radius:12px;background:#fff;color:var(--navy);font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;flex:none}
-.logo-fb[hidden]{display:none}
-header a{text-underline-offset:3px}
-
-/* entrance + panel transitions */
-@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(14,122,95,.45)}100%{box-shadow:0 0 0 14px rgba(14,122,95,0)}}
-.wrap>.card{animation:riseIn .5s ease-out both}
-.help.card{animation:riseIn .5s ease-out .1s both}
-.contact.card{animation:riseIn .5s ease-out .15s both}
-.panel:not([hidden]){animation:fadeSlide .3s ease-out}
-
-/* tabs */
-.tab{transition:color .2s,background-color .2s,border-color .2s}
-.tab:hover{background:#F0F4FB;color:var(--navy)}
-.tab:active{background:#E6ECF7}
-.tab{min-height:48px}
-
-/* inputs + buttons */
-.input{transition:border-color .2s,box-shadow .2s,background-color .2s}
-.input:hover{border-color:#C9D3E6}
-.input:focus{border-color:var(--navy);box-shadow:0 0 0 4px rgba(127,166,232,.35)}
-.input:focus-visible{outline:none}
-.btn{transition:transform .15s,box-shadow .2s,background-color .2s,opacity .2s;position:relative}
-.btn:hover:not(:disabled){background:var(--navy-2);box-shadow:0 6px 16px rgba(11,28,51,.22);transform:translateY(-1px)}
-.btn.secondary:hover:not(:disabled){background:#EEF3FB;color:var(--navy)}
-.btn:active:not(:disabled){transform:translateY(1px) scale(.99);box-shadow:none}
-a.btn{display:block;text-align:center;text-decoration:none}
-#btn:disabled::after,#payBtn:disabled::after,#regBtn:disabled::after,#pdfBtn:disabled::after{content:"";display:inline-block;width:14px;height:14px;margin-left:10px;vertical-align:-2px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
-
-/* messages + results */
-.msg.show{animation:fadeSlide .25s ease-out}
-.msg.error.show{animation:fadeSlide .25s ease-out,shake .35s ease-out .1s}
-.msg.ok.show{animation:popIn .3s ease-out}
-.msg.ok{border-left:4px solid #2E7D32}.msg.error{border-left:4px solid #C62828}.msg.info{border-left:4px solid #3567C7}
-.result.show{animation:fadeSlide .35s ease-out}
-.paybox:not([hidden]){animation:fadeSlide .35s ease-out}
-.keybox.show{animation:popIn .35s ease-out}
-.keybox .code{letter-spacing:.04em}
-
-/* notices + faq */
-.notice{transition:transform .2s,box-shadow .2s,border-color .2s;animation:fadeSlide .35s ease-out both}
-.notice:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,28,51,.1);border-color:#C9D3E6}
-.notice:nth-child(2){animation-delay:.05s}.notice:nth-child(3){animation-delay:.1s}.notice:nth-child(4){animation-delay:.15s}.notice:nth-child(n+5){animation-delay:.2s}
-.notice p{line-height:1.6}
-.pin{transition:background-color .2s}.pin:hover{background:#FFEDA8}.pin:focus-visible{outline:3px solid #7FA6E8;outline-offset:-3px}
-details{transition:background-color .2s;padding:12px 8px;border-radius:8px}
-details:hover{background:#F5F7FB}
-details[open]{background:#F5F7FB}
-details[open] p{animation:fadeSlide .25s ease-out}
-summary{min-height:24px}
-
-/* contact section */
-.contact{padding:20px}
-.contact h2{font-size:17px}
-.contact p{margin:0 0 6px;font-size:14px;line-height:1.6}
-.contact .phone-line{font-weight:700;font-size:16px;margin:10px 0 2px}
-.contact .privacy{margin-top:14px;padding:12px;border-radius:10px;background:#FFF4CC;color:#5A4300;font-size:13px;line-height:1.5}
-.btn.wa{background:var(--wa)}
-.btn.wa:hover:not(:disabled){background:var(--wa-dark);box-shadow:0 6px 16px rgba(14,122,95,.3)}
-.btn .ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;fill:currentColor}
-
-/* floating whatsapp */
-.wa-float{position:fixed;right:16px;bottom:max(16px,env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:12px 16px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.25);transition:transform .2s,background-color .2s,box-shadow .2s;animation:riseIn .5s ease-out .6s both,pulseRing 2s ease-out 1.2s 2}
-.wa-float svg{width:22px;height:22px;fill:#fff;flex:none}
-.wa-float:hover{background:var(--wa-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(0,0,0,.3)}
-.wa-float:active{transform:scale(.96)}
-.wa-float:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 6px var(--wa-dark)}
-@media (max-width:480px){
-  .wa-float{padding:0;width:48px;height:48px;justify-content:center;right:12px}
-  .wa-float span{display:none}
-  .brand h1{font-size:18px}
-  .logo{height:48px;max-width:80px}
-  .body,.help,.contact{padding:16px}
-}
-
-/* feedback icons */
-.msg{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2zm0-8h-2V7h2z'/%3E%3C/svg%3E")}
-.msg.ok{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
-.msg.error{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
-.msg.show::before,.bal-ic{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-4px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
-.bal{display:flex;align-items:center;margin-top:10px;padding:10px 12px;border-radius:10px;font-weight:700;font-size:14px;line-height:1.4;animation:popIn .35s ease-out}
-.bal .bal-ic{flex:none;width:22px;height:22px;margin-right:10px;vertical-align:baseline}
-.bal.clear{background:#E6F4EA;color:#14532D;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm-1.500 14.500l-4-4 1.400-1.400 2.600 2.600 5.600-5.600 1.400 1.400z'/%3E%3C/svg%3E")}
-.bal.due{background:#FFF4CC;color:#5A4300;--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2zm0-4h-2V7h2z'/%3E%3C/svg%3E")}
-
-/* statement detail icons */
-.row{display:flex;align-items:center;gap:10px}
-.ri{flex:none;width:18px;height:18px;background:#0B1C33;opacity:.8;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
-.ri-name{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12a4 4 0 100-8 4 4 0 000 8zm0 2c-2.7 0-8 1.3-8 4v2h16v-2c0-2.7-5.3-4-8-4z'/%3E%3C/svg%3E")}
-.ri-class{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/%3E%3C/svg%3E")}
-.ri-parent{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16 11a3 3 0 100-6 3 3 0 000 6zm-8 0a3 3 0 100-6 3 3 0 000 6zm0 2c-2.3 0-7 1.2-7 3.5V19h14v-2.5C15 14.2 10.3 13 8 13zm8 0c-.3 0-.6 0-1 .1 1.2.9 2 2 2 3.4V19h6v-2.5c0-2.3-4.7-3.5-7-3.5z'/%3E%3C/svg%3E")}
-.ri-bal{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 7H5a1 1 0 010-2h14V3H5a3 3 0 00-3 3v12a3 3 0 003 3h16a1 1 0 001-1V8a1 1 0 00-1-1zm-3 8a1.5 1.5 0 110-3 1.5 1.5 0 010 3z'/%3E%3C/svg%3E")}
-.ri-status{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z'/%3E%3C/svg%3E")}
-
-/* reduced motion */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-}
-</style>
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="wrap">
-<div class="card">
-  <header>
-    <div class="brand">
-      <img id="schoolLogo" class="logo" src="https://lh3.googleusercontent.com/d/1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d" alt="Mastered Comprehensive School logo" width="92" height="56" decoding="async" referrerpolicy="no-referrer">
-      <span id="logoFallback" class="logo-fb" aria-hidden="true" hidden>M</span>
-      <h1>Mastered Comprehensive School</h1>
-    </div>
-    <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702">0721 101 702</a></p>
-  </header>
-  <a id="pinBanner" class="pin" href="#notices" hidden></a>
-  <nav aria-label="Portal sections">
-    <div class="tabs" role="tablist">
-      <button class="tab" id="tabFees" role="tab" aria-selected="true" aria-controls="panelFees">Fees</button>
-      <button class="tab" id="tabNotices" role="tab" aria-selected="false" aria-controls="panelNotices">Notices<span class="badge" id="noticeBadge" hidden></span></button>
-      <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register</button>
-    </div>
-  </nav>
-
-  <main id="main" class="body">
-    <!-- FEES -->
-    <section id="panelFees" class="panel" role="tabpanel" aria-labelledby="tabFees">
-      <h2>Check fee balance and pay</h2>
-      <label for="key" style="margin-top:0">Student security key</label>
-      <input id="key" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
-      <button id="btn" class="btn">View statement</button>
-      <div id="msg" class="msg error" role="alert"></div>
-      <div id="resultWrap" class="result">
-        <div id="resultCard"></div>
-        <div id="payBox" class="paybox" hidden>
-          <h3>Pay with M-Pesa</h3>
-          <label for="payAmount">Amount to pay (KES)</label>
-          <input id="payAmount" class="input" inputmode="numeric" autocomplete="off">
-          <label for="payPhone">M-Pesa phone number</label>
-          <input id="payPhone" class="input" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
-          <div class="hint">You will get a prompt on this phone. Enter your M-Pesa PIN to confirm.</div>
-          <button id="payBtn" class="btn">Pay with M-Pesa</button>
-        </div>
-        <div id="payMsg" class="msg" role="status"></div>
-        <button id="pdfBtn" class="btn secondary">Download PDF receipt with QR</button>
-      </div>
-    </section>
-
-    <!-- NOTICES -->
-    <section id="panelNotices" class="panel" role="tabpanel" aria-labelledby="tabNotices" hidden>
-      <h2>Notice board</h2>
-      <div id="noticeList" aria-live="polite"><p class="empty">Loading notices...</p></div>
-    </section>
-
-    <!-- REGISTER -->
-    <section id="panelRegister" class="panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
-      <h2>Register your child</h2>
-      <form id="regForm" novalidate>
-        <label for="regName" style="margin-top:0">Student full name</label>
-        <input id="regName" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. JOHN KAMAU">
-        <label for="regClass">Class</label>
-        <select id="regClass" class="input"><option value="">Choose a class</option></select>
-        <label for="regParent">Parent or guardian name</label>
-        <input id="regParent" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. DAN MWANGI">
-        <label for="regPhone">Parent phone number</label>
-        <input id="regPhone" class="input" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="0712345678">
-        <div class="hint">10 digits, starting with 07.</div>
-        <label for="regCode">School access code</label>
-        <input id="regCode" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school">
-        <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
-        <input type="checkbox" id="regWebsite" class="hp" tabindex="-1" aria-hidden="true">
-        <button type="submit" id="regBtn" class="btn">Get my security key</button>
-      </form>
-      <div id="regMsg" class="msg error" role="alert"></div>
-      <div id="keyBox" class="keybox" aria-live="polite">
-        <p><b>Registration complete for <span id="keyName"></span></b></p>
-        <div class="code" id="keyCode"></div>
-        <p><b>Save this key now.</b> It is only shown once. Take a screenshot or copy it.</p>
-        <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message.</p>
-        <button type="button" id="copyBtn" class="btn secondary">Copy key</button>
-        <button type="button" id="useKeyBtn" class="btn">Go to fees</button>
-      </div>
-    </section>
-  </main>
-</div>
-
-<section class="card help" aria-labelledby="helpTitle" style="margin-top:14px">
-  <h2 id="helpTitle">How the fee portal works</h2>
-  <ol>
-    <li>Register your child once with the school access code and save the security key.</li>
-    <li>Once the school approves, enter the key under Fees to see the balance.</li>
-    <li>Pay any amount by M-Pesa. The balance updates when Safaricom confirms.</li>
-  </ol>
-  <details><summary>How do I check my child's fee balance?</summary><p>Open the Fees tab, enter your child's security key and tap View statement.</p></details>
-  <details><summary>How do I pay school fees by M-Pesa?</summary><p>After viewing the statement, enter the amount and your M-Pesa number, tap Pay with M-Pesa and enter your PIN when the prompt appears on your phone.</p></details>
-  <details><summary>How do I get a security key?</summary><p>Open the Register tab, enter your child's details and the school access code from the school office. The key is shown once after registration.</p></details>
-</section>
-
-<section id="contact" class="card contact" aria-labelledby="contactTitle" style="margin-top:14px">
-  <h2 id="contactTitle">Contact the School</h2>
-  <p>Parents can contact the school office for help with fee balances, registration, payments and notices.</p>
-  <p class="phone-line">0721 101 702</p>
-  <a class="btn wa" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>Chat on WhatsApp</a>
-  <a class="btn secondary" href="tel:+254721101702"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.600 10.800a15.100 15.100 0 0 0 6.600 6.600l2.200-2.200a1 1 0 0 1 1-.2 11.400 11.400 0 0 0 3.600.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.500a1 1 0 0 1 1 1c0 1.300.2 2.500.6 3.600a1 1 0 0 1-.2 1z"/></svg>Call 0721 101 702</a>
-  <p class="privacy"><b>Stay safe:</b> never share your M-Pesa PIN with anyone, including anyone who claims to be from the school. You only enter your PIN on your own phone.</p>
-</section>
-</div>
-
-<footer>
-  &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702">0721 101 702</a>
-</footer>
-
-<a id="waFloat" class="wa-float" href="https://wa.me/254721101702?text=Hello%20Mastered%20Comprehensive%20School%2C%20I%20need%20assistance%20with%20the%20fee%20portal." target="_blank" rel="noopener noreferrer" aria-label="Chat with Mastered Comprehensive School on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.5-6.1c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.100-.7.300-.8.800-1 1.700-.9 2.700.5 2.200 2 4 4 5 1.800.9 2.600.9 3.500.8.600-.1 1.700-.7 2-1.400.2-.7.200-1.200.2-1.400-.1-.2-.3-.2-.6-.4z"/></svg>
-  <span>WhatsApp</span>
-</a>
-<div id="qrTemp"></div>
-<noscript><p style="text-align:center">This portal needs JavaScript. Please call the school on 0721 101 702.</p></noscript>
-
-<script>
-/* Logo loader: tries a direct Google Drive image URL, then an alternate one, then shows the "M" fallback.
-   For the most reliable result, upload the logo next to this file (e.g. logo.png) and set the img src to "logo.png". */
-(function () {
-  var img = document.getElementById("schoolLogo"), fb = document.getElementById("logoFallback");
-  if (!img || !fb) return;
-  var step = 0;
-  img.addEventListener("error", function () {
-    step++;
-    if (step === 1) { img.src = "https://drive.google.com/uc?export=view&id=1m3u3WQrY1H3ngeBM18H7hPYbNy2zvQ4d"; return; }
-    img.hidden = true; fb.hidden = false;
-  });
-})();
-</script>
-
-<script>
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2o_MSiHspkrnugXNicJFmOiLLxyR2R15-Z4gdp7wW5g4sDqdczA/exec";
-// Keep identical to CLASSES in Code.gs
-const CLASSES = ["PP1","PP2","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9"];
-const $ = (id) => document.getElementById(id);
-let lastData = null, lastKey = "";
-$("year").textContent = new Date().getFullYear();
-
-/* ---------- helpers ---------- */
-function fetchJSONP(url) {
-  return new Promise((resolve, reject) => {
-    const cb = "cb_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-    const s = document.createElement("script");
-    const timer = setTimeout(() => { done(); reject(new Error("The request timed out. Check your connection and try again.")); }, 25000);
-    function done() { clearTimeout(timer); delete window[cb]; s.remove(); }
-    window[cb] = (d) => { done(); resolve(d); };
-    s.onerror = () => { done(); reject(new Error("Could not reach the server. Check your connection and try again.")); };
-    s.src = url + (url.includes("?") ? "&" : "?") + "callback=" + cb;
-    document.body.appendChild(s);
-  });
-}
-const loaded = {};
-function loadScript(src) { // PDF libraries load only when needed (faster page)
-  if (!loaded[src]) loaded[src] = new Promise((res, rej) => {
-    const s = document.createElement("script");
-    s.src = src; s.onload = res; s.onerror = () => rej(new Error("Could not load " + src));
-    document.head.appendChild(s);
-  });
-  return loaded[src];
-}
-function showMsg(el, t) { el.textContent = t; el.classList.add("show"); }
-function clearMsg(el) { el.textContent = ""; el.classList.remove("show"); }
-function money(b) { return /^[0-9][0-9,]*(\.[0-9]+)?$/.test(String(b)) ? "KES " + b : String(b); }
-
-/* ---------- tabs (shareable links: #fees  #notices  #register) ---------- */
-const TABS = ["fees", "notices", "register"];
-const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
-function selectTab(name) {
-  if (TABS.indexOf(name) === -1) name = "fees";
-  TABS.forEach((t) => {
-    $("tab" + cap(t)).setAttribute("aria-selected", t === name);
-    $("panel" + cap(t)).hidden = t !== name;
-  });
-}
-TABS.forEach((t, i) => {
-  const b = $("tab" + cap(t));
-  b.addEventListener("click", () => { location.hash = t; });
-  b.addEventListener("keydown", (e) => {
-    const n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-    if (n) { const nt = TABS[(i + n + TABS.length) % TABS.length]; location.hash = nt; $("tab" + cap(nt)).focus(); }
-  });
-});
-window.addEventListener("hashchange", () => selectTab(location.hash.slice(1)));
-selectTab(location.hash.slice(1));
-
-CLASSES.forEach((c) => { const o = document.createElement("option"); o.value = c; o.textContent = c; $("regClass").appendChild(o); });
-
-/* ---------- notice board ---------- */
-function renderNotices(list) {
-  const box = $("noticeList");
-  box.textContent = "";
-  if (!list.length) { const p = document.createElement("p"); p.className = "empty"; p.textContent = "There are no notices right now."; box.appendChild(p); return; }
-  list.forEach((n) => {
-    const a = document.createElement("article");
-    a.className = "notice" + (n.pinned ? " pinned" : "");
-    const meta = document.createElement("div"); meta.className = "meta";
-    const chip = document.createElement("span");
-    chip.className = "chip cat-" + String(n.category).toLowerCase().replace(/[^a-z]/g, "");
-    chip.textContent = n.category; meta.appendChild(chip);
-    if (n.pinned) { const p = document.createElement("span"); p.textContent = "Pinned"; meta.appendChild(p); }
-    if (n.date) { const d = document.createElement("span"); d.textContent = n.date; meta.appendChild(d); }
-    const h = document.createElement("h3"); h.textContent = n.title;
-    const p = document.createElement("p"); p.textContent = n.message;
-    a.append(meta, h, p); box.appendChild(a);
-  });
-}
-async function loadNotices() {
-  try {
-    const r = await fetchJSONP(WEB_APP_URL + "?action=notices");
-    const list = Array.isArray(r.notices) ? r.notices : [];
-    renderNotices(list);
-    $("noticeBadge").hidden = !list.length;
-    $("noticeBadge").textContent = list.length;
-    const pin = list.find((n) => n.pinned);
-    if (pin) { $("pinBanner").textContent = "Pinned notice: " + pin.title; $("pinBanner").hidden = false; }
-  } catch (e) {
-    const box = $("noticeList"); box.textContent = "";
-    const p = document.createElement("p"); p.className = "empty"; p.textContent = "Could not load notices. ";
-    const b = document.createElement("button"); b.className = "btn secondary"; b.textContent = "Try again";
-    b.onclick = () => { box.textContent = "Loading notices..."; loadNotices(); };
-    box.append(p, b);
-  }
-}
-setTimeout(loadNotices, 0);
-
-/* ---------- check balance ---------- */
-function showError(t) { showMsg($("msg"), t); $("resultWrap").classList.remove("show"); }
-function renderResult(d, keepPayMsg) {
-  const card = $("resultCard"); card.textContent = "";
-  const mkRow = (kind, node) => {
-    const row = document.createElement("div"); row.className = "row";
-    const ic = document.createElement("span"); ic.className = "ri ri-" + kind; ic.setAttribute("aria-hidden", "true");
-    row.append(ic, node); card.appendChild(row);
-  };
-  const name = document.createElement("b"); name.textContent = d.student_name; mkRow("name", name);
-  [["Class", d.class, "class"], ["Parent", d.parent_name, "parent"], ["Balance", money(d.balance), "bal"], ["Status", d.status, "status"]].forEach(([l, v, k]) => {
-    const t = document.createElement("span"); t.textContent = l + ": " + v; mkRow(k, t);
-  });
-  const rawBal = Number(d.balance_raw);
-  if (d.balance_raw !== undefined && d.balance_raw !== null && d.balance_raw !== "" && Number.isFinite(rawBal)) {
-    const bal = document.createElement("div");
-    bal.className = "bal " + (rawBal > 0 ? "due" : "clear");
-    const ic = document.createElement("span"); ic.className = "bal-ic"; ic.setAttribute("aria-hidden", "true");
-    const tx = document.createElement("span"); tx.textContent = rawBal > 0 ? "Balance outstanding: " + money(d.balance) : "No balance due";
-    bal.append(ic, tx); card.appendChild(bal);
-  }
-  setupPay(d, keepPayMsg);
-  $("resultWrap").classList.add("show");
-}
-async function lookup(opts) {
-  const keepPayMsg = !!(opts && opts.keepPayMsg === true);
-  const key = $("key").value.trim().toUpperCase();
-  clearMsg($("msg"));
-  if (!key) { showError("Enter the student security key."); return; }
-  $("btn").disabled = true; $("btn").textContent = "Checking...";
-  try {
-    const d = await fetchJSONP(WEB_APP_URL + "?key=" + encodeURIComponent(key));
-    if (d.error === "SHEET_NOT_FOUND") { showError("Server setup problem. Please contact the school."); return; }
-    if (d.error === "NOT_APPROVED") { showError("Your registration is waiting for approval by the school. Please check again later or contact the school office."); return; }
-    if (d.error) { showError("Security key not found. Check the key and try again."); return; }
-    lastData = { ...d, key };
-    renderResult(d, keepPayMsg);
-  } catch (e) {
-    console.error("Fee portal error:", e);
-    showError("Unable to retrieve balance: " + e.message);
-  } finally { $("btn").disabled = false; $("btn").textContent = "View statement"; }
-}
-$("btn").addEventListener("click", lookup);
-$("key").addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
-
-/* ---------- M-Pesa payment ---------- */
-const PAY_ERRORS = {
-  PAY_NOT_CONFIGURED: "Online payment is not available yet. Please pay at the school office.",
-  INVALID_PHONE: "Enter the M-Pesa number as 10 digits starting with 07 or 01.",
-  INVALID_AMOUNT: "Enter an amount from 1 up to your balance.",
-  NOT_APPROVED: "Your registration is waiting for approval by the school.",
-  NO_BALANCE: "The school has not set your balance yet.",
-  NOTHING_DUE: "There is no balance left to pay.",
-  PAYMENT_IN_PROGRESS: "A payment is already in progress. Check your phone, or wait 2 minutes and try again.",
-  BUSY: "Too many attempts. Please wait a few minutes and try again.",
-  STK_FAILED: "We could not send the M-Pesa prompt. Check the number and try again.",
-  AUTH_FAILED: "Online payment is temporarily unavailable. Please pay at the school office.",
-  SERVER: "Something went wrong. Please try again.",
-  INVALID: "The payment could not be started. Please check your details."
-};
-let payTimer = null;
-function showPay(kind, t) { const el = $("payMsg"); el.className = "msg " + kind + " show"; el.textContent = t; }
-function clearPayMsg() { const el = $("payMsg"); el.className = "msg"; el.textContent = ""; }
-function resetPayBtn() { $("payBtn").disabled = false; $("payBtn").textContent = "Pay with M-Pesa"; }
-function setupPay(d, keepMsg) {
-  const raw = Math.floor(Number(d.balance_raw));
-  const can = Number.isFinite(raw) && raw >= 1;
-  $("payBox").hidden = !can;
-  if (can) $("payAmount").value = String(raw);
-  if (!keepMsg) { clearTimeout(payTimer); clearPayMsg(); resetPayBtn(); }
-}
-$("payAmount").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, ""); });
-$("payPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
-$("payBtn").addEventListener("click", async () => {
-  if (!lastData) return;
-  const amount = Number($("payAmount").value), phone = $("payPhone").value.trim();
-  if (!(amount >= 1)) { showPay("error", PAY_ERRORS.INVALID_AMOUNT); return; }
-  if (!/^0[17][0-9]{8}$/.test(phone)) { showPay("error", PAY_ERRORS.INVALID_PHONE); return; }
-  $("payBtn").disabled = true; $("payBtn").textContent = "Sending prompt..."; clearPayMsg();
-  try {
-    const qs = new URLSearchParams({ action: "pay", key: lastData.key, amount: String(amount), phone });
-    const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
-    if (d.error) {
-      showPay("error", d.error === "INVALID_AMOUNT" && d.max ? "Enter an amount from 1 up to KES " + d.max + "." : (PAY_ERRORS[d.error] || PAY_ERRORS.INVALID));
-      resetPayBtn(); return;
-    }
-    $("payBtn").textContent = "Waiting for payment...";
-    showPay("info", "A payment prompt was sent to " + phone + ". Check your phone and enter your M-Pesa PIN. Please keep this page open.");
-    pollPayment(d.checkout, lastData.key, 0);
-  } catch (e) { showPay("error", "Unable to start the payment: " + e.message); resetPayBtn(); }
-});
-function pollPayment(checkout, key, tries) {
-  clearTimeout(payTimer);
-  payTimer = setTimeout(async () => {
-    try {
-      const r = await fetchJSONP(WEB_APP_URL + "?" + new URLSearchParams({ action: "paystatus", key, checkout }));
-      if (r.status === "SUCCESS") {
-        resetPayBtn(); await lookup({ keepPayMsg: true });
-        showPay("ok", "Payment of KES " + Number(r.amount).toLocaleString() + " received." + (r.receipt ? " M-Pesa receipt: " + r.receipt + "." : "") + " New balance: KES " + r.balance + ".");
-        return;
-      }
-      if (r.status === "FAILED") { resetPayBtn(); showPay("error", r.reason || "The payment was not completed."); return; }
-      if (r.status === "REVIEW") { resetPayBtn(); showPay("error", "Your payment needs to be checked by the school. Keep your M-Pesa message and contact the school office."); return; }
-    } catch (e) { console.error("Status check error:", e); }
-    if (tries >= 24) { resetPayBtn(); showPay("info", "We have not received confirmation yet. If money was taken from your M-Pesa, contact the school office with your M-Pesa message. Otherwise you can try again."); return; }
-    pollPayment(checkout, key, tries + 1);
-  }, 5000);
-}
-
-/* ---------- register ---------- */
-const REG_ERRORS = {
-  INVALID_NAME: "Enter the student's full name using letters only.",
-  INVALID_CLASS: "Choose the student's class from the list.",
-  INVALID_PARENT: "Enter the parent or guardian's name using letters only.",
-  INVALID_PHONE: "Enter a phone number with 10 digits starting with 07.",
-  INVALID_CODE: "The school access code is not correct. Ask the school office for the right code.",
-  CLOSED: "Registration is currently closed. Please contact the school office.",
-  BOT: "Registration was blocked. Refresh the page and try again.",
-  DUPLICATE: "This student is already registered. If you lost the key, please contact the school office.",
-  BUSY: "Too many registrations right now. Please try again in a few minutes.",
-  SHEET_NOT_FOUND: "Server setup problem. Please contact the school.",
-  SERVER: "Something went wrong on the server. Please try again.",
-  INVALID: "The registration could not be completed. Please try again, and if it keeps happening contact the school office."
-};
-$("regPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
-$("regForm").addEventListener("submit", async (ev) => {
-  ev.preventDefault(); clearMsg($("regMsg"));
-  const name = $("regName").value.trim().replace(/\s+/g, " "), cls = $("regClass").value;
-  const parent = $("regParent").value.trim().replace(/\s+/g, " "), phone = $("regPhone").value.trim(), code = $("regCode").value.trim();
-  const bad = (m) => showMsg($("regMsg"), m);
-  if (name.length < 3) return bad(REG_ERRORS.INVALID_NAME);
-  if (!cls) return bad(REG_ERRORS.INVALID_CLASS);
-  if (parent.length < 2) return bad(REG_ERRORS.INVALID_PARENT);
-  if (!/^07[0-9]{8}$/.test(phone)) return bad(REG_ERRORS.INVALID_PHONE);
-  if (!code) return bad("Enter the school access code.");
-  $("regBtn").disabled = true; $("regBtn").textContent = "Registering...";
-  try {
-    const qs = new URLSearchParams({ action: "register", name, class: cls, parent, phone, code, website: $("regWebsite").checked ? "1" : "" });
-    const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
-    if (d.error) { bad(REG_ERRORS[d.error] || REG_ERRORS.INVALID); return; }
-    lastKey = d.key; $("keyName").textContent = d.student_name; $("keyCode").textContent = d.key;
-    $("regForm").style.display = "none"; $("keyBox").classList.add("show");
-  } catch (e) { bad("Unable to register: " + e.message); }
-  finally { $("regBtn").disabled = false; $("regBtn").textContent = "Get my security key"; }
-});
-$("copyBtn").addEventListener("click", async () => {
-  try { await navigator.clipboard.writeText(lastKey); $("copyBtn").textContent = "Copied"; }
-  catch { $("copyBtn").textContent = "Press and hold the key to copy it"; }
-});
-$("useKeyBtn").addEventListener("click", () => {
-  $("key").value = lastKey; location.hash = "fees";
+  $("key").value = $("pKey").value = $("resKey").value = lastKey; location.hash = "profile";
   $("regForm").reset(); $("regForm").style.display = ""; $("keyBox").classList.remove("show");
   $("copyBtn").textContent = "Copy key"; lastKey = "";
 });
@@ -1161,19 +899,6 @@ $("pdfBtn").addEventListener("click", async () => {
     doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F");
     doc.setTextColor(255, 255, 255); doc.setFontSize(18);
     doc.text("Mastered Comprehensive School", 105, 20, { align: "center" });
-    doc.setTextColor(0, 0, 0); doc.setFontSize(12);
-    let y = 50;
-    [`Receipt: ${receiptId}`, `Date: ${dateStr}`, `Student: ${lastData.student_name}`, `Class: ${lastData.class}`,
-     `Balance: ${money(lastData.balance)}`, `Status: ${lastData.status}`].forEach((t) => { doc.text(t, 14, y); y += 10; });
-    y += 5;
-    if (qrData) doc.addImage(qrData, "PNG", 14, y, 35, 35);
-    doc.save(`${lastData.key}_Receipt.pdf`);
-    $("pdfBtn").disabled = false;
-  }, 300);
-});
-</script>
-</body>
-</html>
     doc.setTextColor(0, 0, 0); doc.setFontSize(12);
     let y = 50;
     [`Receipt: ${receiptId}`, `Date: ${dateStr}`, `Student: ${lastData.student_name}`, `Class: ${lastData.class}`,
