@@ -210,9 +210,88 @@ body{background:#04060F}
 .card{background:rgba(255,255,255,.93)}
 footer{color:#B8C3E0}footer a{color:#fff}
 noscript p{color:#fff}
+/* ===== icons + usability ===== */
+.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-3px}
+h2{display:flex;align-items:center;gap:10px}
+.hi{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;flex:none;background:linear-gradient(135deg,#E8F0FE,#D7E5FB);color:#1F4B8E;box-shadow:inset 0 0 0 1px rgba(31,75,142,.12)}
+.hi .ic{width:20px;height:20px}
+.ptitle{display:flex;align-items:center;gap:8px}.ptitle .ic{color:#1F4B8E;width:19px;height:19px}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:58px;font-size:12px;padding:8px 12px}
+.tab .ic{width:22px;height:22px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.tab[aria-selected="true"] .ic{transform:translateY(-1px) scale(1.12)}
+.tab .badge{position:absolute;top:5px;left:calc(50% + 6px);margin:0;min-width:17px;padding:0 5px;font-size:10px;line-height:17px}
+header a{display:inline-flex;align-items:center;gap:5px}header a .ic{width:14px;height:14px}
+.trust span{display:inline-flex;align-items:center;gap:6px}.trust .ic{width:14px;height:14px}
+footer a{display:inline-flex;align-items:center;gap:5px}footer .ic{width:13px;height:13px}
+.meta .ic{width:13px;height:13px;vertical-align:-2px}
+.btn[data-ic]::before{content:"";display:inline-block;width:18px;height:18px;margin-right:8px;vertical-align:-4px;background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat}
+.btn[data-ic]:disabled::before{background:none;-webkit-mask:none;mask:none;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;width:14px;height:14px;animation:spin .7s linear infinite}
+.pin::before{content:"";display:inline-block;width:16px;height:16px;margin-right:8px;vertical-align:-3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2017v5%22%2F%3E%3Cpath%20d%3D%22M9%203h6l-1%207%203%203H7l3-3Z%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2017v5%22%2F%3E%3Cpath%20d%3D%22M9%203h6l-1%207%203%203H7l3-3Z%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+.msg.error.show::before{content:"";display:inline-block;width:16px;height:16px;margin-right:8px;vertical-align:-3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%2F%3E%3Cpath%20d%3D%22M12%208v4M12%2016h.01%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%2210%22%2F%3E%3Cpath%20d%3D%22M12%208v4M12%2016h.01%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+.keyin,.keyin:focus{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%227.5%22%20cy%3D%2215.5%22%20r%3D%225.5%22%2F%3E%3Cpath%20d%3D%22m21%202-9.6%209.6M15.5%207.5l3%203L22%207l-3-3%22%2F%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-position:14px center;background-size:20px;padding-left:46px}
+.phin,.phin:focus{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%225%22%20y%3D%222%22%20width%3D%2214%22%20height%3D%2220%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2018h.01%22%2F%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-position:14px center;background-size:20px;padding-left:46px}
+.usin,.usin:focus{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M20%2021v-2a4%204%200%200%200-4-4H8a4%204%200%200%200-4%204v2%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%227%22%20r%3D%224%22%2F%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-position:14px center;background-size:20px;padding-left:46px}
+.lkin,.lkin:focus{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%236B7690%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223%22%20y%3D%2211%22%20width%3D%2218%22%20height%3D%2211%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M7%2011V7a5%205%200%200%201%2010%200v4%22%2F%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-position:14px center;background-size:20px;padding-left:46px}
+.input.valid{background-color:#F3FAF4}
+.quick button{min-height:36px;padding:7px 14px}
+@media (max-width:380px){.tab{padding:8px 8px;font-size:11.5px}.tab .badge{left:calc(50% + 2px)}}
+.btn[data-ic="search"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%228%22%2F%3E%3Cpath%20d%3D%22m21%2021-4.3-4.3%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="mobile"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%225%22%20y%3D%222%22%20width%3D%2214%22%20height%3D%2220%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M12%2018h.01%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="download"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M21%2015v4a2%202%200%200%201-2%202H5a2%202%200%200%201-2-2v-4%22%2F%3E%3Cpath%20d%3D%22m7%2010%205%205%205-5M12%2015V3%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="key"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%227.5%22%20cy%3D%2215.5%22%20r%3D%225.5%22%2F%3E%3Cpath%20d%3D%22m21%202-9.6%209.6M15.5%207.5l3%203L22%207l-3-3%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="copy"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%229%22%20y%3D%229%22%20width%3D%2213%22%20height%3D%2213%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M5%2015H4a2%202%200%200%201-2-2V4a2%202%200%200%201%202-2h9a2%202%200%200%201%202%202v1%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="arrow"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M5%2012h14M12%205l7%207-7%207%22%2F%3E%3C%2Fsvg%3E")}
+.btn[data-ic="cap"]{--ic:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M22%2010%2012%205%202%2010l10%205%2010-5Z%22%2F%3E%3Cpath%20d%3D%22M6%2012v5c3%203%209%203%2012%200v-5%22%2F%3E%3C%2Fsvg%3E")}
+/* ===== profile id card, tiles, key bar ===== */
+.idcard{position:relative;overflow:hidden;border-radius:20px;padding:16px;color:#fff;background:linear-gradient(135deg,#0A1830,#1F4B8E);box-shadow:0 14px 30px rgba(15,40,90,.28);animation:rise .5s both}
+.idcard::after{content:"";position:absolute;width:200px;height:200px;border-radius:50%;right:-70px;top:-80px;background:radial-gradient(circle,rgba(255,255,255,.2),transparent 70%);animation:float 12s ease-in-out infinite}
+.idtop{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;position:relative;z-index:1}
+.idmid{display:flex;align-items:center;gap:14px;margin:14px 0;position:relative;z-index:1}
+.idname{font-size:20px;font-weight:800;letter-spacing:-.02em}.idclass{opacity:.85;font-size:14px}
+.idbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;position:relative;z-index:1}
+.idbot small{display:block;font-size:10px;opacity:.7;text-transform:uppercase;letter-spacing:.06em}.idbot b{font-size:14px;word-break:break-all}
+.krow{display:flex;align-items:center;gap:8px}
+.idcopy{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer}
+.idcopy:hover{background:rgba(255,255,255,.28)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:flex;gap:10px;align-items:center;background:linear-gradient(180deg,#fff,#F6F8FC);border:1px solid #E8EDF6;border-radius:14px;padding:11px;transition:transform .2s,box-shadow .2s}
+.tile:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(11,28,51,.08)}
+.tico{width:34px;height:34px;flex:none;border-radius:11px;display:grid;place-items:center;background:#E8F0FE;color:#1F4B8E}
+.ttxt{min-width:0}.ttxt small{display:block;font-size:10.5px;color:#6B7690;text-transform:uppercase;letter-spacing:.04em}.ttxt b{font-size:14px;word-break:break-word}
+.idbar{display:flex;align-items:center;gap:10px;margin:12px 14px 0;padding:8px 10px;border-radius:14px;background:#F3F6FC;border:1px solid #E3E9F4;animation:drop .4s both}
+.idbar[hidden]{display:none}
+.avatar.sm{width:36px;height:36px;border-radius:12px;font-size:13px;flex:none}
+.idtxt{flex:1;min-width:0;display:flex;flex-direction:column;font-size:13px}
+.idtxt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.idtxt span{font-size:11px;color:#6B7690}
+.swbtn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #D5DBE8;background:#fff;border-radius:10px;padding:7px 10px;font-weight:700;font-size:12px;color:#0B1C33;cursor:pointer;transition:background .15s}
+.swbtn:hover{background:#F0F4FA}
+@media (max-width:380px){.tiles{grid-template-columns:1fr}}
+/* ===== staff area ===== */
+.seg{display:flex;gap:6px;background:#EDF1F8;padding:5px;border-radius:14px;margin:0 0 14px}
+.seg button{flex:1;padding:10px;border:0;border-radius:10px;background:transparent;font-weight:700;font-size:14px;color:#33415C;cursor:pointer;transition:background .2s,color .2s}
+.seg button.on{background:linear-gradient(135deg,#0B1C33,#1F4B8E);color:#fff;box-shadow:0 6px 14px rgba(11,28,51,.25)}
+.linkbtn{display:block;margin:14px auto 0;background:none;border:0;color:#1F4B8E;font-weight:700;font-size:14px;cursor:pointer;text-decoration:underline}
+.gridwrap{overflow:auto;border:1px solid #E3E9F4;border-radius:14px;max-height:60vh;margin-top:12px;background:#fff}
+.mt{border-collapse:separate;border-spacing:0;min-width:100%}
+.mt th,.mt td{padding:8px 10px;border-bottom:1px solid #EEF1F6;white-space:nowrap;text-align:center}
+.mt thead th{position:sticky;top:0;z-index:2;background:#0B1C33;color:#fff;font-size:12px}
+.mt thead th small{display:block;font-weight:400;opacity:.75}
+.mt th:first-child,.mt td:first-child{position:sticky;left:0;z-index:1;background:#fff;text-align:left;font-weight:600;font-size:14px;box-shadow:2px 0 0 #EEF1F6}
+.mt thead th:first-child{background:#0B1C33;z-index:3}
+.mt input{width:74px;padding:8px;border:1.5px solid #E5E9F2;border-radius:8px;font-size:15px;text-align:center;background:#FBFCFE}
+.mt input:focus{outline:none;border-color:#1F4B8E;box-shadow:0 0 0 3px rgba(31,75,142,.15)}
+.mt input.bad{border-color:#C62828;background:#FDECEC}.mt input.dirty{border-color:#E0A800;background:#FFFBEA}
+.arow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #EEF1F6;flex-wrap:wrap}
+.arow .grow{flex:1;min-width:150px}.arow .grow small{display:block;color:#6B7690;font-size:12px}
+.mini{padding:8px 14px;border-radius:10px;border:0;background:linear-gradient(135deg,#0B1C33,#1B3F77);color:#fff;font-weight:700;font-size:12.5px;cursor:pointer;transition:transform .15s}
+.mini:hover{transform:translateY(-1px)}.mini.ghost{background:#fff;color:#0B1C33;border:1.5px solid #D5DBE8}
+.mini:disabled{opacity:.6;cursor:wait}
+.afield{display:grid;gap:8px;margin-top:8px}.afield .input{padding:11px 12px;font-size:15px}
+textarea.input{min-height:76px;resize:vertical;font-family:inherit}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol><symbol id="i-userplus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></symbol><symbol id="i-wallet" viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></symbol><symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol><symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol><symbol id="i-handset" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol><symbol id="i-mobile" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol><symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol><symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5M12 15V3"/></symbol><symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol><symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 17v5"/><path d="M9 3h6l-1 7 3 3H7l3-3Z"/></symbol><symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol><symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol><symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol><symbol id="i-swap" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol></defs></svg>
 <div class="bg" aria-hidden="true"><i></i><i></i><i></i><canvas id="galaxy"></canvas></div>
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
@@ -220,38 +299,44 @@ noscript p{color:#fff}
   <header>
     <span class="logo" aria-hidden="true">M</span>
     <h1>Mastered Comprehensive School</h1>
-    <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702">0721 101 702</a></p>
-    <div class="trust"><span>Private key access</span><span>M-Pesa payments</span><span>Exam results</span></div>
+    <p>Fee Portal &amp; Notice Board &bull; <a href="tel:+254721101702"><svg class="ic" aria-hidden="true"><use href="#i-handset"/></svg> 0721 101 702</a></p>
+    <div class="trust"><span><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Private key access</span><span><svg class="ic" aria-hidden="true"><use href="#i-mobile"/></svg>M-Pesa payments</span><span><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg>Exam results</span></div>
   </header>
   <a id="pinBanner" class="pin" href="#notices" hidden></a>
   <nav aria-label="Portal sections">
     <div class="tabs" role="tablist">
-      <button class="tab" id="tabProfile" role="tab" aria-selected="true" aria-controls="panelProfile">Profile</button>
-      <button class="tab" id="tabFees" role="tab" aria-selected="false" aria-controls="panelFees">Fees</button>
-      <button class="tab" id="tabResults" role="tab" aria-selected="false" aria-controls="panelResults">Results</button>
-      <button class="tab" id="tabNotices" role="tab" aria-selected="false" aria-controls="panelNotices">Notices<span class="badge" id="noticeBadge" hidden></span></button>
-      <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister">Register</button>
+      <button class="tab" id="tabProfile" role="tab" aria-selected="true" aria-controls="panelProfile"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Profile</span></button>
+      <button class="tab" id="tabFees" role="tab" aria-selected="false" aria-controls="panelFees"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg><span>Fees</span></button>
+      <button class="tab" id="tabResults" role="tab" aria-selected="false" aria-controls="panelResults"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg><span>Results</span></button>
+      <button class="tab" id="tabNotices" role="tab" aria-selected="false" aria-controls="panelNotices"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg><span>Notices</span><span class="badge" id="noticeBadge" hidden></span></button>
+      <button class="tab" id="tabRegister" role="tab" aria-selected="false" aria-controls="panelRegister"><svg class="ic" aria-hidden="true"><use href="#i-userplus"/></svg><span>Register</span></button>
+      <button class="tab" id="tabStaff" role="tab" aria-selected="false" aria-controls="panelStaff"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg><span>Staff</span></button>
       <span class="tab-ind" id="tabInd"></span>
     </div>
   </nav>
 
+  <div id="idBar" class="idbar" hidden>
+    <div class="avatar sm" id="idAv" aria-hidden="true"></div>
+    <div class="idtxt"><b id="idName"></b><span id="idKey"></span></div>
+    <button type="button" id="idSwitch" class="swbtn" aria-label="Use a different security key"><svg class="ic" aria-hidden="true"><use href="#i-swap"/></svg><span>Switch</span></button>
+  </div>
   <main id="main" class="body">
     <!-- PROFILE -->
     <section id="panelProfile" class="panel" role="tabpanel" aria-labelledby="tabProfile">
-      <h2>Student profile</h2>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span>Student profile</h2>
       <label for="pKey" style="margin-top:0">Student security key</label>
-      <input id="pKey" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
-      <button id="pBtn" class="btn">View profile</button>
+      <input id="pKey" class="input upper keyin" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="pBtn" class="btn" data-ic="search">View profile</button>
       <div id="pMsg" class="msg error" role="alert"></div>
       <div id="pOut" hidden></div>
     </section>
 
     <!-- FEES -->
     <section id="panelFees" class="panel" role="tabpanel" aria-labelledby="tabFees" hidden>
-      <h2>Check fee balance and pay</h2>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span>Check fee balance and pay</h2>
       <label for="key" style="margin-top:0">Student security key</label>
-      <input id="key" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
-      <button id="btn" class="btn">View statement</button>
+      <input id="key" class="input upper keyin" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="btn" class="btn" data-ic="search">View statement</button>
       <div id="msg" class="msg error" role="alert"></div>
       <div id="resultWrap" class="result">
         <div id="resultCard"></div>
@@ -261,54 +346,113 @@ noscript p{color:#fff}
           <input id="payAmount" class="input" inputmode="numeric" autocomplete="off">
           <div class="quick"><button type="button" data-frac="1">Full balance</button><button type="button" data-frac="0.5">Half</button></div>
           <label for="payPhone">M-Pesa phone number</label>
-          <input id="payPhone" class="input" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
+          <input id="payPhone" class="input phin" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
           <div class="hint">You will get a prompt on this phone. Enter your M-Pesa PIN to confirm.</div>
-          <button id="payBtn" class="btn">Pay with M-Pesa</button>
+          <button id="payBtn" class="btn" data-ic="mobile">Pay with M-Pesa</button>
         </div>
         <div id="payMsg" class="msg" role="status"></div>
-        <button id="pdfBtn" class="btn secondary">Download PDF receipt with QR</button>
+        <button id="pdfBtn" class="btn secondary" data-ic="download">Download PDF receipt with QR</button>
       </div>
     </section>
 
     <!-- RESULTS -->
     <section id="panelResults" class="panel" role="tabpanel" aria-labelledby="tabResults" hidden>
-      <h2>Exam results</h2>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg></span>Exam results</h2>
       <label for="resKey" style="margin-top:0">Student security key</label>
-      <input id="resKey" class="input upper" placeholder="e.g. MCS-JK-4821" autocomplete="off">
-      <button id="resBtn" class="btn">View results</button>
+      <input id="resKey" class="input upper keyin" placeholder="e.g. MCS-JK-4821" autocomplete="off">
+      <button id="resBtn" class="btn" data-ic="search">View results</button>
       <div id="resMsg" class="msg error" role="alert"></div>
       <div id="resOut" hidden>
         <label for="examPick" id="examLbl">Exam</label>
         <select id="examPick" class="input"></select>
         <div id="examCard"></div>
-        <button id="resPdf" class="btn secondary">Download report card (PDF)</button>
+        <button id="resPdf" class="btn secondary" data-ic="download">Download report card (PDF)</button>
+      </div>
+    </section>
+
+    <!-- STAFF -->
+    <section id="panelStaff" class="panel" role="tabpanel" aria-labelledby="tabStaff" hidden>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span>Staff area</h2>
+      <div class="seg"><button type="button" id="segT" class="on">Teacher</button><button type="button" id="segA">Admin</button></div>
+
+      <div id="tSec">
+        <div id="tLogin">
+          <label for="tKeyIn" style="margin-top:0">Teacher key</label>
+          <input id="tKeyIn" class="input upper keyin" placeholder="e.g. TCH-JM-4821" autocomplete="off">
+          <button id="tBtn" class="btn" data-ic="search">Open my class</button>
+          <div id="tMsg" class="msg error" role="alert"></div>
+          <button type="button" id="tNew" class="linkbtn">New teacher? Create an account</button>
+        </div>
+        <form id="tReg" novalidate hidden>
+          <label for="tRegName" style="margin-top:0">Your full name</label>
+          <input id="tRegName" class="input upper usin" maxlength="60" autocomplete="off">
+          <label for="tRegPhone">Phone number</label>
+          <input id="tRegPhone" class="input phin" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="0712345678">
+          <label for="tRegClass">Your class</label>
+          <select id="tRegClass" class="input"><option value="">Choose a class</option></select>
+          <label for="tRegSubj">Subjects you teach (optional)</label>
+          <input id="tRegSubj" class="input" maxlength="150" autocomplete="off" placeholder="e.g. Mathematics, English (blank = all)">
+          <label for="tRegCode">Teacher access code</label>
+          <input id="tRegCode" class="input lkin" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school admin">
+          <input type="checkbox" id="tRegWebsite" class="hp" tabindex="-1" aria-hidden="true">
+          <button type="submit" id="tRegBtn" class="btn" data-ic="key">Create my account</button>
+          <div id="tRegMsg" class="msg error" role="alert"></div>
+          <button type="button" id="tRegBack" class="linkbtn">Back to sign in</button>
+        </form>
+        <div id="tKeyBox" class="keybox" aria-live="polite">
+          <p><b>Account created for <span id="tKeyName"></span></b></p>
+          <div class="code" id="tKeyCode"></div>
+          <p><b>Save this key now.</b> It is only shown once.</p>
+          <p>The school admin must approve your account before you can see your class.</p>
+          <button type="button" id="tKeyCopy" class="btn secondary" data-ic="copy">Copy key</button>
+          <button type="button" id="tKeyGo" class="btn" data-ic="arrow">Go to sign in</button>
+        </div>
+        <div id="tWork" hidden>
+          <div id="tHead"></div>
+          <label for="tExam">Exam</label>
+          <select id="tExam" class="input"></select>
+          <div id="tGrid" class="gridwrap"></div>
+          <button id="tSave" class="btn" data-ic="download">Save marks</button>
+          <div id="tSaveMsg" class="msg" role="status"></div>
+          <button type="button" id="tOut" class="linkbtn">Sign out</button>
+        </div>
+      </div>
+
+      <div id="aSec" hidden>
+        <div id="aLogin">
+          <label for="aKeyIn" style="margin-top:0">Admin key</label>
+          <input id="aKeyIn" type="password" class="input lkin" autocomplete="off" placeholder="Admin key">
+          <button id="aBtn" class="btn" data-ic="key">Sign in</button>
+          <div id="aMsg" class="msg error" role="alert"></div>
+        </div>
+        <div id="aOut" hidden></div>
       </div>
     </section>
 
     <!-- NOTICES -->
     <section id="panelNotices" class="panel" role="tabpanel" aria-labelledby="tabNotices" hidden>
-      <h2>Notice board</h2>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-bell"/></svg></span>Notice board</h2>
       <div id="noticeList" aria-live="polite"><div class="sk"></div><div class="sk"></div><div class="sk"></div></div>
     </section>
 
     <!-- REGISTER -->
     <section id="panelRegister" class="panel" role="tabpanel" aria-labelledby="tabRegister" hidden>
-      <h2>Register your child</h2>
+      <h2><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-userplus"/></svg></span>Register your child</h2>
       <form id="regForm" novalidate>
         <label for="regName" style="margin-top:0">Student full name</label>
-        <input id="regName" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. JOHN KAMAU">
+        <input id="regName" class="input upper usin" autocomplete="off" maxlength="60" placeholder="e.g. JOHN KAMAU">
         <label for="regClass">Class</label>
         <select id="regClass" class="input"><option value="">Choose a class</option></select>
         <label for="regParent">Parent or guardian name</label>
-        <input id="regParent" class="input upper" autocomplete="off" maxlength="60" placeholder="e.g. DAN MWANGI">
+        <input id="regParent" class="input upper usin" autocomplete="off" maxlength="60" placeholder="e.g. DAN MWANGI">
         <label for="regPhone">Parent phone number</label>
-        <input id="regPhone" class="input" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="0712345678">
+        <input id="regPhone" class="input phin" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="0712345678">
         <div class="hint">10 digits, starting with 07.</div>
         <label for="regCode">School access code</label>
-        <input id="regCode" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school">
+        <input id="regCode" class="input lkin" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="30" placeholder="Given to you by the school">
         <div class="hint">Only parents of Mastered Comprehensive School can register. Ask the school office for the code.</div>
         <input type="checkbox" id="regWebsite" class="hp" tabindex="-1" aria-hidden="true">
-        <button type="submit" id="regBtn" class="btn">Get my security key</button>
+        <button type="submit" id="regBtn" class="btn" data-ic="key">Get my security key</button>
       </form>
       <div id="regMsg" class="msg error" role="alert"></div>
       <div id="keyBox" class="keybox" aria-live="polite">
@@ -316,15 +460,15 @@ noscript p{color:#fff}
         <div class="code" id="keyCode"></div>
         <p><b>Save this key now.</b> It is only shown once. Take a screenshot or copy it.</p>
         <p>The school will confirm your registration and add the fee balance. Until then the key shows a "waiting for approval" message.</p>
-        <button type="button" id="copyBtn" class="btn secondary">Copy key</button>
-        <button type="button" id="useKeyBtn" class="btn">Open my profile</button>
+        <button type="button" id="copyBtn" class="btn secondary" data-ic="copy">Copy key</button>
+        <button type="button" id="useKeyBtn" class="btn" data-ic="arrow">Open my profile</button>
       </div>
     </section>
   </main>
 </div>
 
 <section class="card help" aria-labelledby="helpTitle" style="margin-top:14px">
-  <h2 id="helpTitle">How the fee portal works</h2>
+  <h2 id="helpTitle"><span class="hi"><svg class="ic" aria-hidden="true"><use href="#i-help"/></svg></span>How the fee portal works</h2>
   <ol>
     <li>Register your child once with the school access code and save the security key.</li>
     <li>Once the school approves, enter the key under Fees to see the balance.</li>
@@ -337,7 +481,7 @@ noscript p{color:#fff}
 </div>
 
 <footer>
-  &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702">0721 101 702</a>
+  &copy; <span id="year">2026</span> Mastered Comprehensive School &bull; <a href="tel:+254721101702"><svg class="ic" aria-hidden="true"><use href="#i-handset"/></svg> 0721 101 702</a>
 </footer>
 <div id="qrTemp"></div>
 <noscript><p style="text-align:center">This portal needs JavaScript. Please call the school on 0721 101 702.</p></noscript>
@@ -347,10 +491,15 @@ const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyVLRadONiwq3bQdTl2
 // Keep identical to CLASSES in Code.gs
 const CLASSES = ["PP1","PP2","Grade 1","Grade 2","Grade 3","Grade 4","Grade 5","Grade 6","Grade 7","Grade 8","Grade 9"];
 const $ = (id) => document.getElementById(id);
-let lastData = null, lastKey = "";
+let lastData = null, lastKey = "", activeKey = "", resKeyUsed = "", profKey = "";
+const loadedFor = { profile: "", fees: "", results: "" }, busy = {};
 $("year").textContent = new Date().getFullYear();
 const calm = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const SKELETON = '<div class="sk"></div><div class="sk"></div><div class="sk"></div>';
+function ico(name) { // draws an icon from the inline sprite
+  const ns = "http://www.w3.org/2000/svg", s = document.createElementNS(ns, "svg"), u = document.createElementNS(ns, "use");
+  s.setAttribute("class", "ic"); s.setAttribute("aria-hidden", "true"); u.setAttribute("href", "#i-" + name); s.appendChild(u); return s;
+}
 function mk(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
 function moveInd() { // slides the underline under the active tab
   const t = document.querySelector('.tab[aria-selected="true"]'), i = $("tabInd");
@@ -486,7 +635,33 @@ document.addEventListener("pointerdown", (e) => {
   });
 })();
 
-const TABS = ["profile", "fees", "results", "notices", "register"];
+/* ---------- one security key drives every tab ---------- */
+function setActive(key, name) {
+  if (key !== activeKey) { // a different student: other tabs must load again for this key
+    activeKey = key; loadedFor.profile = loadedFor.fees = loadedFor.results = "";
+    $("resultWrap").classList.remove("show"); $("resOut").hidden = true; $("pOut").hidden = true;
+    lastData = null; resData = null; profData = null;
+  }
+  ["pKey", "key", "resKey"].forEach((id) => { $(id).value = key; });
+  if (name) { $("idName").textContent = name; $("idKey").textContent = "Key: " + key; $("idAv").textContent = initials(name); $("idBar").hidden = false; }
+}
+function clearActive() {
+  activeKey = ""; loadedFor.profile = loadedFor.fees = loadedFor.results = "";
+  ["pKey", "key", "resKey"].forEach((id) => { $(id).value = ""; });
+  [$("pMsg"), $("msg"), $("resMsg")].forEach(clearMsg);
+  $("resultWrap").classList.remove("show"); $("resOut").hidden = true; $("pOut").hidden = true; $("idBar").hidden = true;
+  lastData = null; resData = null; profData = null; clearTimeout(payTimer); clearPayMsg();
+  location.hash = "profile"; $("pKey").focus();
+}
+function autoLoad(name) { // opening a tab shows that tab's data for the active key
+  if (!activeKey || busy[name] || loadedFor[name] === activeKey) return;
+  const run = { profile: loadProfile, fees: lookup, results: loadResults }[name];
+  if (!run) return;
+  busy[name] = true; Promise.resolve(run()).finally(() => { busy[name] = false; });
+}
+$("idSwitch").addEventListener("click", clearActive);
+
+const TABS = ["profile", "fees", "results", "notices", "register", "staff"];
 const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 function selectTab(name) {
   if (TABS.indexOf(name) === -1) name = "profile";
@@ -497,6 +672,7 @@ function selectTab(name) {
   const known = $("pKey").value || $("key").value || $("resKey").value; // one key works in every tab
   if (known) ["pKey", "key", "resKey"].forEach((id) => { if (!$(id).value) $(id).value = known; });
   moveInd();
+  autoLoad(name);
 }
 TABS.forEach((t, i) => {
   const b = $("tab" + cap(t));
@@ -546,6 +722,7 @@ async function loadResults() {
     if (d.error === "NOT_APPROVED") { showMsg($("resMsg"), "Your registration is waiting for approval by the school."); return; }
     if (d.error) { showMsg($("resMsg"), "Security key not found. Check the key and try again."); return; }
     if (!d.exams.length) { showMsg($("resMsg"), "No results have been published for this student yet."); return; }
+    setActive(key, d.student); loadedFor.results = key; resKeyUsed = key;
     resData = d;
     const pick = $("examPick"); pick.textContent = "";
     d.exams.forEach((x, i) => { const o = document.createElement("option"); o.value = i; o.textContent = x.exam; pick.appendChild(o); });
@@ -562,32 +739,39 @@ $("resPdf").addEventListener("click", async () => {
   if (!resData) return;
   const x = resData.exams[Number($("examPick").value) || 0];
   $("resPdf").disabled = true;
-  try { await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"); }
-  catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); $("resPdf").disabled = false; return; }
-  const doc = new window.jspdf.jsPDF();
-  doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F"); doc.setTextColor(255, 255, 255);
-  doc.setFontSize(18); doc.text("Mastered Comprehensive School", 105, 16, { align: "center" });
-  doc.setFontSize(12); doc.text("Report card: " + x.exam, 105, 27, { align: "center" });
-  doc.setTextColor(0, 0, 0);
-  let y = 50;
-  doc.text("Student: " + resData.student + (x.className ? "     Class: " + x.className : ""), 14, y); y += 12;
-  doc.setFont(undefined, "bold"); doc.text("Subject", 14, y); doc.text("Marks", 110, y); doc.text("%", 145, y); doc.text("Grade", 170, y);
-  doc.setFont(undefined, "normal"); y += 8;
-  x.subjects.forEach((s) => {
-    doc.text(s.subject.slice(0, 40), 14, y); doc.text(s.marks + "/" + s.outOf, 110, y); doc.text(s.pct + "%", 145, y); doc.text(s.grade, 170, y);
-    y += 8; if (y > 270) { doc.addPage(); y = 20; }
+  try { await loadScript(PDF_JS); } catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); $("resPdf").disabled = false; return; }
+  const d = pdfNew("Report card \u2022 " + x.exam, resKeyUsed);
+  let y = 54;
+  pdfTile(d, 14, y, 88, "Student", resData.student); pdfTile(d, 108, y, 88, "Class", x.className); y += 24;
+  y = pdfSection(d, y, "Subject performance");
+  d.setFont("helvetica", "bold"); d.setFontSize(8); ink(d, PC.muted);
+  d.text("SUBJECT", 17, y); d.text("MARKS", 100, y); d.text("SCORE", 128, y); d.text("GRADE", 182, y); y += 4;
+  x.subjects.forEach((s, i) => {
+    y = room(d, y, 16);
+    if (i % 2 === 0) { fill(d, PC.soft); d.roundedRect(14, y - 3, 182, 10, 2, 2, "F"); }
+    d.setFont("helvetica", "normal"); d.setFontSize(10); ink(d, PC.text); d.text(s.subject.slice(0, 34), 17, y + 3.5); d.text(s.marks + "/" + s.outOf, 100, y + 3.5);
+    fill(d, PC.line); d.roundedRect(128, y + 1.2, 38, 3.2, 1.6, 1.6, "F");
+    fill(d, PC.blue); d.roundedRect(128, y + 1.2, Math.max(1.6, 38 * Math.min(100, s.pct) / 100), 3.2, 1.6, 1.6, "F");
+    d.setFontSize(8); ink(d, PC.muted); d.text(s.pct + "%", 168, y + 4);
+    pdfPill(d, s.grade, 183, y + 4.6, GRADE_CLASS[s.grade] || "wait"); y += 11;
+    if (s.remarks) { d.setFont("helvetica", "italic"); d.setFontSize(8); ink(d, PC.muted); d.text(s.remarks.slice(0, 95), 17, y); y += 5; }
   });
-  y += 6; doc.setFont(undefined, "bold");
-  doc.text("Total: " + x.total + "/" + x.outOf + "     Average: " + x.average + "%     Grade: " + x.grade + " (" + x.gradeLabel + ")", 14, y);
-  if (x.classSize > 1) { y += 8; doc.text("Class position: " + x.position + " of " + x.classSize, 14, y); }
-  doc.save("Report_" + x.exam.replace(/[^A-Za-z0-9]+/g, "_") + ".pdf");
-  $("resPdf").disabled = false;
+  y = room(d, y + 8, 60); y = pdfSection(d, y, "Summary");
+  pdfTile(d, 14, y, 88, "Total marks", x.total + " / " + x.outOf); pdfTile(d, 108, y, 88, "Average", x.average + "%"); y += 19;
+  pdfTile(d, 14, y, 88, "Overall grade", x.grade + " - " + x.gradeLabel); pdfTile(d, 108, y, 88, "Class position", x.classSize > 1 ? x.position + " of " + x.classSize : "-"); y += 30;
+  y = room(d, y, 20); d.setDrawColor(PC.muted[0], PC.muted[1], PC.muted[2]); d.setLineWidth(0.3);
+  d.line(14, y, 90, y); d.line(120, y, 196, y); d.setFont("helvetica", "normal"); d.setFontSize(8); ink(d, PC.muted);
+  d.text("Class teacher", 14, y + 5); d.text("Parent / guardian", 120, y + 5);
+  pdfEnd(d, resKeyUsed + "_ReportCard_" + x.exam.replace(/[^A-Za-z0-9]+/g, "_") + ".pdf"); $("resPdf").disabled = false;
 });
 
 /* ---------- student profile ---------- */
 let profData = null;
 function initials(n) { return String(n).split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?"; }
-function psec(title, ...nodes) { const s = mk("div", "psec"); s.appendChild(mk("h3", "ptitle", title)); nodes.forEach((n) => s.appendChild(n)); return s; }
+function psec(title, ...nodes) {
+  const s = mk("div", "psec"), t = mk("h3", "ptitle"), icons = { "Registration details": "user", "Fees": "wallet", "Exam results": "cap", "Approvals": "shield", "Exams": "cap", "Notices": "bell", "Learners": "user", "Settings": "lock" };
+  t.append(ico(icons[title] || "user"), title); s.appendChild(t); nodes.forEach((n) => s.appendChild(n)); return s;
+}
 function spark(vals) { // average score across exams, oldest to newest
   const ns = "http://www.w3.org/2000/svg", W = 300, H = 70, P = 8, svg = document.createElementNS(ns, "svg");
   svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.setAttribute("class", "spark");
@@ -599,20 +783,37 @@ function spark(vals) { // average score across exams, oldest to newest
   vals.forEach((v, i) => { const c = document.createElementNS(ns, "circle"); c.setAttribute("cx", x(i)); c.setAttribute("cy", y(v)); c.setAttribute("r", 4); c.setAttribute("class", "sdot"); svg.appendChild(c); });
   return svg;
 }
+function tile(icon, label, value) {
+  const b = mk("div", "tile"), i = mk("span", "tico"), t = mk("div", "ttxt");
+  i.appendChild(ico(icon)); t.append(mk("small", "", label), mk("b", "", value || "-")); b.append(i, t); return b;
+}
 function renderProfile(p, key) {
-  profData = p;
-  const o = $("pOut"); o.textContent = "";
+  profData = p; profKey = key;
+  const o = $("pOut"), s = p.student; o.textContent = "";
   const hr = new Date().getHours(), hi = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
-  const first = String(p.student.name).split(" ")[0], nice = first.charAt(0) + first.slice(1).toLowerCase();
+  const first = String(s.name).split(" ")[0], nice = first.charAt(0) + first.slice(1).toLowerCase();
   o.appendChild(mk("div", "greet", hi + ". Here is the full picture for " + nice + "."));
-  const hero = mk("div", "phero"), who = mk("div");
-  who.append(mk("h3", "stu", p.student.name), mk("div", "sub", p.student.class + " \u2022 Registration approved"));
-  hero.append(mk("div", "avatar", initials(p.student.name)), who); o.appendChild(hero);
 
-  const det = mk("div", "pgrid");
-  [["Class", p.student.class], ["Parent / guardian", p.student.parent], ["Parent phone", p.student.phone], ["Status", "Approved"]]
-    .forEach(([l, v]) => { const b = mk("div", "pbox"); b.append(mk("small", "", l), mk("b", "", v)); det.appendChild(b); });
-  o.appendChild(psec("Student details", det));
+  // digital student ID, tied to the security key
+  const idc = mk("div", "idcard"), top = mk("div", "idtop"), mid = mk("div", "idmid"), info = mk("div"), bot = mk("div", "idbot");
+  top.append(ico("shield"), mk("span", "", "Student ID \u2022 Mastered Comprehensive School"));
+  info.append(mk("div", "idname", s.name), mk("div", "idclass", s.class));
+  mid.append(mk("div", "avatar", initials(s.name)), info);
+  const kb = mk("div"), krow = mk("div", "krow"), cp = mk("button", "idcopy", "Copy");
+  cp.type = "button";
+  cp.onclick = async () => { try { await navigator.clipboard.writeText(key); cp.textContent = "Copied \u2713"; } catch (e) { cp.textContent = "Press and hold"; } };
+  krow.append(mk("b", "", key), cp); kb.append(mk("small", "", "Security key"), krow);
+  const rb = mk("div"), sb = mk("div");
+  rb.append(mk("small", "", "Registered"), mk("b", "", s.registered || "Not recorded"));
+  sb.append(mk("small", "", "Status"), mk("b", "", "Approved"));
+  bot.append(kb, rb, sb); idc.append(top, mid, bot); o.appendChild(idc);
+
+  // everything captured at registration
+  const tiles = mk("div", "tiles");
+  [["user", "Student name", s.name], ["cap", "Class", s.class], ["users", "Parent / guardian", s.parent],
+   ["handset", "Parent phone", s.phone], ["cal", "Registered on", s.registered || "Not recorded"], ["shield", "Status", "Approved"]]
+    .forEach(([i, l, v]) => tiles.appendChild(tile(i, l, v)));
+  o.appendChild(psec("Registration details", tiles));
 
   const f = p.fees, fb = mk("div", "feehero"), st = String(f.status).toUpperCase();
   fb.appendChild(mk("div", "balLabel", "Outstanding balance"));
@@ -626,25 +827,24 @@ function renderProfile(p, key) {
     f.payments.forEach((x) => { const r = mk("div", "pay-row"); r.append(mk("span", "", x.date + (x.receipt ? " \u2022 " + x.receipt : "")), mk("span", "", "KES " + Number(x.amount).toLocaleString())); l.appendChild(r); });
     fb.appendChild(l);
   }
-  if (f.balance_raw > 0) { const b = mk("button", "btn", "Pay with M-Pesa"); b.onclick = () => { $("key").value = key; location.hash = "fees"; lookup(); }; fb.appendChild(b); }
+  if (f.balance_raw > 0) { const b = mk("button", "btn", "Pay with M-Pesa"); b.dataset.ic = "mobile"; b.onclick = () => { location.hash = "fees"; }; fb.appendChild(b); }
   o.appendChild(psec("Fees", fb));
 
-  const rb = mk("div"), ex = p.results;
-  if (!ex.length) rb.appendChild(mk("p", "empty", "No results have been published yet."));
+  const rs = mk("div"), ex = p.results;
+  if (!ex.length) rs.appendChild(mk("p", "empty", "No results have been published yet."));
   else {
     const x = ex[0], sum = mk("div", "sum");
-    rb.appendChild(mk("div", "sub", "Latest: " + x.exam));
+    rs.appendChild(mk("div", "sub", "Latest: " + x.exam));
     [["Average", x.average + "%"], ["Grade", x.grade + " - " + x.gradeLabel]].concat(x.classSize > 1 ? [["Class position", x.position + " of " + x.classSize]] : [])
       .forEach(([l, v]) => { const b = mk("div", "sumbox"); b.append(mk("small", "", l), mk("b", "", v)); sum.appendChild(b); });
-    rb.appendChild(sum);
-    if (ex.length > 1) { rb.appendChild(mk("div", "sub", "Average score by exam")); rb.appendChild(spark(ex.map((e) => e.average).reverse())); }
-    ex.forEach((e) => { const r = mk("div", "exrow"); r.append(mk("span", "sname", e.exam), mk("span", "smarks", e.average + "%"), mk("span", "pill " + (GRADE_CLASS[e.grade] || "wait"), e.grade)); rb.appendChild(r); });
-    const b = mk("button", "btn secondary", "View subject-by-subject results");
-    b.onclick = () => { $("resKey").value = key; location.hash = "results"; loadResults(); }; rb.appendChild(b);
+    rs.appendChild(sum);
+    if (ex.length > 1) { rs.appendChild(mk("div", "sub", "Average score by exam")); rs.appendChild(spark(ex.map((e) => e.average).reverse())); }
+    ex.forEach((e) => { const r = mk("div", "exrow"); r.append(mk("span", "sname", e.exam), mk("span", "smarks", e.average + "%"), mk("span", "pill " + (GRADE_CLASS[e.grade] || "wait"), e.grade)); rs.appendChild(r); });
+    const b = mk("button", "btn secondary", "View subject-by-subject results"); b.dataset.ic = "cap"; b.onclick = () => { location.hash = "results"; }; rs.appendChild(b);
   }
-  o.appendChild(psec("Exam results", rb));
+  o.appendChild(psec("Exam results", rs));
 
-  const pdf = mk("button", "btn secondary", "Download profile (PDF)");
+  const pdf = mk("button", "btn secondary", "Download profile (PDF)"); pdf.dataset.ic = "download";
   pdf.onclick = () => profilePdf(pdf); o.appendChild(pdf);
   o.hidden = false;
 }
@@ -657,7 +857,7 @@ async function loadProfile() {
     const d = await fetchJSONP(WEB_APP_URL + "?action=profile&key=" + encodeURIComponent(key));
     if (d.error === "NOT_APPROVED") { showMsg($("pMsg"), "Your registration is waiting for approval by the school."); return; }
     if (d.error) { showMsg($("pMsg"), "Security key not found. Check the key and try again."); return; }
-    ["key", "resKey"].forEach((id) => { $(id).value = key; }); // other tabs are ready to use
+    setActive(key, d.student.name); loadedFor.profile = key;
     renderProfile(d, key);
   } catch (e) { showMsg($("pMsg"), "Unable to load the profile: " + e.message); }
   finally { $("pBtn").disabled = false; $("pBtn").textContent = "View profile"; }
@@ -665,23 +865,258 @@ async function loadProfile() {
 $("pBtn").addEventListener("click", loadProfile);
 $("pKey").addEventListener("keydown", (e) => { if (e.key === "Enter") loadProfile(); });
 async function profilePdf(btn) {
-  if (!profData) return;
-  const p = profData; btn.disabled = true;
-  try { await loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"); }
-  catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); btn.disabled = false; return; }
-  const doc = new window.jspdf.jsPDF();
-  let y = 50; const line = (t, bold) => { if (y > 275) { doc.addPage(); y = 20; } doc.setFont(undefined, bold ? "bold" : "normal"); doc.text(String(t), 14, y); y += 8; };
-  doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F"); doc.setTextColor(255, 255, 255);
-  doc.setFontSize(18); doc.text("Mastered Comprehensive School", 105, 16, { align: "center" });
-  doc.setFontSize(12); doc.text("Student profile", 105, 27, { align: "center" }); doc.setTextColor(0, 0, 0);
-  line("Student: " + p.student.name, true); line("Class: " + p.student.class); line("Parent / guardian: " + p.student.parent); line("Phone: " + p.student.phone);
-  y += 4; line("Fees", true); line("Balance: " + money(p.fees.balance) + "   Status: " + p.fees.status); line("Paid through portal: KES " + Number(p.fees.totalPaid).toLocaleString());
-  p.fees.payments.forEach((x) => line("  " + x.date + "  " + x.receipt + "  KES " + Number(x.amount).toLocaleString()));
-  y += 4; line("Exam results", true);
-  if (!p.results.length) line("No results published yet.");
-  p.results.forEach((e) => line(e.exam + ": " + e.average + "%  (" + e.grade + ")" + (e.classSize > 1 ? "  position " + e.position + "/" + e.classSize : "")));
-  y += 4; doc.setFontSize(9); line("Generated " + new Date().toLocaleString());
-  doc.save("Profile_" + p.student.name.replace(/[^A-Za-z0-9]+/g, "_") + ".pdf"); btn.disabled = false;
+  const p = profData; if (!p) return;
+  btn.disabled = true;
+  try { await loadScript(PDF_JS); } catch (e) { alert("Could not load the PDF tool. Check your connection and try again."); btn.disabled = false; return; }
+  const s = p.student, f = p.fees, d = pdfNew("Student profile", profKey);
+  let y = 54;
+  fill(d, PC.navy); d.roundedRect(14, y, 182, 40, 5, 5, "F");
+  fill(d, [52, 88, 146]); d.roundedRect(20, y + 8, 24, 24, 6, 6, "F");
+  ink(d, PC.white); d.setFont("helvetica", "bold"); d.setFontSize(14); d.text(initials(s.name), 32, y + 23, { align: "center" });
+  d.setFontSize(16); d.text(s.name, 50, y + 17);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(s.class + "   |   Key: " + profKey, 50, y + 25);
+  d.setFontSize(9); d.text("Registered: " + (s.registered || "Not recorded"), 50, y + 32);
+  pdfPill(d, "APPROVED", 168, y + 32, "ok");
+  y += 50; y = pdfSection(d, y, "Registration details");
+  [["Student name", s.name], ["Class", s.class], ["Parent / guardian", s.parent], ["Parent phone", s.phone], ["Registered on", s.registered || "Not recorded"], ["Status", "Approved"]]
+    .forEach((t, i) => { pdfTile(d, i % 2 ? 108 : 14, y, 88, t[0], t[1]); if (i % 2) y += 19; });
+  y += 4; y = pdfSection(d, y, "Fees");
+  pdfTile(d, 14, y, 88, "Outstanding balance", money(f.balance)); pdfTile(d, 108, y, 88, "Paid through portal", "KES " + Number(f.totalPaid).toLocaleString()); y += 22;
+  pdfPill(d, f.status, 14, y, sk(f.status)); y += 9;
+  f.payments.forEach((x) => {
+    y = room(d, y, 8); d.setFont("helvetica", "normal"); d.setFontSize(9); ink(d, PC.text); d.text(x.date + (x.receipt ? "    " + x.receipt : ""), 16, y);
+    d.setFont("helvetica", "bold"); d.text("KES " + Number(x.amount).toLocaleString(), 196, y, { align: "right" }); y += 7;
+  });
+  y = room(d, y + 6, 30); y = pdfSection(d, y, "Exam results");
+  if (!p.results.length) { d.setFont("helvetica", "normal"); d.setFontSize(9); ink(d, PC.muted); d.text("No results published yet.", 16, y); }
+  p.results.forEach((e) => {
+    y = room(d, y, 10); d.setFont("helvetica", "normal"); d.setFontSize(10); ink(d, PC.text);
+    d.text(e.exam.slice(0, 38), 16, y); d.text(e.average + "%", 118, y);
+    if (e.classSize > 1) d.text("Position " + e.position + "/" + e.classSize, 138, y);
+    pdfPill(d, e.grade, 184, y + 0.5, GRADE_CLASS[e.grade] || "wait"); y += 9;
+  });
+  pdfEnd(d, profKey + "_Profile.pdf"); btn.disabled = false;
+}
+
+/* ---------- staff: teachers and admin ---------- */
+const STAFF_ERR = {
+  INVALID_NAME: "Enter your full name using letters only.", INVALID_PHONE: "Enter a phone number with 10 digits starting with 07.",
+  INVALID_CLASS: "Choose your class from the list.", INVALID_CODE: "The teacher access code is not correct. Ask the school admin.",
+  CLOSED: "Teacher sign-up is closed. Please contact the school admin.", DUPLICATE: "You are already registered. Ask the admin for your key.",
+  BOT: "Sign-up was blocked. Refresh the page and try again.", BUSY: "Too many attempts. Please wait a few minutes and try again.",
+  SERVER: "Something went wrong. Please try again.", INVALID: "That did not work. Please check your details."
+};
+const ADMIN_ERR = {
+  ADMIN_OFF: "The admin panel is switched off. Set an admin key in the sheet: Fee Portal > Set admin key.",
+  ADMIN_DENIED: "That admin key is not correct.", BUSY: "Too many wrong attempts. Please wait 10 minutes.", SERVER: "Something went wrong. Please try again."
+};
+function note(el, kind, text) { el.className = "msg " + kind; void el.offsetWidth; el.className = "msg " + kind + " show"; el.textContent = text; }
+function staffMode(m) {
+  const t = m === "teacher";
+  $("tSec").hidden = !t; $("aSec").hidden = t; $("segT").classList.toggle("on", t); $("segA").classList.toggle("on", !t);
+}
+$("segT").addEventListener("click", () => staffMode("teacher")); $("segA").addEventListener("click", () => staffMode("admin"));
+CLASSES.forEach((c) => { const o = document.createElement("option"); o.value = c; o.textContent = c; $("tRegClass").appendChild(o); });
+
+/* teacher */
+let tKey = "", tData = null;
+function tShow(w) {
+  $("tLogin").hidden = w !== "login"; $("tReg").hidden = w !== "reg"; $("tWork").hidden = w !== "work";
+  $("tKeyBox").classList.toggle("show", w === "key");
+}
+$("tNew").addEventListener("click", () => tShow("reg")); $("tRegBack").addEventListener("click", () => tShow("login"));
+$("tRegPhone").addEventListener("input", (e) => { e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10); });
+liveValid("tRegPhone", /^07[0-9]{8}$/); liveValid("tRegName", /^.{3,}$/); liveValid("tRegCode", /^.{6,}$/);
+liveValid("tKeyIn", /^TCH-[A-Z]{1,3}-[0-9]{1,5}$/i);
+
+$("tReg").addEventListener("submit", async (ev) => {
+  ev.preventDefault(); clearMsg($("tRegMsg"));
+  const name = $("tRegName").value.trim().replace(/\s+/g, " "), phone = $("tRegPhone").value.trim(), cls = $("tRegClass").value, code = $("tRegCode").value.trim();
+  const bad = (m) => showMsg($("tRegMsg"), m);
+  if (name.length < 3) return bad(STAFF_ERR.INVALID_NAME);
+  if (!/^07[0-9]{8}$/.test(phone)) return bad(STAFF_ERR.INVALID_PHONE);
+  if (!cls) return bad(STAFF_ERR.INVALID_CLASS);
+  if (!code) return bad("Enter the teacher access code.");
+  $("tRegBtn").disabled = true; $("tRegBtn").textContent = "Creating...";
+  try {
+    const qs = new URLSearchParams({ action: "teacher_register", name, phone, class: cls, subjects: $("tRegSubj").value.trim(), code, website: $("tRegWebsite").checked ? "1" : "" });
+    const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
+    if (d.error) { bad(STAFF_ERR[d.error] || STAFF_ERR.INVALID); return; }
+    $("tKeyName").textContent = d.name; $("tKeyCode").textContent = d.key; $("tKeyIn").value = d.key; tShow("key");
+  } catch (e) { bad("Unable to create the account: " + e.message); }
+  finally { $("tRegBtn").disabled = false; $("tRegBtn").textContent = "Create my account"; }
+});
+$("tKeyCopy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText($("tKeyCode").textContent); $("tKeyCopy").textContent = "Copied \u2713"; } catch (e) { $("tKeyCopy").textContent = "Press and hold the key"; }
+});
+$("tKeyGo").addEventListener("click", () => { $("tReg").reset(); tShow("login"); });
+
+async function teacherOpen(exam) {
+  const key = (tKey || $("tKeyIn").value).trim().toUpperCase();
+  clearMsg($("tMsg"));
+  if (!key) { showMsg($("tMsg"), "Enter your teacher key."); return; }
+  $("tBtn").disabled = true; $("tBtn").textContent = "Opening...";
+  try {
+    const d = await fetchJSONP(WEB_APP_URL + "?action=teacher&key=" + encodeURIComponent(key) + (exam ? "&exam=" + encodeURIComponent(exam) : ""));
+    if (d.error === "NOT_APPROVED") { showMsg($("tMsg"), "Your account is waiting for approval by the school admin."); return; }
+    if (d.error) { showMsg($("tMsg"), "Teacher key not found. Check the key and try again."); return; }
+    tKey = key; renderTeacher(d); tShow("work");
+  } catch (e) { showMsg($("tMsg"), "Unable to open your class: " + e.message); }
+  finally { $("tBtn").disabled = false; $("tBtn").textContent = "Open my class"; }
+}
+$("tBtn").addEventListener("click", () => teacherOpen());
+$("tKeyIn").addEventListener("keydown", (e) => { if (e.key === "Enter") teacherOpen(); });
+function unsavedMarks() { return [...$("tGrid").querySelectorAll("input")].some((i) => i.value !== i.dataset.orig); }
+$("tExam").addEventListener("change", (e) => {
+  if (unsavedMarks() && !confirm("You have unsaved marks. Switch exam and lose them?")) { e.target.value = tData.exam; return; }
+  teacherOpen(e.target.value);
+});
+$("tOut").addEventListener("click", () => {
+  if (unsavedMarks() && !confirm("You have unsaved marks. Sign out and lose them?")) return;
+  tKey = ""; tData = null; $("tKeyIn").value = ""; $("tGrid").textContent = ""; clearMsg($("tSaveMsg")); tShow("login");
+});
+
+function renderTeacher(d) { // learners' NAMES (rows) against subjects (columns)
+  tData = d;
+  const head = $("tHead"); head.textContent = "";
+  head.append(mk("h3", "stu", d.teacher.name), mk("div", "sub", d.teacher.class + " \u2022 " + (d.subjects.map((s) => s.name).join(", ") || "no subjects assigned")));
+  const pick = $("tExam"); pick.textContent = "";
+  d.exams.forEach((e) => { const o = document.createElement("option"); o.value = e; o.textContent = e; pick.appendChild(o); });
+  pick.value = d.exam; pick.hidden = $("tExam").previousElementSibling.hidden = !d.exams.length;
+  const wrap = $("tGrid"); wrap.textContent = ""; clearMsg($("tSaveMsg"));
+  const empty = (t) => { wrap.appendChild(mk("p", "empty", t)); $("tSave").hidden = true; };
+  if (!d.exams.length) return empty("No exam is open for marks right now. Ask the admin to open one.");
+  if (!d.subjects.length) return empty("No subjects are assigned to you for this class. Ask the admin.");
+  if (!d.learners.length) return empty("There are no approved learners in your class yet.");
+  const t = document.createElement("table"); t.className = "mt";
+  const tr = document.createElement("tr"); tr.appendChild(mk("th", "", "Learner"));
+  d.subjects.forEach((s) => { const th = mk("th", "", s.name); th.appendChild(mk("small", "", "out of " + s.outOf)); tr.appendChild(th); });
+  const thead = document.createElement("thead"); thead.appendChild(tr); t.appendChild(thead);
+  const tb = document.createElement("tbody");
+  d.learners.forEach((l) => {
+    const r = document.createElement("tr"); r.appendChild(mk("td", "", l.name));
+    d.subjects.forEach((s, j) => {
+      const td = document.createElement("td"), i = document.createElement("input"), v = d.marks[l.id] && d.marks[l.id][s.name];
+      i.type = "number"; i.min = 0; i.max = s.outOf; i.step = "any"; i.inputMode = "decimal";
+      i.value = v === undefined ? "" : String(v); i.dataset.orig = i.value; i.dataset.lid = l.id; i.dataset.j = j;
+      i.setAttribute("aria-label", l.name + " " + s.name);
+      i.addEventListener("input", () => {
+        const n = Number(i.value), wrong = i.value !== "" && (isNaN(n) || n < 0 || n > s.outOf);
+        i.classList.toggle("bad", wrong); i.classList.toggle("dirty", !wrong && i.value !== i.dataset.orig);
+      });
+      td.appendChild(i); r.appendChild(td);
+    });
+    tb.appendChild(r);
+  });
+  t.appendChild(tb); wrap.appendChild(t); $("tSave").hidden = false;
+}
+$("tSave").addEventListener("click", async () => {
+  if (!tData) return;
+  const subs = tData.subjects, inputs = [...$("tGrid").querySelectorAll("input")];
+  const wrong = inputs.filter((i) => i.classList.contains("bad"));
+  if (wrong.length) { note($("tSaveMsg"), "error", "Fix the red marks first. A mark must be from 0 up to the OUT OF value."); wrong[0].focus(); return; }
+  const byL = {};
+  inputs.forEach((i) => { (byL[i.dataset.lid] = byL[i.dataset.lid] || new Array(subs.length).fill(""))[Number(i.dataset.j)] = i.value.trim(); });
+  const rows = Object.keys(byL).map((id) => id + ":" + byL[id].join(","));
+  const chunks = []; let cur = []; // short requests: a few learners at a time
+  rows.forEach((r) => { if (cur.length && encodeURIComponent(cur.concat(r).join(";")).length > 1300) { chunks.push(cur); cur = []; } cur.push(r); });
+  if (cur.length) chunks.push(cur);
+  $("tSave").disabled = true; let saved = 0;
+  try {
+    for (let k = 0; k < chunks.length; k++) {
+      $("tSave").textContent = "Saving " + (k + 1) + " of " + chunks.length + "...";
+      const qs = new URLSearchParams({ action: "teacher_save", key: tKey, exam: tData.exam, sub: subs.map((s) => s.name).join("|"), d: chunks[k].join(";") });
+      const d = await fetchJSONP(WEB_APP_URL + "?" + qs);
+      if (d.error) {
+        const m = d.error === "BAD_MARK" ? d.learner + " - " + d.subject + ": a mark must be from 0 to " + d.max + "."
+          : d.error === "EXAM_CLOSED" ? "This exam is now closed for marks. Ask the admin to reopen it." : "Could not save (" + d.error + "). Part of your marks may be saved. Please try again.";
+        note($("tSaveMsg"), "error", m); return;
+      }
+      saved += d.saved;
+    }
+    inputs.forEach((i) => { i.dataset.orig = i.value; i.classList.remove("dirty"); });
+    note($("tSaveMsg"), "ok", "Saved " + saved + " marks.");
+  } catch (e) { note($("tSaveMsg"), "error", "Unable to save: " + e.message); }
+  finally { $("tSave").disabled = false; $("tSave").textContent = "Save marks"; }
+});
+
+/* admin */
+let aKey = "";
+function adminCall(op, extra) { return fetchJSONP(WEB_APP_URL + "?" + new URLSearchParams({ action: "admin", ak: aKey, op, ...(extra || {}) })); }
+function adminOut() { aKey = ""; $("aOut").textContent = ""; $("aOut").hidden = true; $("aLogin").hidden = false; }
+async function adminLogin() {
+  clearMsg($("aMsg"));
+  const k = $("aKeyIn").value;
+  if (!k) { showMsg($("aMsg"), "Enter the admin key."); return; }
+  aKey = k; $("aBtn").disabled = true; $("aBtn").textContent = "Signing in...";
+  try {
+    const d = await adminCall("overview");
+    if (d.error) { aKey = ""; showMsg($("aMsg"), ADMIN_ERR[d.error] || ADMIN_ERR.SERVER); return; }
+    $("aKeyIn").value = ""; $("aLogin").hidden = true; $("aOut").hidden = false; renderAdmin(d);
+  } catch (e) { aKey = ""; showMsg($("aMsg"), "Unable to sign in: " + e.message); }
+  finally { $("aBtn").disabled = false; $("aBtn").textContent = "Sign in"; }
+}
+$("aBtn").addEventListener("click", adminLogin);
+$("aKeyIn").addEventListener("keydown", (e) => { if (e.key === "Enter") adminLogin(); });
+async function adminReload() { const d = await adminCall("overview"); if (d.error) { adminOut(); return; } renderAdmin(d); }
+async function adminAct(op, extra, reload) {
+  try {
+    const d = await adminCall(op, extra);
+    if (d.error) { alert(ADMIN_ERR[d.error] || "That did not work (" + d.error + ")."); return null; }
+    if (reload !== false) await adminReload();
+    return d;
+  } catch (e) { alert("Request failed: " + e.message); return null; }
+}
+function mini(text, fn, ghost) { const b = mk("button", "mini" + (ghost ? " ghost" : ""), text); b.type = "button"; b.onclick = async () => { b.disabled = true; await fn(b); b.disabled = false; }; return b; }
+function arow(...nodes) { const r = mk("div", "arow"); r.append(...nodes); return r; }
+function who(name, detail) { const g = mk("div", "grow"); g.append(mk("b", "", name), mk("small", "", detail)); return g; }
+function field(tag, ph, type) { const e = document.createElement(tag); e.className = "input"; e.placeholder = ph; if (type) e.type = type; return e; }
+
+function renderAdmin(d) {
+  const o = $("aOut"); o.textContent = "";
+  const bar = arow(mk("b", "grow", "Admin panel"), mini("Sign out", adminOut, true)); bar.style.borderBottom = "0"; o.appendChild(bar);
+  const sum = mk("div", "sum");
+  [["Learners", d.students], ["Teachers", d.teachers], ["Awaiting approval", d.pendingStudents.length + d.pendingTeachers.length], ["Exams live", d.exams.filter((e) => e.published).length]]
+    .forEach(([l, v]) => { const b = mk("div", "sumbox"); b.append(mk("small", "", l), mk("b", "", String(v))); sum.appendChild(b); });
+  o.appendChild(sum);
+
+  const ap = mk("div");
+  d.pendingTeachers.forEach((t) => ap.appendChild(arow(who("Teacher: " + t.name, t.class + " \u2022 " + t.phone + (t.subjects ? " \u2022 " + t.subjects : "")), mini("Approve", () => adminAct("approve", { type: "teacher", id: t.id })))));
+  d.pendingStudents.forEach((s) => ap.appendChild(arow(who("Parent registration: " + s.name, s.class + " \u2022 " + s.parent + " \u2022 " + s.phone), mini("Approve", () => adminAct("approve", { type: "student", id: s.id })))));
+  if (!ap.children.length) ap.appendChild(mk("p", "empty", "Nothing is waiting for approval."));
+  o.appendChild(psec("Approvals", ap));
+
+  const ex = mk("div");
+  d.exams.forEach((e) => ex.appendChild(arow(who(e.name, e.published ? "Published: parents can see it, teachers cannot edit" : "Open: teachers can enter marks, parents cannot see it"),
+    mini(e.published ? "Hide (reopen marks)" : "Publish to parents", () => adminAct("exam", { name: e.name, value: e.published ? "0" : "1" })))));
+  if (!ex.children.length) ex.appendChild(mk("p", "empty", "No exams yet. Add them on the Exams sheet."));
+  o.appendChild(psec("Exams", ex));
+
+  const nb = mk("div"), f = mk("div", "afield"), nt = field("input", "Notice title"), nm = field("textarea", "Message"), nc = document.createElement("select"); nc.className = "input";
+  ["General", "Fees", "Events", "Exams", "Holiday"].forEach((c) => { const op = document.createElement("option"); op.value = c; op.textContent = c; nc.appendChild(op); });
+  const pl = document.createElement("label"), pc = document.createElement("input"); pc.type = "checkbox"; pl.style.display = "flex"; pl.style.gap = "8px"; pl.append(pc, "Pin to the top");
+  f.append(nt, nm, nc, pl, mini("Post notice", async () => { if (!nt.value.trim()) { alert("Enter a title."); return; } await adminAct("notice", { title: nt.value.trim(), message: nm.value.trim(), category: nc.value, pinned: pc.checked ? "1" : "0" }); }));
+  nb.appendChild(f);
+  d.notices.forEach((n) => nb.appendChild(arow(who(n.title, n.published ? "Showing" : "Hidden"), n.published ? mini("Hide", () => adminAct("noticeoff", { id: n.id }), true) : mk("span"))));
+  o.appendChild(psec("Notices", nb));
+
+  const sb = mk("div"), sf = mk("div", "afield"), sq = field("input", "Search a learner by name"), sr = mk("div");
+  sf.append(sq, mini("Search", async () => {
+    sr.textContent = ""; if (sq.value.trim().length < 2) { sr.appendChild(mk("p", "empty", "Type at least 2 letters.")); return; }
+    const r = await adminAct("students", { q: sq.value.trim() }, false); if (!r) return;
+    if (!r.students.length) sr.appendChild(mk("p", "empty", "No learner found."));
+    r.students.forEach((s) => {
+      const bi = field("input", "Balance"); bi.type = "number"; bi.min = 0; bi.value = s.balance === null ? "" : s.balance; bi.style.width = "110px";
+      const st = mk("small", "", ""); const g = who(s.name, s.class); g.appendChild(st);
+      sr.appendChild(arow(g, bi, mini("Set", async () => { const x = await adminAct("balance", { id: s.id, value: bi.value }, false); if (x) st.textContent = "Balance set to KES " + Number(x.balance).toLocaleString(); })));
+    });
+  }));
+  sb.append(sf, sr); o.appendChild(psec("Learners", sb));
+
+  const cb = mk("div", "afield"), pcode = field("input", "New parent code (leave empty to keep)"), tcode = field("input", "New teacher code (leave empty to keep)");
+  const cs = mk("small", "", "Parent code: " + (d.codes.parent ? "set" : "NOT SET (parent sign-up is closed)") + "  |  Teacher code: " + (d.codes.teacher ? "set" : "NOT SET (teacher sign-up is closed)"));
+  cb.append(pcode, tcode, mini("Save codes", async () => { const r = await adminAct("codes", { parent: pcode.value.trim(), teacher: tcode.value.trim() }); if (!r) return; }), cs);
+  o.appendChild(psec("Settings", cb));
 }
 
 /* ---------- notice board ---------- */
@@ -697,8 +1132,8 @@ function renderNotices(list) {
     const chip = document.createElement("span");
     chip.className = "chip cat-" + String(n.category).toLowerCase().replace(/[^a-z]/g, "");
     chip.textContent = n.category; meta.appendChild(chip);
-    if (n.pinned) { const p = document.createElement("span"); p.textContent = "Pinned"; meta.appendChild(p); }
-    if (n.date) { const d = document.createElement("span"); d.textContent = n.date; meta.appendChild(d); }
+    if (n.pinned) { const p = document.createElement("span"); p.append(ico("pin"), " Pinned"); meta.appendChild(p); }
+    if (n.date) { const d = document.createElement("span"); d.append(ico("cal"), " " + n.date); meta.appendChild(d); }
     const h = document.createElement("h3"); h.textContent = n.title;
     const p = document.createElement("p"); p.textContent = n.message;
     a.append(meta, h, p); box.appendChild(a);
@@ -752,6 +1187,7 @@ async function lookup(opts) {
     if (d.error === "SHEET_NOT_FOUND") { showError("Server setup problem. Please contact the school."); return; }
     if (d.error === "NOT_APPROVED") { showError("Your registration is waiting for approval by the school. Please check again later or contact the school office."); return; }
     if (d.error) { showError("Security key not found. Check the key and try again."); return; }
+    setActive(key, d.student_name); loadedFor.fees = key;
     lastData = { ...d, key };
     renderResult(d, keepPayMsg);
   } catch (e) {
@@ -798,6 +1234,9 @@ document.querySelectorAll("[data-frac]").forEach((b) => b.addEventListener("clic
 }));
 function liveValid(id, re) { $(id).addEventListener("input", (e) => e.target.classList.toggle("valid", re.test(e.target.value))); }
 liveValid("payPhone", /^0[17][0-9]{8}$/); liveValid("regPhone", /^07[0-9]{8}$/);
+const KEY_RE = /^([A-Z]+-)?[A-Z]{1,3}-[0-9]{1,5}$/i; // ticks green when a key looks right
+["pKey", "key", "resKey"].forEach((id) => liveValid(id, KEY_RE));
+liveValid("regName", /^.{3,}$/); liveValid("regParent", /^.{2,}$/); liveValid("regCode", /^.{6,}$/);
 $("payBtn").addEventListener("click", async () => {
   if (!lastData) return;
   const amount = Number($("payAmount").value), phone = $("payPhone").value.trim();
@@ -822,7 +1261,7 @@ function pollPayment(checkout, key, tries) {
     try {
       const r = await fetchJSONP(WEB_APP_URL + "?" + new URLSearchParams({ action: "paystatus", key, checkout }));
       if (r.status === "SUCCESS") {
-        resetPayBtn(); await lookup({ keepPayMsg: true });
+        resetPayBtn(); await lookup({ keepPayMsg: true }); loadedFor.profile = ""; // profile shows the new balance next time
         showPay("ok", "Payment of KES " + Number(r.amount).toLocaleString() + " received." + (r.receipt ? " M-Pesa receipt: " + r.receipt + "." : "") + " New balance: KES " + r.balance + ".");
         return;
       }
@@ -875,38 +1314,84 @@ $("copyBtn").addEventListener("click", async () => {
   catch { $("copyBtn").textContent = "Press and hold the key to copy it"; }
 });
 $("useKeyBtn").addEventListener("click", () => {
-  $("key").value = $("pKey").value = $("resKey").value = lastKey; location.hash = "profile";
+  setActive(lastKey, ""); location.hash = "profile"; autoLoad("profile");
   $("regForm").reset(); $("regForm").style.display = ""; $("keyBox").classList.remove("show");
   $("copyBtn").textContent = "Copy key"; lastKey = "";
 });
 
-/* ---------- PDF receipt (libraries load on first use) ---------- */
+/* ---------- PDFs: one look, matching the site (libraries load on first use) ---------- */
+const PDF_JS = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js", QR_JS = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+const PC = { navy: [11, 28, 51], blue: [31, 75, 142], soft: [245, 247, 251], line: [229, 233, 242], text: [22, 35, 58], muted: [107, 118, 144], white: [255, 255, 255] };
+const PP = { ok: [[230, 244, 234], [20, 83, 45]], due: [[255, 241, 214], [122, 74, 0]], wait: [[232, 237, 245], [51, 65, 92]], bad: [[253, 236, 236], [155, 28, 28]] };
+const fill = (d, c) => d.setFillColor(c[0], c[1], c[2]), ink = (d, c) => d.setTextColor(c[0], c[1], c[2]);
+const sk = (st) => { st = String(st).toUpperCase(); return st === "CLEARED" ? "ok" : st === "PENDING" ? "due" : "wait"; };
+function room(d, y, h) { // starts a new page when needed, with a slim header so every page looks like the site
+  if (y + h <= 272) return y;
+  d.addPage(); fill(d, PC.navy); d.rect(0, 0, 210, 14, "F"); fill(d, PC.blue); d.rect(0, 14, 210, 1.2, "F");
+  ink(d, PC.white); d.setFont("helvetica", "bold"); d.setFontSize(9); d.text("Mastered Comprehensive School", 14, 9);
+  d.setFont("helvetica", "normal"); d.text(d._title || "", 196, 9, { align: "right" }); ink(d, PC.text);
+  return 28;
+}
+function pdfNew(title, key) { // navy header with the school badge, as on the site
+  const d = new window.jspdf.jsPDF(); d._key = key; d._title = title;
+  fill(d, PC.navy); d.rect(0, 0, 210, 40, "F"); fill(d, PC.blue); d.rect(0, 40, 210, 2, "F");
+  fill(d, [52, 88, 146]); d.roundedRect(14, 10, 20, 20, 5, 5, "F");
+  ink(d, PC.white); d.setFont("helvetica", "bold"); d.setFontSize(15); d.text("M", 24, 23.5, { align: "center" });
+  d.setFontSize(16); d.text("Mastered Comprehensive School", 40, 19);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(title, 40, 27);
+  d.setFontSize(9); d.text("0721 101 702", 196, 19, { align: "right" }); d.text(new Date().toLocaleDateString(), 196, 27, { align: "right" });
+  ink(d, PC.text); return d;
+}
+function pdfEnd(d, file) { // footer on every page, tied to the key
+  const n = d.getNumberOfPages();
+  for (let i = 1; i <= n; i++) {
+    d.setPage(i); d.setDrawColor(PC.line[0], PC.line[1], PC.line[2]); d.setLineWidth(0.3); d.line(14, 282, 196, 282);
+    d.setFont("helvetica", "normal"); d.setFontSize(8); ink(d, PC.muted);
+    d.text("Key: " + d._key + "   |   Generated " + new Date().toLocaleString(), 14, 288);
+    d.text("Page " + i + " of " + n, 196, 288, { align: "right" });
+    d.text("This document belongs to the security key above. Please keep it private.", 105, 293, { align: "center" });
+  }
+  d.save(file);
+}
+function pdfSection(d, y, label) {
+  fill(d, PC.blue); d.roundedRect(14, y - 4, 3, 7, 1, 1, "F");
+  d.setFont("helvetica", "bold"); d.setFontSize(11); ink(d, PC.navy); d.text(label, 20, y + 1); return y + 9;
+}
+function pdfTile(d, x, y, w, label, value) {
+  fill(d, PC.soft); d.roundedRect(x, y, w, 15, 3, 3, "F");
+  d.setFont("helvetica", "normal"); d.setFontSize(7.5); ink(d, PC.muted); d.text(String(label).toUpperCase(), x + 4, y + 5.5);
+  d.setFont("helvetica", "bold"); d.setFontSize(10); ink(d, PC.text); d.text(String(value || "-").slice(0, 34), x + 4, y + 11.5);
+}
+function pdfPill(d, text, x, y, kind) {
+  d.setFont("helvetica", "bold"); d.setFontSize(8.5);
+  const w = d.getTextWidth(String(text)) + 8; fill(d, PP[kind][0]); d.roundedRect(x, y - 5, w, 7.5, 3.7, 3.7, "F");
+  ink(d, PP[kind][1]); d.text(String(text), x + 4, y); return w;
+}
+
 $("pdfBtn").addEventListener("click", async () => {
   if (!lastData) return;
   $("pdfBtn").disabled = true;
-  try {
-    await Promise.all([
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"),
-      loadScript("https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js")
-    ]);
-  } catch (e) { alert("Could not load the receipt tools. Check your connection and try again."); $("pdfBtn").disabled = false; return; }
-  const { jsPDF } = window.jspdf, doc = new jsPDF();
-  const receiptId = "MCS-" + Date.now().toString().slice(-8), dateStr = new Date().toLocaleString();
+  try { await Promise.all([loadScript(PDF_JS), loadScript(QR_JS)]); }
+  catch (e) { alert("Could not load the receipt tools. Check your connection and try again."); $("pdfBtn").disabled = false; return; }
+  const L = lastData, d = pdfNew("Fee statement", L.key), rid = "MCS-" + Date.now().toString().slice(-8);
   const qrDiv = $("qrTemp"); qrDiv.innerHTML = "";
-  new QRCode(qrDiv, { text: `${lastData.student_name}|${lastData.key}|${money(lastData.balance)}|${receiptId}`, width: 100, height: 100 });
+  new QRCode(qrDiv, { text: `${L.student_name}|${L.key}|${money(L.balance)}|${rid}`, width: 100, height: 100 });
   setTimeout(() => {
-    const qr = qrDiv.querySelector("canvas"), qrData = qr ? qr.toDataURL() : null;
-    doc.setFillColor(11, 28, 51); doc.rect(0, 0, 210, 35, "F");
-    doc.setTextColor(255, 255, 255); doc.setFontSize(18);
-    doc.text("Mastered Comprehensive School", 105, 20, { align: "center" });
-    doc.setTextColor(0, 0, 0); doc.setFontSize(12);
-    let y = 50;
-    [`Receipt: ${receiptId}`, `Date: ${dateStr}`, `Student: ${lastData.student_name}`, `Class: ${lastData.class}`,
-     `Balance: ${money(lastData.balance)}`, `Status: ${lastData.status}`].forEach((t) => { doc.text(t, 14, y); y += 10; });
-    y += 5;
-    if (qrData) doc.addImage(qrData, "PNG", 14, y, 35, 35);
-    doc.save(`${lastData.key}_Receipt.pdf`);
-    $("pdfBtn").disabled = false;
+    const qr = qrDiv.querySelector("canvas"), img = qr ? qr.toDataURL() : null;
+    let y = 56;
+    pdfTile(d, 14, y, 88, "Student", L.student_name); pdfTile(d, 108, y, 88, "Class", L.class); y += 19;
+    pdfTile(d, 14, y, 88, "Parent / guardian", L.parent_name); pdfTile(d, 108, y, 88, "Receipt no.", rid); y += 26;
+    y = pdfSection(d, y, "Fee balance");
+    fill(d, PC.navy); d.roundedRect(14, y, 122, 44, 5, 5, "F");
+    ink(d, PC.white); d.setFont("helvetica", "normal"); d.setFontSize(9); d.text("OUTSTANDING BALANCE", 22, y + 11);
+    d.setFont("helvetica", "bold"); d.setFontSize(22); d.text(money(L.balance), 22, y + 26);
+    pdfPill(d, L.status, 22, y + 37, sk(L.status));
+    if (img) {
+      d.setDrawColor(PC.line[0], PC.line[1], PC.line[2]); d.setLineWidth(0.4); d.roundedRect(142, y - 3, 54, 56, 4, 4, "S");
+      d.addImage(img, "PNG", 146, y + 1, 46, 46);
+      d.setFont("helvetica", "normal"); d.setFontSize(7.5); ink(d, PC.muted); d.text("Scan to verify", 169, y + 52, { align: "center" });
+    }
+    pdfEnd(d, `${L.key}_Receipt.pdf`); $("pdfBtn").disabled = false;
   }, 300);
 });
 </script>
